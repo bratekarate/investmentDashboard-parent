@@ -24,6 +24,7 @@
  		<version>1.0-rc-1</version>
   		<extensions>true</extensions>
 	</plugin>
+	
     </plugins>
   </build>
   <dependencies>
