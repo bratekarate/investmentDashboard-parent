@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="investmentdashboard.midtier-server-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/eclipse-target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="investmentdashboard.midtier-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/investmentdashboard.midtier-core/investmentdashboard.midtier-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="investmentdashboard.midtier-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/investmentdashboard.midtier-api/investmentdashboard.midtier-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="investmentdashboard.midtier-server"/>
+        <property name="java-output-path" value="/investmentdashboard.midtier-server/eclipse-target/classes"/>
+    </wb-module>
+</project-modules>
