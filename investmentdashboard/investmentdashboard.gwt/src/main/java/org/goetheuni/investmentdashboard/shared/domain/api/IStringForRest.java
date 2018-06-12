@@ -1,8 +1,8 @@
 package org.goetheuni.investmentdashboard.shared.domain.api;
 
-
 /**
- * Objects implementing this interface are test objects for the StringRestService
+ * Objects implementing this interface are test objects for the
+ * StringRestService
  * 
  */
 

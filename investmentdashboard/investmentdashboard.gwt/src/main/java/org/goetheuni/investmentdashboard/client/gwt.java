@@ -27,19 +27,18 @@ public class gwt implements EntryPoint {
 
 		// add the new vertical panel to the root
 		rootPanel.add(verticalPanel);
-		
+
 		// add a load button
 		Button load = new Button("Load");
 		verticalPanel.add(load);
 		load.addClickHandler(new ClickHandler() {
-			
+
 			@Override
 			public void onClick(ClickEvent event) {
 				ShowRestResults.load(verticalPanel);
-				
+
 			}
 		});
-		
-		
+
 	}
 }

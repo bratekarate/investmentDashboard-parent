@@ -1,20 +1,17 @@
 package org.goetheuni.investmentdashboard.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.goetheuni.investmentdashboard.client.restCallAPI.IStringRestService;
 import org.goetheuni.investmentdashboard.shared.domain.impl.StringForRest;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * A class with the functionality to load the test Rest Data into the provided vertical panel.
+ * A class with the functionality to load the test Rest Data into the provided
+ * vertical panel.
  */
 public class ShowRestResults {
 

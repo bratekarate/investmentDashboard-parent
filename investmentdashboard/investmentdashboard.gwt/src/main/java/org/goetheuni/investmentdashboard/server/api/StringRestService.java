@@ -7,7 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.goetheuni.investmentdashboard.shared.domain.api.IStringForRest;
 import org.goetheuni.investmentdashboard.shared.domain.impl.StringForRest;
 
 /**
@@ -29,8 +28,6 @@ public class StringRestService {
 	public StringForRest getStringObject() {
 		return StringRestService.generateRandomStringObject();
 	}
-
-
 
 	/**
 	 * generates a random object holding a number and a string
