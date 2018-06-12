@@ -1,42 +1,41 @@
-package org.goetheuni.investmentdashboard.server.domain;
+package org.goetheuni.investmentdashboard.shared.domain.impl;
 
 import java.util.Objects;
 
-import org.codehaus.jackson.annotate.JsonCreator;
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.goetheuni.investmentdashboard.shared.domain.api.IStringForRest;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Objects of this class are test objects for the StringRestService
- * Rest-resource.
  * 
  */
-public class StringForRest {
+public class StringForRest implements IStringForRest {
 
 	/**
 	 * A test key of the type long.
 	 */
-	@JsonProperty
-	long key;
+	String key;
 
 	/**
 	 * A test String value.
 	 */
-	@JsonProperty
 	String value;
 
 	/**
 	 * 
 	 * @return A test key of the type long.
 	 */
-	public long getKey() {
-		return key;
+	public String getKey() {
+		return this.key;
 	}
 
 	/**
 	 * @return A test String value.
 	 */
 	public String getValue() {
-		return value;
+		return this.value;
 	}
 
 	/**
@@ -49,8 +48,12 @@ public class StringForRest {
 	 *            a non-null String
 	 */
 	@JsonCreator
-	public StringForRest(long aKey, String aValue) {
+	public StringForRest(@JsonProperty("key") final String aKey, @JsonProperty("value") final String aValue) {
 		this.key = aKey;
 		this.value = Objects.requireNonNull(aValue, "The String value of a test object may not be null");
+	}
+
+	protected StringForRest() {
+		// required by GWT
 	}
 }

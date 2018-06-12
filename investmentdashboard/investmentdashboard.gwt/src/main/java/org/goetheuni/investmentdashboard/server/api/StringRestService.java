@@ -7,7 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.goetheuni.investmentdashboard.server.domain.StringForRest;
+import org.goetheuni.investmentdashboard.shared.domain.api.IStringForRest;
+import org.goetheuni.investmentdashboard.shared.domain.impl.StringForRest;
 
 /**
  * 
@@ -15,40 +16,30 @@ import org.goetheuni.investmentdashboard.server.domain.StringForRest;
  * of an object holding a String will be returned. It is used to become familiar
  * with making Rest-call from the GWT client.
  */
-@Path("string")
+@Path(ServicePaths.STRING_TEST_SERVICE)
 public class StringRestService {
 
 	@GET
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	/**
 	 * Constitutes a Rest-API returning a random (number, String) shaped object.
 	 * 
 	 * @return a random (number, String) object
 	 */
-	public StringForRest getRandomStringObject() {
-		return StringRestService.generateRandomString();
+	public StringForRest getStringObject() {
+		return StringRestService.generateRandomStringObject();
 	}
 
-	@GET
-	@Path("/value")
-	@Produces(MediaType.TEXT_PLAIN)
-	/**
-	 * Constitutes a Rest-API returning a random string.
-	 * 
-	 * @return a random (number, String) object
-	 */
-	public String getRandomStringValue() {
-		return StringRestService.generateRandomString().getValue();
-	}
+
 
 	/**
 	 * generates a random object holding a number and a string
 	 * 
 	 * @return a random (number, String) object
 	 */
-	private static StringForRest generateRandomString() {
+	private static StringForRest generateRandomStringObject() {
 		int randomKey = new Random().nextInt(4);
 		String[] possibleValues = { "AAA", "BBB", "CCC", "DDD", "EEE" };
-		return new StringForRest(randomKey, possibleValues[randomKey]);
+		return new StringForRest(String.valueOf(randomKey), possibleValues[randomKey]);
 	}
 }
