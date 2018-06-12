@@ -6,7 +6,20 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-  
+  <servlet>
+        <servlet-name>StringRestService</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>
+                org/goetheuni/investmentdashboard/server/api
+            </param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StringRestService</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
