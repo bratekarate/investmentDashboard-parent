@@ -6,6 +6,9 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ISecurityTransaction;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * An object of this class represents an executed transaction of securities.
  */
@@ -83,15 +86,17 @@ public class SecurityTransaction implements ISecurityTransaction {
 	 * @param security
 	 * @param dateOfExecution
 	 */
-	public SecurityTransaction(long quantity, BigDecimal totalPrize, Security security, Date dateOfExecution) {
+	@JsonCreator
+	public SecurityTransaction(final @JsonProperty("quantity") long quantity,
+			final @JsonProperty("totalPrize") BigDecimal totalPrize, final @JsonProperty("security") Security security,
+			final @JsonProperty("dateOfExecution") Date dateOfExecution) {
 		this.quantity = quantity;
 		this.totalPrize = Objects.requireNonNull(totalPrize, "The object for the total prize must not be null");
 
 		// the price is assumed to be non negative
 		if (totalPrize.signum() < 0) {
-			throw new IllegalArgumentException(
-					"The total prize of a security transaction must not be negative. It is: "
-							+ totalPrize.doubleValue());
+			throw new IllegalArgumentException("The total prize of a security transaction must not be negative. It is: "
+					+ totalPrize.doubleValue());
 		}
 
 		this.security = Objects.requireNonNull(security, "The given security must not be null");

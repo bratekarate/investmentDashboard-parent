@@ -2,9 +2,8 @@ package org.goetheuni.investmentdashboard.shared.domain.api;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.Security;
+import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityTransaction;
 
 /**
@@ -17,7 +16,7 @@ public interface ISecurityDepot {
 	/**
 	 * @return the portfolio
 	 */
-	public Map<? extends Security, Long> getPortfolio();
+	public List<SecurityInvestment> getPortfolio();
 
 	/**
 	 * @return the depotID
@@ -32,7 +31,7 @@ public interface ISecurityDepot {
 	/**
 	 * @return the recentTransactions
 	 */
-	public List<? extends SecurityTransaction> getRecentTransactions();
+	public List<SecurityTransaction> getRecentTransactions();
 
 	/**
 	 * @return the referenceValue

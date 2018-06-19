@@ -16,7 +16,7 @@ public interface ICryptoMarketData {
 	/**
 	 * @return the exchangeRates
 	 */
-	public Map<String, ? extends BigDecimal> getExchangeRates();
+	public Map<String, BigDecimal> getExchangeRates();
 
 	/**
 	 * @return the dateAndTime

@@ -6,6 +6,9 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ICryptoWallet;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * An object of this class represents an account for a crypto currency.
  */
@@ -35,7 +38,7 @@ public class CryptoWallet implements ICryptoWallet {
 	/**
 	 * A list of recent payments affecting this payment.
 	 */
-	protected List<? extends CryptoPayment> recentPayments;
+	protected List<CryptoPayment> recentPayments;
 
 	/**
 	 * @return the accountID
@@ -73,16 +76,19 @@ public class CryptoWallet implements ICryptoWallet {
 	 * @return the recentPayments
 	 */
 	@Override
-	public List<? extends CryptoPayment> getRecentPayments() {
+	public List<CryptoPayment> getRecentPayments() {
 		return recentPayments;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoWallet#getFormattedAmount()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoWallet#
+	 * getFormattedAmount()
 	 */
 	@Override
 	public String getFormattedAmount() {
-		throw new RuntimeException("Sorry, not yet implemented");
+		return "Sorry, not yet implemented";
 	}
 
 	/*
@@ -105,8 +111,11 @@ public class CryptoWallet implements ICryptoWallet {
 	 * @param accountBalance
 	 * @param recentPayments
 	 */
-	public CryptoWallet(String accountID, String currencyCode, String name, BigDecimal accountBalance,
-			List<? extends CryptoPayment> recentPayments) {
+	@JsonCreator
+	public CryptoWallet(final @JsonProperty("accountID") String accountID,
+			final @JsonProperty("currencyCode") String currencyCode, final @JsonProperty("name") String name,
+			final @JsonProperty("accountBalance") BigDecimal accountBalance,
+			final @JsonProperty("recentPayments") List<CryptoPayment> recentPayments) {
 		this.accountID = Objects.requireNonNull(accountID, "Account ID must not be null");
 		this.currencyCode = Objects.requireNonNull(currencyCode, "The currency code must not be null");
 		this.name = Objects.requireNonNull(name, "The name must not be null");

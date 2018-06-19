@@ -26,17 +26,17 @@ public interface ICustomer {
 	/**
 	 * @return the cashAccounts
 	 */
-	public List<? extends CashAccount> getCashAccounts();
+	public List<CashAccount> getCashAccounts();
 
 	/**
 	 * @return the cryptoWallets
 	 */
-	public List<? extends CryptoWallet> getCryptoWallets();
+	public List<CryptoWallet> getCryptoWallets();
 
 	/**
 	 * @return the securityDepots
 	 */
-	public List<? extends SecurityDepot> getSecurityDepots();
+	public List<SecurityDepot> getSecurityDepots();
 
 	/*
 	 * (non-Javadoc)

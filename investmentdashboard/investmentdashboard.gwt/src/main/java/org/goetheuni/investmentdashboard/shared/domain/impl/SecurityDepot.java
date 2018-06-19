@@ -2,10 +2,12 @@ package org.goetheuni.investmentdashboard.shared.domain.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ISecurityDepot;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class represents a security depot.
@@ -16,7 +18,7 @@ public class SecurityDepot implements ISecurityDepot {
 	 * A map that describes the portfolio. A security will be mapped to its quantity
 	 * in the portfolio.
 	 */
-	protected Map<? extends Security, Long> portfolio;
+	protected List<SecurityInvestment> portfolio;
 
 	/**
 	 * An ID for the depot.
@@ -31,7 +33,7 @@ public class SecurityDepot implements ISecurityDepot {
 	/**
 	 * Recent transactions, that affect this portfolio.
 	 */
-	protected List<? extends SecurityTransaction> recentTransactions;
+	protected List<SecurityTransaction> recentTransactions;
 
 	/**
 	 * The depot's base value provide by the bank. It is used for comparison with
@@ -43,7 +45,7 @@ public class SecurityDepot implements ISecurityDepot {
 	 * @return the portfolio
 	 */
 	@Override
-	public Map<? extends Security, Long> getPortfolio() {
+	public List<SecurityInvestment> getPortfolio() {
 		return portfolio;
 	}
 
@@ -67,7 +69,7 @@ public class SecurityDepot implements ISecurityDepot {
 	 * @return the recentTransactions
 	 */
 	@Override
-	public List<? extends SecurityTransaction> getRecentTransactions() {
+	public List<SecurityTransaction> getRecentTransactions() {
 		return recentTransactions;
 	}
 
@@ -99,8 +101,11 @@ public class SecurityDepot implements ISecurityDepot {
 	 * @param recentTransactions
 	 * @param referenceValue
 	 */
-	public SecurityDepot(Map<? extends Security, Long> portfolio, String depotID, String name,
-			List<? extends SecurityTransaction> recentTransactions, BigDecimal referenceValue) {
+	@JsonCreator
+	public SecurityDepot(final @JsonProperty("portfolio") List<SecurityInvestment> portfolio,
+			final @JsonProperty("depotID") String depotID, final @JsonProperty("name") String name,
+			final @JsonProperty("recentTransactions") List<SecurityTransaction> recentTransactions,
+			final @JsonProperty("referenceValue") BigDecimal referenceValue) {
 		this.portfolio = Objects.requireNonNull(portfolio, "The collection of securities must not be null");
 		this.depotID = Objects.requireNonNull(depotID, "The depotID must not be null");
 		this.name = Objects.requireNonNull(name, "The depot's name must not be null");

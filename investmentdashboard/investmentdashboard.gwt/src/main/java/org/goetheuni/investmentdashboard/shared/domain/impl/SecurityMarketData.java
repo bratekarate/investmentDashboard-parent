@@ -7,18 +7,21 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ISecurityMarketData;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Objects of this class represent security market data provided by the bank.
  * The concerning point of time must be specified. An object of this class may
  * not contain information about all securities in the market.
  * 
  */
-public class SecurityMarketData implements ISecurityMarketData{
+public class SecurityMarketData implements ISecurityMarketData {
 
 	/**
 	 * Maps a security's ISIN to its prize.
 	 */
-	protected Map<String, ? extends BigDecimal> marketPrizes;
+	protected Map<String, BigDecimal> marketPrizes;
 
 	/**
 	 * Specifies the date and time of this market data
@@ -29,7 +32,7 @@ public class SecurityMarketData implements ISecurityMarketData{
 	 * @return the marketPrizes
 	 */
 	@Override
-	public Map<String, ? extends BigDecimal> getMarketPrizes() {
+	public Map<String, BigDecimal> getMarketPrizes() {
 		return marketPrizes;
 	}
 
@@ -57,7 +60,9 @@ public class SecurityMarketData implements ISecurityMarketData{
 	 * @param marketPrizes
 	 * @param dateAndTime
 	 */
-	public SecurityMarketData(Map<String, ? extends BigDecimal> marketPrizes, Date dateAndTime) {
+	@JsonCreator
+	public SecurityMarketData(final @JsonProperty("marketPrizes") Map<String, BigDecimal> marketPrizes,
+			final @JsonProperty("dateAndTime") Date dateAndTime) {
 		this.marketPrizes = Objects.requireNonNull(marketPrizes,
 				"The collection for the market prizes must not be null");
 		this.dateAndTime = Objects.requireNonNull(dateAndTime, "The date of execution must not be null");

@@ -6,6 +6,9 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ICryptoPayment;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * An object of this class represents an executed payment in crypto currency.
  */
@@ -64,12 +67,15 @@ public class CryptoPayment implements ICryptoPayment {
 		return dateOfExecution;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoPayment#getFormattedAmount()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoPayment#
+	 * getFormattedAmount()
 	 */
 	@Override
 	public String getFormattedAmount() {
-		throw new RuntimeException("Sorry, not yet implemented");
+		return "Sorry, not yet implemented";
 	}
 
 	/*
@@ -91,7 +97,11 @@ public class CryptoPayment implements ICryptoPayment {
 	 * @param counterPartyAddress
 	 * @param dateOfExecution
 	 */
-	public CryptoPayment(BigDecimal amount, String currencyCode, String counterPartyAddress, Date dateOfExecution) {
+	@JsonCreator
+	public CryptoPayment(final @JsonProperty("amount") BigDecimal amount,
+			final @JsonProperty("currencyCode") String currencyCode,
+			final @JsonProperty("counterPartyAddress") String counterPartyAddress,
+			final @JsonProperty("dateOfExecution") Date dateOfExecution) {
 		this.amount = Objects.requireNonNull(amount, "Amount must not be null");
 		this.currencyCode = Objects.requireNonNull(currencyCode, "The currency code must not be null");
 		this.counterPartyAddress = Objects.requireNonNull(counterPartyAddress,

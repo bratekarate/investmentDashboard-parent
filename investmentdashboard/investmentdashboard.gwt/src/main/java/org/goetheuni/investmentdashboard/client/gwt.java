@@ -22,6 +22,8 @@ public class gwt implements EntryPoint {
 	public void onModuleLoad() {
 
 		Defaults.setServiceRoot(GWT.getHostPageBaseURL());
+		Defaults.setDateFormat(null);
+
 		RootPanel rootPanel = RootPanel.get();
 		final VerticalPanel verticalPanel = new VerticalPanel();
 
@@ -35,7 +37,7 @@ public class gwt implements EntryPoint {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				ShowRestResults.load(verticalPanel);
+				ShowRealData.showData(verticalPanel);
 
 			}
 		});

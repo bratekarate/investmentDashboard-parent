@@ -7,6 +7,9 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ICryptoMarketData;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Objects of this class represent crypto-market data provided by the bank. The
  * concerning point of time must be specified. An object of this class may not
@@ -18,7 +21,7 @@ public class CryptoMarketData implements ICryptoMarketData {
 	/**
 	 * Maps a crypto currency's identifier to its exchange rate to EUR.
 	 */
-	protected Map<String, ? extends BigDecimal> exchangeRates;
+	protected Map<String, BigDecimal> exchangeRates;
 
 	/**
 	 * Specifies the date and time of this market data
@@ -29,7 +32,7 @@ public class CryptoMarketData implements ICryptoMarketData {
 	 * @return the exchangeRates
 	 */
 	@Override
-	public Map<String, ? extends BigDecimal> getExchangeRates() {
+	public Map<String, BigDecimal> getExchangeRates() {
 		return exchangeRates;
 	}
 
@@ -57,7 +60,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 	 * @param exchangeRates
 	 * @param dateAndTime
 	 */
-	public CryptoMarketData(Map<String, ? extends BigDecimal> exchangeRates, Date dateAndTime) {
+	@JsonCreator
+	public CryptoMarketData(final @JsonProperty("exchangeRates") Map<String, BigDecimal> exchangeRates,
+			final @JsonProperty("dateAndTime") Date dateAndTime) {
 		this.exchangeRates = Objects.requireNonNull(exchangeRates, "The exchange rates map must not be null");
 		this.dateAndTime = Objects.requireNonNull(dateAndTime, "The execution date must not be null");
 	}

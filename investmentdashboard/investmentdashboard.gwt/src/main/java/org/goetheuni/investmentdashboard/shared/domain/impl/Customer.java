@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.domain.api.ICustomer;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Objects of this class represent the bank's customers
  *
@@ -26,17 +29,17 @@ public class Customer implements ICustomer {
 	/**
 	 * The customer's cash accounts
 	 */
-	protected List<? extends CashAccount> cashAccounts;
+	protected List<CashAccount> cashAccounts;
 
 	/**
 	 * The customer's crypto wallets
 	 */
-	protected List<? extends CryptoWallet> cryptoWallets;
+	protected List<CryptoWallet> cryptoWallets;
 
 	/**
 	 * The customer's security depots
 	 */
-	protected List<? extends SecurityDepot> securityDepots;
+	protected List<SecurityDepot> securityDepots;
 
 	/**
 	 * @return the nameForAdress
@@ -58,7 +61,7 @@ public class Customer implements ICustomer {
 	 * @return the cashAccounts
 	 */
 	@Override
-	public List<? extends CashAccount> getCashAccounts() {
+	public List<CashAccount> getCashAccounts() {
 		return cashAccounts;
 	}
 
@@ -66,7 +69,7 @@ public class Customer implements ICustomer {
 	 * @return the cryptoWallets
 	 */
 	@Override
-	public List<? extends CryptoWallet> getCryptoWallets() {
+	public List<CryptoWallet> getCryptoWallets() {
 		return cryptoWallets;
 	}
 
@@ -74,7 +77,7 @@ public class Customer implements ICustomer {
 	 * @return the securityDepots
 	 */
 	@Override
-	public List<? extends SecurityDepot> getSecurityDepots() {
+	public List<SecurityDepot> getSecurityDepots() {
 		return securityDepots;
 	}
 
@@ -98,8 +101,12 @@ public class Customer implements ICustomer {
 	 * @param cryptoWallets
 	 * @param securityDepots
 	 */
-	public Customer(String nameForAdress, String customerID, List<? extends CashAccount> cashAccounts,
-			List<? extends CryptoWallet> cryptoWallets, List<? extends SecurityDepot> securityDepots) {
+	@JsonCreator
+	public Customer(final @JsonProperty("nameForAdress") String nameForAdress,
+			final @JsonProperty("customerID") String customerID,
+			final @JsonProperty("cashAccounts") List<CashAccount> cashAccounts,
+			final @JsonProperty("cryptoWallets") List<CryptoWallet> cryptoWallets,
+			final @JsonProperty("securityDepots") List<SecurityDepot> securityDepots) {
 		this.nameForAdress = Objects.requireNonNull(nameForAdress, "The name must not be null");
 		this.customerID = Objects.requireNonNull(customerID, "The customerID must not be null");
 		this.cashAccounts = Objects.requireNonNull(cashAccounts, "The list of cash accounts may not be null");

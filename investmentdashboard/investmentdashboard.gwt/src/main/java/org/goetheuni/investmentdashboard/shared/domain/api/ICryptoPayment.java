@@ -29,10 +29,12 @@ public interface ICryptoPayment {
 	 * @return the dateOfExecution
 	 */
 	public Date getDateOfExecution();
-	
+
 	/**
-	 * This method creates a formatted String for the UI.
-	 * It must get the amount, format the number in the desired way, then get the currency code and generate the String with the correct currency symbol.
+	 * This method creates a formatted String for the UI. It must get the amount,
+	 * format the number in the desired way, then get the currency code and generate
+	 * the String with the correct currency symbol.
+	 * 
 	 * @return a formatted String that represents the amount.
 	 */
 	public String getFormattedAmount();

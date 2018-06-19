@@ -35,11 +35,13 @@ public interface ICryptoWallet {
 	/**
 	 * @return the recentPayments
 	 */
-	public List<? extends CryptoPayment> getRecentPayments();
-	
+	public List<CryptoPayment> getRecentPayments();
+
 	/**
-	 * This method creates a formatted String for the UI.
-	 * It must get the account balance, format the number in the desired way, then get the currency code and generate the String with the correct currency symbol.
+	 * This method creates a formatted String for the UI. It must get the account
+	 * balance, format the number in the desired way, then get the currency code and
+	 * generate the String with the correct currency symbol.
+	 * 
 	 * @return a formatted String that represents the account balance.
 	 */
 	public String getFormattedAmount();

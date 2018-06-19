@@ -16,7 +16,7 @@ public interface ISecurityMarketData {
 	/**
 	 * @return the marketPrizes
 	 */
-	public Map<String, ? extends BigDecimal> getMarketPrizes();
+	public Map<String, BigDecimal> getMarketPrizes();
 
 	/**
 	 * @return the dateAndTime

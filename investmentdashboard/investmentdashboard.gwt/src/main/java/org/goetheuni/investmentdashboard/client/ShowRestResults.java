@@ -3,7 +3,7 @@ package org.goetheuni.investmentdashboard.client;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.goetheuni.investmentdashboard.client.restCallAPI.IStringRestService;
-import org.goetheuni.investmentdashboard.shared.domain.impl.StringForRest;
+import org.goetheuni.investmentdashboard.shared.StringForRest;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Label;

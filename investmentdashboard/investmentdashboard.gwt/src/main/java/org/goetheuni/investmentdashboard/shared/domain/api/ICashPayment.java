@@ -1,7 +1,6 @@
 package org.goetheuni.investmentdashboard.shared.domain.api;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Date;
 
 /**
@@ -20,7 +19,7 @@ public interface ICashPayment {
 	/**
 	 * @return the currency code
 	 */
-	public String getCurrency();
+	public String getCurrencyCode();
 
 	/**
 	 * @return the counterPartyIBAN
@@ -31,11 +30,14 @@ public interface ICashPayment {
 	 * @return the dateOfExecution
 	 */
 	public Date getDateOfExecution();
-	
+
 	/**
-	 * This method creates a formatted String for the UI.
-	 * It must get the amount, format the number in the desired way, then get the currency code and generate the String with the correct currency symbol.
-	 * The static method getCurrencyFormat(String currencyCode) of com.google.gwt.i18n.client.NumberFormat should be used.
+	 * This method creates a formatted String for the UI. It must get the amount,
+	 * format the number in the desired way, then get the currency code and generate
+	 * the String with the correct currency symbol. The static method
+	 * getCurrencyFormat(String currencyCode) of
+	 * com.google.gwt.i18n.client.NumberFormat should be used.
+	 * 
 	 * @return a formatted String that represents the amount of the payment.
 	 */
 	public String getFormattedAmount();
