@@ -67,6 +67,62 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return dateOfExecution;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateOfExecution == null) ? 0 : dateOfExecution.hashCode());
+		result = prime * result + (int) (quantity ^ (quantity >>> 32));
+		result = prime * result + ((security == null) ? 0 : security.hashCode());
+		result = prime * result + ((totalPrize == null) ? 0 : totalPrize.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		SecurityTransaction other = (SecurityTransaction) obj;
+		if (dateOfExecution == null) {
+			if (other.dateOfExecution != null) {
+				return false;
+			}
+		} else if (!dateOfExecution.equals(other.dateOfExecution)) {
+			return false;
+		}
+		if (quantity != other.quantity) {
+			return false;
+		}
+		if (security == null) {
+			if (other.security != null) {
+				return false;
+			}
+		} else if (!security.equals(other.security)) {
+			return false;
+		}
+		if (totalPrize == null) {
+			if (other.totalPrize != null) {
+				return false;
+			}
+		} else if (!totalPrize.equals(other.totalPrize)) {
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

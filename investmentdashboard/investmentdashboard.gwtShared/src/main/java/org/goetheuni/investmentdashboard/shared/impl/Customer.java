@@ -81,6 +81,74 @@ public class Customer implements ICustomer {
 		return securityDepots;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cashAccounts == null) ? 0 : cashAccounts.hashCode());
+		result = prime * result + ((cryptoWallets == null) ? 0 : cryptoWallets.hashCode());
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
+		result = prime * result + ((nameForAdress == null) ? 0 : nameForAdress.hashCode());
+		result = prime * result + ((securityDepots == null) ? 0 : securityDepots.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Customer other = (Customer) obj;
+		if (cashAccounts == null) {
+			if (other.cashAccounts != null) {
+				return false;
+			}
+		} else if (!cashAccounts.equals(other.cashAccounts)) {
+			return false;
+		}
+		if (cryptoWallets == null) {
+			if (other.cryptoWallets != null) {
+				return false;
+			}
+		} else if (!cryptoWallets.equals(other.cryptoWallets)) {
+			return false;
+		}
+		if (customerID == null) {
+			if (other.customerID != null) {
+				return false;
+			}
+		} else if (!customerID.equals(other.customerID)) {
+			return false;
+		}
+		if (nameForAdress == null) {
+			if (other.nameForAdress != null) {
+				return false;
+			}
+		} else if (!nameForAdress.equals(other.nameForAdress)) {
+			return false;
+		}
+		if (securityDepots == null) {
+			if (other.securityDepots != null) {
+				return false;
+			}
+		} else if (!securityDepots.equals(other.securityDepots)) {
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

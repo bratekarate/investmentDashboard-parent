@@ -78,6 +78,66 @@ public class CryptoPayment implements ICryptoPayment {
 		return "Sorry, not yet implemented";
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+		result = prime * result + ((counterPartyAddress == null) ? 0 : counterPartyAddress.hashCode());
+		result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
+		result = prime * result + ((dateOfExecution == null) ? 0 : dateOfExecution.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		CryptoPayment other = (CryptoPayment) obj;
+		if (amount == null) {
+			if (other.amount != null) {
+				return false;
+			}
+		} else if (!amount.equals(other.amount)) {
+			return false;
+		}
+		if (counterPartyAddress == null) {
+			if (other.counterPartyAddress != null) {
+				return false;
+			}
+		} else if (!counterPartyAddress.equals(other.counterPartyAddress)) {
+			return false;
+		}
+		if (currencyCode == null) {
+			if (other.currencyCode != null) {
+				return false;
+			}
+		} else if (!currencyCode.equals(other.currencyCode)) {
+			return false;
+		}
+		if (dateOfExecution == null) {
+			if (other.dateOfExecution != null) {
+				return false;
+			}
+		} else if (!dateOfExecution.equals(other.dateOfExecution)) {
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

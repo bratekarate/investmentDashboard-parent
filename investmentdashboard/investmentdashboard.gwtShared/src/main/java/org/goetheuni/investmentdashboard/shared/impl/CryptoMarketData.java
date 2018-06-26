@@ -44,6 +44,50 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return dateAndTime;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateAndTime == null) ? 0 : dateAndTime.hashCode());
+		result = prime * result + ((exchangeRates == null) ? 0 : exchangeRates.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		CryptoMarketData other = (CryptoMarketData) obj;
+		if (dateAndTime == null) {
+			if (other.dateAndTime != null) {
+				return false;
+			}
+		} else if (!dateAndTime.equals(other.dateAndTime)) {
+			return false;
+		}
+		if (exchangeRates == null) {
+			if (other.exchangeRates != null) {
+				return false;
+			}
+		} else if (!exchangeRates.equals(other.exchangeRates)) {
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

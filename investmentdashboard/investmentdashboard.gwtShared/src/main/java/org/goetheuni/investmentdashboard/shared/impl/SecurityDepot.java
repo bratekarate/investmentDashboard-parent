@@ -81,6 +81,74 @@ public class SecurityDepot implements ISecurityDepot {
 		return referenceValue;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((depotID == null) ? 0 : depotID.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
+		result = prime * result + ((recentTransactions == null) ? 0 : recentTransactions.hashCode());
+		result = prime * result + ((referenceValue == null) ? 0 : referenceValue.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		SecurityDepot other = (SecurityDepot) obj;
+		if (depotID == null) {
+			if (other.depotID != null) {
+				return false;
+			}
+		} else if (!depotID.equals(other.depotID)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (portfolio == null) {
+			if (other.portfolio != null) {
+				return false;
+			}
+		} else if (!portfolio.equals(other.portfolio)) {
+			return false;
+		}
+		if (recentTransactions == null) {
+			if (other.recentTransactions != null) {
+				return false;
+			}
+		} else if (!recentTransactions.equals(other.recentTransactions)) {
+			return false;
+		}
+		if (referenceValue == null) {
+			if (other.referenceValue != null) {
+				return false;
+			}
+		} else if (!referenceValue.equals(other.referenceValue)) {
+			return false;
+		}
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
