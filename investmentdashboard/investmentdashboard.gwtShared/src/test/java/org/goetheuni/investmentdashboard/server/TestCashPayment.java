@@ -137,5 +137,50 @@ public class TestCashPayment {
 			Assert.fail(e.toString());
 		}
 	}
+	
+	@Test
+	public void testEquals() {
+		CashPayment paymentNegative = TestCashPayment.getTestResources().get("-40EUR");
+		CashPayment paymentBig = TestCashPayment.getTestResources().get("10000EUR");
+		
+		String msg = "Error in equals method";
+		
+		// test equals 
+		Assert.assertTrue(msg, paymentNegative.equals(paymentNegative));
+		Assert.assertTrue(msg, paymentBig.equals(paymentBig));
+		
+		Assert.assertFalse(msg, paymentNegative.equals(paymentBig));
+		Assert.assertFalse(msg, paymentBig.equals(paymentNegative));
+		
+		Assert.assertFalse(msg, paymentNegative.equals(null));
+		Assert.assertFalse(msg, paymentBig.equals(null));
+		
+		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
+		Assert.assertTrue(msg, paymentNegative.equals(new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", DateConversionUtil.toDate(date2))));
+		
+		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
+		Assert.assertTrue(msg, paymentBig.equals(new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", DateConversionUtil.toDate(date3))));
+		
+	}
+	
+	@Test
+	public void testHashCode() {
+		CashPayment paymentNegative = TestCashPayment.getTestResources().get("-40EUR");
+		CashPayment paymentBig = TestCashPayment.getTestResources().get("10000EUR");
+		
+		String msg = "Error in hashcode method";
+		
+		Assert.assertEquals(msg, paymentNegative.hashCode(), paymentNegative.hashCode());
+		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
+		Assert.assertEquals(msg, paymentNegative.hashCode(), new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", DateConversionUtil.toDate(date2)).hashCode());
+		
+		Assert.assertEquals(msg, paymentBig.hashCode(), paymentBig.hashCode());
+		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
+		Assert.assertEquals(msg, paymentBig.hashCode(), new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", DateConversionUtil.toDate(date3)).hashCode());
+		
+		Assert.assertFalse(msg, paymentBig.hashCode() == paymentNegative.hashCode());
+		
+		
+	}
 
 }
