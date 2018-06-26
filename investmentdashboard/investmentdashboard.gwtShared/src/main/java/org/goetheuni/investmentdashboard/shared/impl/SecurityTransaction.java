@@ -1,10 +1,10 @@
-package org.goetheuni.investmentdashboard.shared.domain.impl;
+package org.goetheuni.investmentdashboard.shared.impl;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-import org.goetheuni.investmentdashboard.shared.domain.api.ISecurityTransaction;
+import org.goetheuni.investmentdashboard.shared.api.ISecurityTransaction;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

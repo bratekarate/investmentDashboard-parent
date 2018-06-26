@@ -4,9 +4,9 @@ import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.goetheuni.investmentdashboard.client.restCallAPI.ICustomerDataService;
 import org.goetheuni.investmentdashboard.client.restCallAPI.IMarketDataService;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoMarketData;
-import org.goetheuni.investmentdashboard.shared.domain.impl.Customer;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;

@@ -1,4 +1,4 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.math.BigDecimal;
 import java.util.Date;

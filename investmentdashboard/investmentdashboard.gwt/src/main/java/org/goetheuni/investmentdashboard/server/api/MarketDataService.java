@@ -7,8 +7,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoMarketData;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
  * This is the server-side implementation of the service for market data.

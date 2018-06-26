@@ -1,9 +1,11 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoPayment;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
+
+
 
 /**
  * An object with this interface represents an account for a crypto currency. As

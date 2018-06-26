@@ -1,10 +1,12 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.CashAccount;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoWallet;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityDepot;
+import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityDepot;
+
+
 
 /**
  * Objects with this interface represent the bank's customers. As GWT is based

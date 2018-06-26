@@ -1,9 +1,11 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.Security;
+import org.goetheuni.investmentdashboard.shared.impl.Security;
+
+
 
 /**
  * An object with this interface represents an executed transaction of

@@ -7,7 +7,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
-import org.goetheuni.investmentdashboard.shared.domain.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.Customer;
 
 /**
  * This is the server-side implementation of the service for customer data.

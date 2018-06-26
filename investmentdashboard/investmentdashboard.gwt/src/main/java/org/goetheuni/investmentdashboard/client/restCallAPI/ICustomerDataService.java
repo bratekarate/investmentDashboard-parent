@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
-import org.goetheuni.investmentdashboard.shared.domain.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.Customer;
 
 /**
  * This is the client-side interface for the customer data service.

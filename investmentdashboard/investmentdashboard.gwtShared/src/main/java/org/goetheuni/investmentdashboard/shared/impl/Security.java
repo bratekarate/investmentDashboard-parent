@@ -1,6 +1,6 @@
-package org.goetheuni.investmentdashboard.shared.domain.impl;
+package org.goetheuni.investmentdashboard.shared.impl;
 
-import org.goetheuni.investmentdashboard.shared.domain.api.ISecurity;
+import org.goetheuni.investmentdashboard.shared.api.ISecurity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

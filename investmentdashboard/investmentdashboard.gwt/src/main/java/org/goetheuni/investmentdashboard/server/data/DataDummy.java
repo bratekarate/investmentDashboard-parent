@@ -6,17 +6,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.CashAccount;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CashPayment;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoMarketData;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoPayment;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoWallet;
-import org.goetheuni.investmentdashboard.shared.domain.impl.Customer;
-import org.goetheuni.investmentdashboard.shared.domain.impl.Security;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityDepot;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityInvestment;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityMarketData;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityTransaction;
+import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
+import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
+import org.goetheuni.investmentdashboard.shared.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.Security;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityDepot;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
 /**
  * This class provides dummy customers.

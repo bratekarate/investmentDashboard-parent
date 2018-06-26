@@ -1,9 +1,11 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.CashPayment;
+import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
+
+
 
 /**
  * An object with this interface represents a cash account. As GWT is based on

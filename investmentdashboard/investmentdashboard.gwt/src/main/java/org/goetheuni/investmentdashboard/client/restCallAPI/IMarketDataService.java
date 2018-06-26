@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
-import org.goetheuni.investmentdashboard.shared.domain.impl.CryptoMarketData;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
  * 

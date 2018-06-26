@@ -1,10 +1,12 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared.api;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityInvestment;
-import org.goetheuni.investmentdashboard.shared.domain.impl.SecurityTransaction;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
+
+
 
 /**
  * An object with this interface represents a security depot. As GWT is based on
