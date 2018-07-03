@@ -6,6 +6,7 @@ import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
 import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.load.Loader;
 import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
+import org.goetheuni.investmentdashboard.client.structure.RootStructure;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -39,15 +40,24 @@ public class gwt implements EntryPoint {
 		// load data
 		Loader loader = new LoaderForDummyBackend();
 		loader.loadAndStore(new Runnable() {
-			
+
 			// action after the loading process has finished
 			@Override
 			public void run() {
 				verticalPanel.add(new Label(CustomerDataStorage.get().toString()));
 				verticalPanel.add(new Label(SecurityMarketDataStorage.get().toString()));
 				verticalPanel.add(new Label(CryptoMarketDataStorage.get().toString()));
+
+				// create the logical structure of the page
+				RootStructure.initialize(CustomerDataStorage.get());
+				
+				// compute and print the balance
+				verticalPanel.add(new Label("-------------------------------------------"));
+				verticalPanel.add(new Label(RootStructure.get()
+						.computeTotalBalanceInEUR(SecurityMarketDataStorage.get(), CryptoMarketDataStorage.get())
+						.toString()));
 			}
 		});
-		
+
 	}
 }
