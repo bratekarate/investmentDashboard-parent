@@ -16,7 +16,7 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
  * This is the client-side interface of the market data service.
  */
 @Path("/" + ServicePaths.MARKET_DIRECTORY + "/" + ServicePaths.MARKET_DATA_SERVICE)
-public interface IMarketDataService extends RestService {
+public interface IDummyMarketDataService extends RestService {
 
 	/**
 	 * Asynchronous method returning sample data for the security market.

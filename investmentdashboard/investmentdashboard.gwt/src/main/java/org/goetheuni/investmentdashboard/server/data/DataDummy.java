@@ -29,9 +29,9 @@ public class DataDummy {
 
 		// add prizes
 		marketPrizes.put("0001", BigDecimal.valueOf(6.83));
-		marketPrizes.put("0003", BigDecimal.valueOf(12.83));
-		marketPrizes.put("0008", BigDecimal.valueOf(0.72));
-		marketPrizes.put("0040", BigDecimal.valueOf(100000.50));
+		marketPrizes.put("0002", BigDecimal.valueOf(12.83));
+		marketPrizes.put("0003", BigDecimal.valueOf(0.72));
+		marketPrizes.put("0004", BigDecimal.valueOf(100000.50));
 
 		SecurityMarketData result = new SecurityMarketData(marketPrizes, dateAndTime);
 		return result;
@@ -54,8 +54,8 @@ public class DataDummy {
 	public static Customer getDummyCustomer() {
 
 		// create depot
-		Security sec1 = new Security("001", "COMP1", "C1");
-		Security sec2 = new Security("002", "COMP2", "C2");
+		Security sec1 = new Security("0001", "COMP1", "C1");
+		Security sec2 = new Security("0002", "COMP2", "C2");
 
 		SecurityInvestment i1 = new SecurityInvestment(sec1, 45);
 		SecurityInvestment i2 = new SecurityInvestment(sec2, 22);
@@ -102,7 +102,7 @@ public class DataDummy {
 		List<SecurityDepot> securityDepots = new ArrayList<>();
 		securityDepots.add(depot);
 
-		Customer result = new Customer("Herr Bond", "007", cashAccounts, cryptoWallets, securityDepots);
+		Customer result = new Customer("Mr X", "0000354", cashAccounts, cryptoWallets, securityDepots);
 		return result;
 	}
 }

@@ -9,7 +9,7 @@ import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.StringForRest;
 
 @Path("/" + ServicePaths.STRING_DIRECTORY + "/" + ServicePaths.STRING_TEST_SERVICE)
-public interface IStringRestService extends RestService {
+public interface IDummyStringRestService extends RestService {
 
 	@GET
 	public void getStringObjectAsync(MethodCallback<StringForRest> obj);

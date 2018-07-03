@@ -2,7 +2,7 @@ package org.goetheuni.investmentdashboard.client;
 
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import org.goetheuni.investmentdashboard.client.restCallAPI.IStringRestService;
+import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyStringRestService;
 import org.goetheuni.investmentdashboard.shared.StringForRest;
 
 import com.google.gwt.core.client.GWT;
@@ -17,7 +17,7 @@ public class ShowRestResults {
 
 	protected static void load(VerticalPanel verticalPanel) {
 		// generate the service
-		IStringRestService service = GWT.create(IStringRestService.class);
+		IDummyStringRestService service = GWT.create(IDummyStringRestService.class);
 
 		// get 3 objects and show them on the vertical panel
 

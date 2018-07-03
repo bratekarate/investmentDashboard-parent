@@ -2,8 +2,8 @@ package org.goetheuni.investmentdashboard.client;
 
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import org.goetheuni.investmentdashboard.client.restCallAPI.ICustomerDataService;
-import org.goetheuni.investmentdashboard.client.restCallAPI.IMarketDataService;
+import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyCustomerDataService;
+import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyMarketDataService;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
@@ -22,7 +22,7 @@ public class ShowRealData {
 
 		String token = "token";
 		// load market data
-		IMarketDataService marketService = GWT.create(IMarketDataService.class);
+		IDummyMarketDataService marketService = GWT.create(IDummyMarketDataService.class);
 
 		// get and show security market data
 		marketService.requestSecurityData(token, new MethodCallback<SecurityMarketData>() {
@@ -58,7 +58,7 @@ public class ShowRealData {
 		});
 
 		// get and show customer data
-		ICustomerDataService customerService = GWT.create(ICustomerDataService.class);
+		IDummyCustomerDataService customerService = GWT.create(IDummyCustomerDataService.class);
 
 		// load and show customer data
 		customerService.requestCustomerData(token, new MethodCallback<Customer>() {
