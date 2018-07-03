@@ -71,9 +71,8 @@ public class DummyParentDataService {
 	}
 
 	/**
-	 * This method starts the parent request.
-	 * All child requests are executed.
-	 * After all children have finished, the given next action will be executed.
+	 * This method starts the parent request. All child requests are executed. After
+	 * all children have finished, the given next action will be executed.
 	 */
 	public void startRequest() {
 

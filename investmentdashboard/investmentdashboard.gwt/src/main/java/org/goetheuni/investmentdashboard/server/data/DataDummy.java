@@ -75,10 +75,10 @@ public class DataDummy {
 
 		// create cash account
 		CashPayment cp1 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC", new Date(470000));
-		
-		List<CashPayment> cashPayments = new ArrayList<>();	
+
+		List<CashPayment> cashPayments = new ArrayList<>();
 		cashPayments.add(cp1);
-		
+
 		CashAccount cashAcc = new CashAccount("accountID", "iban", "Bargeldkonto", cashPayments,
 				BigDecimal.valueOf(500.00), "EUR");
 

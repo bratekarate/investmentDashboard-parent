@@ -1,5 +1,7 @@
 package org.goetheuni.investmentdashboard.client;
 
+import java.math.BigDecimal;
+
 import org.fusesource.restygwt.client.Defaults;
 import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
@@ -7,13 +9,10 @@ import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage
 import org.goetheuni.investmentdashboard.client.load.Loader;
 import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
 import org.goetheuni.investmentdashboard.client.structure.RootStructure;
+import org.goetheuni.investmentdashboard.client.ui.UIBuilder;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -44,18 +43,16 @@ public class gwt implements EntryPoint {
 			// action after the loading process has finished
 			@Override
 			public void run() {
-				verticalPanel.add(new Label(CustomerDataStorage.get().toString()));
-				verticalPanel.add(new Label(SecurityMarketDataStorage.get().toString()));
-				verticalPanel.add(new Label(CryptoMarketDataStorage.get().toString()));
 
 				// create the logical structure of the page
 				RootStructure.initialize(CustomerDataStorage.get());
-				
-				// compute and print the balance
-				verticalPanel.add(new Label("-------------------------------------------"));
-				verticalPanel.add(new Label(RootStructure.get()
-						.computeTotalBalanceInEUR(SecurityMarketDataStorage.get(), CryptoMarketDataStorage.get())
-						.toString()));
+
+				// compute the balance
+				BigDecimal totalBalance = RootStructure.get().computeTotalBalanceInEUR(SecurityMarketDataStorage.get(),
+						CryptoMarketDataStorage.get());
+
+				// build UI
+				UIBuilder.buildUI(totalBalance, rootPanel);
 			}
 		});
 

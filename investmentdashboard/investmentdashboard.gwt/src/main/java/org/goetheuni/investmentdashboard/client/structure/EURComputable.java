@@ -15,6 +15,7 @@ public interface EURComputable {
 
 	/**
 	 * Computes the balance in EUR for this cash account
+	 * 
 	 * @return The balance in EUR.
 	 */
 	public BigDecimal computeBalanceInEUR(SecurityMarketData secMarket, CryptoMarketData cryptoMarket);

@@ -1,7 +1,8 @@
 package org.goetheuni.investmentdashboard.client.load;
 
 /**
- * Objects with this interface are helper objects for the client-server loading process.
+ * Objects with this interface are helper objects for the client-server loading
+ * process.
  *
  */
 public interface Loader {

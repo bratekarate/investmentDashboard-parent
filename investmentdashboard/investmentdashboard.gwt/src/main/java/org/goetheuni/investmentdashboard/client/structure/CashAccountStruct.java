@@ -10,30 +10,30 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 /**
  * Objects of this class represent cash account substructures.
  */
-public class CashAccountStruct implements EURComputable{
+public class CashAccountStruct implements EURComputable {
 
 	/**
 	 * The data of this cash account.
 	 */
 	protected CashAccount data;
-	
-	
-	
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#computeBalanceInEUR()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#
+	 * computeBalanceInEUR()
 	 */
 	@Override
 	public BigDecimal computeBalanceInEUR(SecurityMarketData secMarket, CryptoMarketData cryptoMarket) {
-		if(this.data.getCurrency().equals("EUR")) {
+		if (this.data.getCurrency().equals("EUR")) {
 			// this is fine
 			return this.data.getAccountBalance();
-		}else {
+		} else {
 			// other currencies than EUR are not supported at the moment
-			throw new RuntimeException("Other currencies than EUR are not supported at the moment, was: "+this.data.getCurrency());
+			throw new RuntimeException(
+					"Other currencies than EUR are not supported at the moment, was: " + this.data.getCurrency());
 		}
 	}
-	
-
 
 	/**
 	 * Creates a new structure element representing a cash account.
