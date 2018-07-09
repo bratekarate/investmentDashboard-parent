@@ -1,5 +1,10 @@
 package org.goetheuni.investmentdashboard.midtier.general.service.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
+import org.goetheuni.investmentdashboard.shared.impl.Security;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -39,7 +44,10 @@ public class LoginController {
     if (!authentication.getPrincipal().equals("anonymousUser")) {
       return new ModelAndView("redirect:" + defaultTargetUrl);
     }
-
+    
+    // this is only a dummy and can be removed
+    new SecurityTransaction(3, BigDecimal.valueOf(30), new Security("isin", "name", "shortName"), new Date(500000));
+    
     ModelAndView model = new ModelAndView();
     if (authentication_failed) {
       model.addObject("error", "Authentication failed!");

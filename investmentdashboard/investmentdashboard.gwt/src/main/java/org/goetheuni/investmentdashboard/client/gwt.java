@@ -1,12 +1,18 @@
 package org.goetheuni.investmentdashboard.client;
 
+import java.math.BigDecimal;
+
 import org.fusesource.restygwt.client.Defaults;
+import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
+import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.load.Loader;
+import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
+import org.goetheuni.investmentdashboard.client.structure.RootStructure;
+import org.goetheuni.investmentdashboard.client.ui.UIBuilder;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -22,21 +28,31 @@ public class gwt implements EntryPoint {
 	public void onModuleLoad() {
 
 		Defaults.setServiceRoot(GWT.getHostPageBaseURL());
+		Defaults.setDateFormat(null);
+
 		RootPanel rootPanel = RootPanel.get();
 		final VerticalPanel verticalPanel = new VerticalPanel();
 
 		// add the new vertical panel to the root
 		rootPanel.add(verticalPanel);
 
-		// add a load button
-		Button load = new Button("Load");
-		verticalPanel.add(load);
-		load.addClickHandler(new ClickHandler() {
+		// load data
+		Loader loader = new LoaderForDummyBackend();
+		loader.loadAndStore(new Runnable() {
 
+			// action after the loading process has finished
 			@Override
-			public void onClick(ClickEvent event) {
-				ShowRestResults.load(verticalPanel);
+			public void run() {
 
+				// create the logical structure of the page
+				RootStructure.initialize(CustomerDataStorage.get());
+
+				// compute the balance
+				BigDecimal totalBalance = RootStructure.get().computeTotalBalanceInEUR(SecurityMarketDataStorage.get(),
+						CryptoMarketDataStorage.get());
+
+				// build UI
+				UIBuilder.buildUI(totalBalance, rootPanel);
 			}
 		});
 

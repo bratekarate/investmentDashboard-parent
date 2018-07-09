@@ -136,6 +136,8 @@
 		</dependency>
 	</dependencies>
 	<modules>
+		
+		<module>investmentdashboard.gwtShared</module>
 		<module>investmentdashboard.dummyBankServer</module>
 
 		<module>investmentdashboard.gwt</module>

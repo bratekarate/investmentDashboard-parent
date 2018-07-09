@@ -7,7 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.goetheuni.investmentdashboard.shared.domain.impl.StringForRest;
+import org.goetheuni.investmentdashboard.shared.ServicePaths;
+import org.goetheuni.investmentdashboard.shared.StringForRest;
 
 /**
  * 

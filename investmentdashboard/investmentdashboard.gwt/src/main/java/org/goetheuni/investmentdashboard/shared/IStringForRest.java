@@ -1,4 +1,4 @@
-package org.goetheuni.investmentdashboard.shared.domain.api;
+package org.goetheuni.investmentdashboard.shared;
 
 /**
  * Objects implementing this interface are test objects for the
