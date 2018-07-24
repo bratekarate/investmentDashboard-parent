@@ -1,11 +1,7 @@
 package org.goetheuni.investmentdashboard.client;
 
-import java.math.BigDecimal;
-
 import org.fusesource.restygwt.client.Defaults;
-import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
-import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.load.Loader;
 import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
 import org.goetheuni.investmentdashboard.client.structure.RootStructure;
@@ -47,12 +43,8 @@ public class gwt implements EntryPoint {
 				// create the logical structure of the page
 				RootStructure.initialize(CustomerDataStorage.get());
 
-				// compute the balance
-				BigDecimal totalBalance = RootStructure.get().computeTotalBalanceInEUR(SecurityMarketDataStorage.get(),
-						CryptoMarketDataStorage.get());
-
 				// build UI
-				UIBuilder.buildUI(totalBalance, rootPanel);
+				UIBuilder.buildUI(rootPanel, RootStructure.get());
 			}
 		});
 
