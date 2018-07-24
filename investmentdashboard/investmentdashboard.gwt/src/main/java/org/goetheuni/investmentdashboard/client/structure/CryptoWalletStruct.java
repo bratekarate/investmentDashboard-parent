@@ -17,6 +17,11 @@ public class CryptoWalletStruct implements EURComputable {
 	 * The data of this crypto wallet.
 	 */
 	protected CryptoWallet data;
+	
+	/**
+	 * The latest claue for the balance.
+	 */
+	protected BigDecimal cachedBalance;
 
 	/*
 	 * (non-Javadoc)
@@ -38,6 +43,8 @@ public class CryptoWalletStruct implements EURComputable {
 			// the exchange rate <crypto> -> EUR is known
 			BigDecimal result = this.data.getAccountBalance()
 					.multiply(cryptoMarket.getExchangeRates().get(currencyCode));
+			// put the result in the cache and return it
+			this.cachedBalance = result;
 			return result;
 		} else {
 			// the exchange rate for this crypto currency is unknown.
@@ -46,7 +53,16 @@ public class CryptoWalletStruct implements EURComputable {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#getCachedBalanceInEUR()
+	 */
+	@Override
+	public BigDecimal getCachedBalanceInEUR() {
+		return this.cachedBalance;
+	}
+
 	protected CryptoWalletStruct(CryptoWallet data) {
+		this.cachedBalance = BigDecimal.ZERO;
 		this.data = Objects.requireNonNull(data, "The given CryptoWallet data object must not be null.");
 	}
 

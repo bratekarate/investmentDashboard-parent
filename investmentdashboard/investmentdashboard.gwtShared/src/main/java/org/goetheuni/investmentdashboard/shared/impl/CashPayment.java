@@ -68,18 +68,7 @@ public class CashPayment implements ICashPayment {
 		return dateOfExecution;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICashPayment#
-	 * getFormattedAmount()
-	 */
-	@Override
-	public String getFormattedAmount() {
-		return "Sorry, not yet implemented";
-		// TODO
-		// NumberFormat.getCurrencyFormat("insert currency code here");
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

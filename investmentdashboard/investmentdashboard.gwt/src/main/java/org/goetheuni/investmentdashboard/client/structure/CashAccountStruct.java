@@ -16,6 +16,7 @@ public class CashAccountStruct implements EURComputable {
 	 * The data of this cash account.
 	 */
 	protected CashAccount data;
+	
 
 	/*
 	 * (non-Javadoc)
@@ -33,6 +34,14 @@ public class CashAccountStruct implements EURComputable {
 			throw new RuntimeException(
 					"Other currencies than EUR are not supported at the moment, was: " + this.data.getCurrency());
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#getCachedBalanceInEUR()
+	 */
+	@Override
+	public BigDecimal getCachedBalanceInEUR() {
+		return this.data.getAccountBalance();
 	}
 
 	/**

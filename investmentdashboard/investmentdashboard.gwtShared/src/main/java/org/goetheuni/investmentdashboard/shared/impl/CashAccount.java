@@ -93,18 +93,7 @@ public class CashAccount implements ICashAccount {
 		return currency;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICashAccount#
-	 * getFormattedAmount()
-	 */
-	@Override
-	public String getFormattedAmount() {
-		return "Sorry, not yet implemented";
-		// TODO
-		// NumberFormat.getCurrencyFormat("insert currency code here");
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

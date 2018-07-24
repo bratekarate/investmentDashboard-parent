@@ -1,6 +1,8 @@
 package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
@@ -19,6 +21,16 @@ public class SecurityDepotStruct implements EURComputable {
 	 */
 	protected SecurityDepot data;
 
+	/**
+	 * The latest value for the balance.
+	 */
+	protected BigDecimal cachedBalance;
+
+	/**
+	 * The substructures for the investments in this depot.
+	 */
+	protected List<SecurityInvestmentStruct> investments;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -35,25 +47,44 @@ public class SecurityDepotStruct implements EURComputable {
 		// compute the value of all investments
 		BigDecimal result = BigDecimal.valueOf(0);
 
-		for (SecurityInvestment investment : this.data.getPortfolio()) {
-			// try to get the prize from the prize list
-			BigDecimal prize = secMarket.getMarketPrizes().get(investment.getSecurity().getIsin());
-
-			if (prize != null) {
-				// a prize for the ISIN is know -> this is fine
-				// add prize * quantity
-				result = result.add(prize.multiply(BigDecimal.valueOf(investment.getQuantity())));
-			} else {
-				throw new RuntimeException(
-						"The prize for the following ISIN was unkown: " + investment.getSecurity().getIsin()
-								+ " , the prize list was: " + secMarket.getMarketPrizes().toString());
-			}
+		for (SecurityInvestmentStruct anInvestment : this.investments) {
+			// compute the balance for each security investment
+			result = result.add(anInvestment.computeBalanceInEUR(secMarket, cryptoMarket));
 		}
 
+		// put result into the cache and return it
+		this.cachedBalance = result;
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#
+	 * getCachedBalanceInEUR()
+	 */
+	@Override
+	public BigDecimal getCachedBalanceInEUR() {
+		return this.cachedBalance;
+	}
+
+	/**
+	 * Creates a strucutre for the given SecurityDepot. It also generates
+	 * substructures for the SecurityInvestments.
+	 * 
+	 * @param depotData
+	 *            The corresponding data object.
+	 */
 	protected SecurityDepotStruct(SecurityDepot depotData) {
+		this.cachedBalance = BigDecimal.ZERO;
 		this.data = Objects.requireNonNull(depotData, "The given SecurityDepot data object must not be null.");
+
+		// generate substructures
+		List<SecurityInvestmentStruct> investmentStructs = new ArrayList<SecurityInvestmentStruct>();
+
+		for (SecurityInvestment anInvestment : depotData.getPortfolio()) {
+			investmentStructs.add(new SecurityInvestmentStruct(anInvestment));
+		}
+		this.investments = investmentStructs;
 	}
 }
