@@ -74,13 +74,39 @@ public class DataDummy {
 		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions, BigDecimal.valueOf(100));
 
 		// create cash account
-		CashPayment cp1 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC", new Date(470000));
+		CashPayment cp01 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC001", new Date(483500));
+		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-26.82), "EUR", "DEABC001", new Date(478800));
+		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(200.2), "EUR", "DEABC002", new Date(479500));
+		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(1435.2), "EUR", "DEABC003", new Date(483400));
+		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-1223.22), "EUR", "DEABC008", new Date(490500));
+		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(322.22), "EUR", "DEABC023", new Date(492200));
+		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(467.50), "EUR", "DEABC489", new Date(493300));
+		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(785.78), "EUR", "DEABC789", new Date(497500));
+		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(900.80), "EUR", "DEABC555", new Date(496900));
+		CashPayment cp10 = new CashPayment(BigDecimal.valueOf(-5.67), "EUR", "DEABC234", new Date(499900));
 
-		List<CashPayment> cashPayments = new ArrayList<>();
-		cashPayments.add(cp1);
+		List<CashPayment> cashPayments1 = new ArrayList<>();
+		cashPayments1.add(cp01);
+		cashPayments1.add(cp02);
+		cashPayments1.add(cp03);
 
-		CashAccount cashAcc = new CashAccount("accountID", "iban", "Bargeldkonto", cashPayments,
+		List<CashPayment> cashPayments2 = new ArrayList<>();
+		cashPayments2.add(cp04);
+		cashPayments2.add(cp05);
+		cashPayments2.add(cp06);
+
+		List<CashPayment> cashPayments3 = new ArrayList<>();
+		cashPayments3.add(cp07);
+		cashPayments3.add(cp08);
+		cashPayments3.add(cp09);
+		cashPayments3.add(cp10);
+
+		CashAccount cashAcc0 = new CashAccount("0", "DEXYZ00001", "Girokonto", cashPayments1,
 				BigDecimal.valueOf(500.00), "EUR");
+		CashAccount cashAcc1 = new CashAccount("1", "DEXYZ00111", "Girokonto", cashPayments2,
+				BigDecimal.valueOf(265.50), "EUR");
+		CashAccount cashAcc2 = new CashAccount("2", "DEXYZ22222", "Tagesgeldkonto", cashPayments3,
+				BigDecimal.valueOf(2222.40), "EUR");
 
 		// create crypto wallet
 		CryptoPayment cryPay1 = new CryptoPayment(BigDecimal.valueOf(2000.00), "BTC", "counterPartyAddress1",
@@ -96,7 +122,9 @@ public class DataDummy {
 
 		// create customer
 		List<CashAccount> cashAccounts = new ArrayList<>();
-		cashAccounts.add(cashAcc);
+		cashAccounts.add(cashAcc0);
+		cashAccounts.add(cashAcc1);
+		cashAccounts.add(cashAcc2);
 		List<CryptoWallet> cryptoWallets = new ArrayList<>();
 		cryptoWallets.add(wallet);
 		List<SecurityDepot> securityDepots = new ArrayList<>();

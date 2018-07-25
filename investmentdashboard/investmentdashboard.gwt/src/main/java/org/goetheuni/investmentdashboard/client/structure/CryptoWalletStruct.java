@@ -17,7 +17,7 @@ public class CryptoWalletStruct implements EURComputable {
 	 * The data of this crypto wallet.
 	 */
 	protected CryptoWallet data;
-	
+
 	/**
 	 * The latest claue for the balance.
 	 */
@@ -53,8 +53,11 @@ public class CryptoWalletStruct implements EURComputable {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#getCachedBalanceInEUR()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.structure.EURComputable#
+	 * getCachedBalanceInEUR()
 	 */
 	@Override
 	public BigDecimal getCachedBalanceInEUR() {

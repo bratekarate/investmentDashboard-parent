@@ -5,7 +5,10 @@ package org.goetheuni.investmentdashboard.client.ui;
  */
 public class StyleConstants {
 
-	static int TOP_WIDGT_BORDER_WIDTH = 5;
-	
+	static int WIDEGT_BORDER_WIDTH = 5;
+
 	static String WIDGET_BACKGROUND_COLOR = "white";
+
+	static String SELECTED_COLOR = "aliceblue";
+
 }

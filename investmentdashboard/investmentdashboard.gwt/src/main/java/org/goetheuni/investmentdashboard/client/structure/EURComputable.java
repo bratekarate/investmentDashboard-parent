@@ -14,12 +14,13 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 public interface EURComputable {
 
 	/**
-	 * Computes the balance in EUR for this cash account and updates the cached value
+	 * Computes the balance in EUR for this cash account and updates the cached
+	 * value
 	 * 
 	 * @return The balance in EUR.
 	 */
 	public BigDecimal computeBalanceInEUR(SecurityMarketData secMarket, CryptoMarketData cryptoMarket);
-	
+
 	/**
 	 * 
 	 * @return The latest computed value for the depot's or account's balance.
