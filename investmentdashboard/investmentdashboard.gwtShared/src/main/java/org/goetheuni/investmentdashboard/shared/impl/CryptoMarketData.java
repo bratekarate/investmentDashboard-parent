@@ -22,6 +22,11 @@ public class CryptoMarketData implements ICryptoMarketData {
 	 * Maps a crypto currency's identifier to its exchange rate to EUR.
 	 */
 	protected Map<String, BigDecimal> exchangeRates;
+	
+	/**
+	 * Maps a crypto currency's identifier to its reference exchange rate to EUR.
+	 */
+	protected Map<String, BigDecimal> referenceValues;
 
 	/**
 	 * Specifies the date and time of this market data
@@ -37,11 +42,29 @@ public class CryptoMarketData implements ICryptoMarketData {
 	}
 
 	/**
+	 * @return the referenceValues
+	 */
+	@Override
+	public Map<String, BigDecimal> getReferenceValues() {
+		return referenceValues;
+	}
+
+	/**
 	 * @return the dateAndTime
 	 */
 	@Override
 	public Date getDateAndTime() {
 		return dateAndTime;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CryptoMarketData [exchangeRates=" + exchangeRates + ", referenceValues=" + referenceValues
+				+ ", dateAndTime=" + dateAndTime + "]";
 	}
 
 	/* (non-Javadoc)
@@ -53,6 +76,7 @@ public class CryptoMarketData implements ICryptoMarketData {
 		int result = 1;
 		result = prime * result + ((dateAndTime == null) ? 0 : dateAndTime.hashCode());
 		result = prime * result + ((exchangeRates == null) ? 0 : exchangeRates.hashCode());
+		result = prime * result + ((referenceValues == null) ? 0 : referenceValues.hashCode());
 		return result;
 	}
 
@@ -85,17 +109,14 @@ public class CryptoMarketData implements ICryptoMarketData {
 		} else if (!exchangeRates.equals(other.exchangeRates)) {
 			return false;
 		}
+		if (referenceValues == null) {
+			if (other.referenceValues != null) {
+				return false;
+			}
+		} else if (!referenceValues.equals(other.referenceValues)) {
+			return false;
+		}
 		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "CryptoMarketData [exchangeRates=" + exchangeRates + ", dateAndTime=" + dateAndTime + "]";
 	}
 
 	/**
@@ -106,8 +127,10 @@ public class CryptoMarketData implements ICryptoMarketData {
 	 */
 	@JsonCreator
 	public CryptoMarketData(final @JsonProperty("exchangeRates") Map<String, BigDecimal> exchangeRates,
+			final @JsonProperty("referenceValues") Map<String, BigDecimal> referenceValues,
 			final @JsonProperty("dateAndTime") Date dateAndTime) {
 		this.exchangeRates = Objects.requireNonNull(exchangeRates, "The exchange rates map must not be null");
+		this.referenceValues = Objects.requireNonNull(referenceValues, "The reference values must not be nul");
 		this.dateAndTime = Objects.requireNonNull(dateAndTime, "The execution date must not be null");
 	}
 

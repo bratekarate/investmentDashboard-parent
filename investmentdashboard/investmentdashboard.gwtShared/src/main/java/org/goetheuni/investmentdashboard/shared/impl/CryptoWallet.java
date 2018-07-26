@@ -80,16 +80,7 @@ public class CryptoWallet implements ICryptoWallet {
 		return recentPayments;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoWallet#
-	 * getFormattedAmount()
-	 */
-	@Override
-	public String getFormattedAmount() {
-		return "Sorry, not yet implemented";
-	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

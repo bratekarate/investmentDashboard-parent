@@ -22,6 +22,11 @@ public interface ISecurityMarketData {
 	 * @return the dateAndTime
 	 */
 	public Date getDateAndTime();
+
+	/**
+	 * @return the reference values for the contained securities.
+	 */
+	public Map<String, BigDecimal> getReferenceValues();
 	
 	/**
 	 * Maps an object's values to a number in a deterministic way.
@@ -29,6 +34,7 @@ public interface ISecurityMarketData {
 	 * @return the number 
 	 */
 	public int hashCode();
+
 
 
 	/**

@@ -29,6 +29,11 @@ public interface ICryptoMarketData {
 	 * @return the number 
 	 */
 	public int hashCode();
+	
+	/**
+	 * @return the reference values for the contained crypto assets.
+	 */
+	public Map<String, BigDecimal> getReferenceValues();
 
 
 	/**

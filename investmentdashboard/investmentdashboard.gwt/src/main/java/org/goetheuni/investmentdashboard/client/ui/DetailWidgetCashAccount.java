@@ -2,8 +2,11 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.util.List;
 
+
+
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 
+import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -38,19 +41,18 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 			this.setText(row, 0,
 					DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM).format(payment.getDateOfExecution()));
 
-			// set the counter party iban
-			this.setText(row, 1, payment.getCounterPartyIBAN());
+			// set the counter party name
+			this.setText(row, 1, payment.getCounterPartyName());
 
 			// set the amount
+			this.getCellFormatter().getElement(row, 2).getStyle().setTextAlign(TextAlign.RIGHT);
 			this.setText(row, 2, NumberFormat.getCurrencyFormat("EUR").format(payment.getAmount()));
+			
 			// set the color
-			String color = payment.getAmount().signum() < 0 ? "red" : "green";
+			String color = payment.getAmount().signum() < 0 ? StyleConstants.NEGATIVE_COLOR : StyleConstants.POSITIVE_COLOR;
 			this.getCellFormatter().getElement(row, 2).getStyle().setColor(color);
 
 		}
-
-		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
-
 	}
 
 	public DetailWidgetCashAccount() {
@@ -58,6 +60,7 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 		this.getColumnFormatter().setWidth(0, "40%");
 		this.getColumnFormatter().setWidth(1, "40%");
 		this.getColumnFormatter().setWidth(2, "20%");
+		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
 	}
 
 }

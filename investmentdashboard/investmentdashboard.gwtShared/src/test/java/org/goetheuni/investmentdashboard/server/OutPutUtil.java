@@ -27,11 +27,11 @@ public class OutPutUtil {
 		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
 
 		// add test payments
-		CashPayment paymentNormal = new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ",
+		CashPayment paymentNormal = new CashPayment(BigDecimal.valueOf(150), "EUR", "X", "DE1111XYZ",
 				DateConversionUtil.toDate(date1));
-		CashPayment paymentNegative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ",
+		CashPayment paymentNegative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "X", "DE2222XYZ",
 				DateConversionUtil.toDate(date2));
-		CashPayment paymentBig = new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ",
+		CashPayment paymentBig = new CashPayment(BigDecimal.valueOf(10000), "EUR", "X", "DE3333XYZ",
 				DateConversionUtil.toDate(date3));
 
 		ObjectWriter writer = new ObjectMapper().writer().withDefaultPrettyPrinter();

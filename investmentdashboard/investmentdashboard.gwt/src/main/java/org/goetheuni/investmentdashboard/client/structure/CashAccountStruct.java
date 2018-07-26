@@ -16,6 +16,7 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.user.datepicker.client.CalendarUtil;
 
 /**
  * Objects of this class represent cash account substructures.
@@ -84,7 +85,7 @@ public class CashAccountStruct implements EURComputable, SelectableCashAccount {
 	 */
 	@Override
 	public String getFormattedAmountInEUR() {
-		double result = this.data.getAccountBalance().doubleValue();
+		double result = this.getCachedBalanceInEUR().doubleValue();
 		return NumberFormat.getCurrencyFormat("EUR").format(result);
 	}
 
@@ -101,11 +102,8 @@ public class CashAccountStruct implements EURComputable, SelectableCashAccount {
 
 			@Override
 			public int compare(CashPayment a, CashPayment b) {
-				BigInteger dateA = BigInteger.valueOf(a.getDateOfExecution().getTime());
-				BigInteger dateB = BigInteger.valueOf(b.getDateOfExecution().getTime());
-				BigInteger difference = dateB.subtract(dateA);
-				return difference.intValueExact();
-
+				long difference = Long.valueOf(b.getDateOfExecution().getTime() - a.getDateOfExecution().getTime());
+				return Long.signum(difference);
 			}
 		});
 

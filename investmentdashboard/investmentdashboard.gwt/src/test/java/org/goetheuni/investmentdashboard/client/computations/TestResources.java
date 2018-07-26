@@ -33,8 +33,15 @@ class TestResources {
 		marketPrizes.put("0002", BigDecimal.valueOf(12.83));
 		marketPrizes.put("0003", BigDecimal.valueOf(0.72));
 		marketPrizes.put("0004", BigDecimal.valueOf(100000.50));
+		
+		// generate reference value
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("0001", BigDecimal.valueOf(6.83));
+		referenceValues.put("0002", BigDecimal.valueOf(12.83));
+		referenceValues.put("0003", BigDecimal.valueOf(0.72));
+		referenceValues.put("0004", BigDecimal.valueOf(100000.50));
 
-		SecurityMarketData result = new SecurityMarketData(marketPrizes, dateAndTime);
+		SecurityMarketData result = new SecurityMarketData(marketPrizes, referenceValues, dateAndTime);
 		return result;
 	}
 
@@ -47,8 +54,15 @@ class TestResources {
 		exchangeRates.put("LTC", BigDecimal.valueOf(26.38));
 		exchangeRates.put("ABC", BigDecimal.valueOf(0.09));
 		exchangeRates.put("XYZ", BigDecimal.valueOf(200000.50));
+		
+		// add reference values
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("BTC", BigDecimal.valueOf(4.3));
+		referenceValues.put("LTC", BigDecimal.valueOf(26.38));
+		referenceValues.put("ABC", BigDecimal.valueOf(0.09));
+		referenceValues.put("XYZ", BigDecimal.valueOf(200000.50));
 
-		CryptoMarketData result = new CryptoMarketData(exchangeRates, dateAndTime);
+		CryptoMarketData result = new CryptoMarketData(exchangeRates, referenceValues, dateAndTime);
 		return result;
 	}
 	
@@ -62,7 +76,14 @@ class TestResources {
 		marketPrizes.put("0003", BigDecimal.valueOf(19998.05));
 		marketPrizes.put("0004", BigDecimal.valueOf(150000.50));
 
-		SecurityMarketData result = new SecurityMarketData(marketPrizes, dateAndTime);
+		// generate reference value
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("0001", BigDecimal.valueOf(6.83));
+		referenceValues.put("0002", BigDecimal.valueOf(12.83));
+		referenceValues.put("0003", BigDecimal.valueOf(0.72));
+		referenceValues.put("0004", BigDecimal.valueOf(100000.50));
+
+		SecurityMarketData result = new SecurityMarketData(marketPrizes, referenceValues, dateAndTime);
 		return result;
 	}
 
@@ -76,7 +97,14 @@ class TestResources {
 		exchangeRates.put("ABC", BigDecimal.valueOf(53502.09));
 		exchangeRates.put("XYZ", BigDecimal.valueOf(1200000.50));
 
-		CryptoMarketData result = new CryptoMarketData(exchangeRates, dateAndTime);
+		// add reference values
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("BTC", BigDecimal.valueOf(4.3));
+		referenceValues.put("LTC", BigDecimal.valueOf(26.38));
+		referenceValues.put("ABC", BigDecimal.valueOf(0.09));
+		referenceValues.put("XYZ", BigDecimal.valueOf(200000.50));
+
+		CryptoMarketData result = new CryptoMarketData(exchangeRates, referenceValues, dateAndTime);
 		return result;
 	}
 
@@ -103,7 +131,7 @@ class TestResources {
 		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions, BigDecimal.valueOf(100));
 
 		// create cash account
-		CashPayment cp1 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC", new Date(470000));
+		CashPayment cp1 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC", "X", new Date(470000));
 
 		List<CashPayment> cashPayments = new ArrayList<>();
 		cashPayments.add(cp1);

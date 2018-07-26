@@ -1,5 +1,6 @@
 package org.goetheuni.investmentdashboard.client.ui;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.client.resourceBundles.Resources;
@@ -51,15 +52,18 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		return this.correspondingStructure.compareTo(o.getCorrespondingStructure());
 	}
 
-	protected AbstractSelectButton(Image icon, S correspondingStructure, Label optionalCurrencyLabel) {
+	protected AbstractSelectButton(Image icon, S correspondingStructure, List<Label> optionalLabels, Label optionalAmountLabel) {
 
 		// validate input
 		Objects.requireNonNull(icon, "The given Image must not be null");
 		this.correspondingStructure = Objects.requireNonNull(correspondingStructure,
 				"The given account or depot must not be null");
-		Objects.requireNonNull(optionalCurrencyLabel,
-				"The given optionalCurrencyLabel must not be null. Please consider a blank label");
+		Objects.requireNonNull(optionalLabels,
+				"The given list of optional labels must not be null. Please consider an empty list");
 
+		Objects.requireNonNull(optionalAmountLabel,
+				"The given optional amount label must not be null. Please consider a blank label");
+				
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
 
@@ -77,19 +81,26 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		VerticalPanel nameAndId = new VerticalPanel();
 		ContentLabelBlack name = new ContentLabelBlack(correspondingStructure.getName());
 		ContentLabelDefault id = new ContentLabelDefault(correspondingStructure.getID());
+		nameAndId.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		nameAndId.add(name);
 		nameAndId.add(id);
-		nameAndId.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		this.content.add(nameAndId);
 
+		
 		// add optional currency label
-		this.content.add(optionalCurrencyLabel);
+		for(Label optionalLabel : optionalLabels) {
+			this.content.add(optionalLabel);
+		}
 
-		// add formatted amount in EUR
+		// add formatted amount in EUR and optional in X
 		ContentLabelBlack amount = new ContentLabelBlack(correspondingStructure.getFormattedAmountInEUR());
+		VerticalPanel amountPanel = new VerticalPanel();
+		amountPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		amountPanel.add(amount);
+		amountPanel.add(optionalAmountLabel);
 		this.amount = amount;
-		this.content.add(amount);
-		this.content.setCellHorizontalAlignment(amount, HasHorizontalAlignment.ALIGN_RIGHT);
+		this.content.add(amountPanel);
+		this.content.setCellHorizontalAlignment(amountPanel, HasHorizontalAlignment.ALIGN_RIGHT);
 	}
 
 }

@@ -35,11 +35,11 @@ public class TestCashAccount {
 		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
 
 		// create test payments
-		CashPayment normal = new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ",
+		CashPayment normal = new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", "X",
 				DateConversionUtil.toDate(date1));
-		CashPayment negative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ",
+		CashPayment negative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", "X",
 				DateConversionUtil.toDate(date2));
-		CashPayment big = new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ",
+		CashPayment big = new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", "X",
 				DateConversionUtil.toDate(date3));
 
 		// fancy way of creating a list from a set of variables

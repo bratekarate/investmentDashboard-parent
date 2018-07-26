@@ -33,11 +33,11 @@ public class TestCashPayment {
 
 		// add test payments
 		result.put("150EUR",
-				new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", DateConversionUtil.toDate(date1)));
+				new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", "X", DateConversionUtil.toDate(date1)));
 		result.put("-40EUR",
-				new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", DateConversionUtil.toDate(date2)));
+				new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", "X", DateConversionUtil.toDate(date2)));
 		result.put("10000EUR",
-				new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", DateConversionUtil.toDate(date3)));
+				new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", "X", DateConversionUtil.toDate(date3)));
 
 		return result;
 	}
@@ -78,24 +78,24 @@ public class TestCashPayment {
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyAmount() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new CashPayment(null, "EUR", "DE1111XYZ", DateConversionUtil.toDate(date1));
+		new CashPayment(null, "EUR", "X", "DE1111XYZ", DateConversionUtil.toDate(date1));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyCurrencyCode() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new CashPayment(BigDecimal.valueOf(150), null, "DE1111XYZ", DateConversionUtil.toDate(date1));
+		new CashPayment(BigDecimal.valueOf(150), null, "DE1111XYZ", "X", DateConversionUtil.toDate(date1));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyCounterPartyIBAN() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new CashPayment(BigDecimal.valueOf(150), "EUR", null, DateConversionUtil.toDate(date1));
+		new CashPayment(BigDecimal.valueOf(150), "EUR", null, "X", DateConversionUtil.toDate(date1));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyDateOfExecution() {
-		new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", null);
+		new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", "X", null);
 	}
 
 	/**
@@ -109,11 +109,11 @@ public class TestCashPayment {
 		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
 
 		// add test payments
-		CashPayment paymentNormal = new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ",
+		CashPayment paymentNormal = new CashPayment(BigDecimal.valueOf(150), "EUR", "DE1111XYZ", "X",
 				DateConversionUtil.toDate(date1));
-		CashPayment paymentNegative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ",
+		CashPayment paymentNegative = new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", "X",
 				DateConversionUtil.toDate(date2));
-		CashPayment paymentBig = new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ",
+		CashPayment paymentBig = new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", "X",
 				DateConversionUtil.toDate(date3));
 
 		// attempt to convert to JSON
@@ -156,10 +156,10 @@ public class TestCashPayment {
 		Assert.assertFalse(msg, paymentBig.equals(null));
 		
 		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
-		Assert.assertTrue(msg, paymentNegative.equals(new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", DateConversionUtil.toDate(date2))));
+		Assert.assertTrue(msg, paymentNegative.equals(new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", "X", DateConversionUtil.toDate(date2))));
 		
 		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
-		Assert.assertTrue(msg, paymentBig.equals(new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", DateConversionUtil.toDate(date3))));
+		Assert.assertTrue(msg, paymentBig.equals(new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", "X", DateConversionUtil.toDate(date3))));
 		
 	}
 	
@@ -172,11 +172,11 @@ public class TestCashPayment {
 		
 		Assert.assertEquals(msg, paymentNegative.hashCode(), paymentNegative.hashCode());
 		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
-		Assert.assertEquals(msg, paymentNegative.hashCode(), new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", DateConversionUtil.toDate(date2)).hashCode());
+		Assert.assertEquals(msg, paymentNegative.hashCode(), new CashPayment(BigDecimal.valueOf(-40), "EUR", "DE2222XYZ", "X", DateConversionUtil.toDate(date2)).hashCode());
 		
 		Assert.assertEquals(msg, paymentBig.hashCode(), paymentBig.hashCode());
 		LocalDateTime date3 = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
-		Assert.assertEquals(msg, paymentBig.hashCode(), new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", DateConversionUtil.toDate(date3)).hashCode());
+		Assert.assertEquals(msg, paymentBig.hashCode(), new CashPayment(BigDecimal.valueOf(10000), "EUR", "DE3333XYZ", "X", DateConversionUtil.toDate(date3)).hashCode());
 		
 		Assert.assertFalse(msg, paymentBig.hashCode() == paymentNegative.hashCode());
 		

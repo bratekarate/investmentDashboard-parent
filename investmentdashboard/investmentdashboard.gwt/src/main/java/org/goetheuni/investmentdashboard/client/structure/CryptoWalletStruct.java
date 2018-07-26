@@ -1,17 +1,30 @@
 package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
+import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet;
+import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
+
+import com.google.gwt.i18n.client.NumberFormat;
 
 /**
  * Objects of this class represent crypto wallets in the logical structure of
  * the dash board page.
  */
-public class CryptoWalletStruct implements EURComputable {
+public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet {
 
 	/**
 	 * The data of this crypto wallet.
@@ -62,6 +75,129 @@ public class CryptoWalletStruct implements EURComputable {
 	@Override
 	public BigDecimal getCachedBalanceInEUR() {
 		return this.cachedBalance;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#getName()
+	 */
+	@Override
+	public String getName() {
+		return this.data.getName();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#getID()
+	 */
+	@Override
+	public String getID() {
+		return this.data.getAccountID();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#
+	 * getFormattedAmountInEUR()
+	 */
+	@Override
+	public String getFormattedAmountInEUR() {
+		BigDecimal rounded = this.cachedBalance.setScale(2, RoundingMode.DOWN);
+		return NumberFormat.getCurrencyFormat("EUR").format(rounded.doubleValue());
+	}
+
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getFormattedExchangeRate()
+	 */
+	@Override
+	public String getFormattedExchangeRate() {
+		BigDecimal ex = this.getExchangeRate();
+		return this.data.getCurrencyCode()+"1 = "+NumberFormat.getCurrencyFormat("EUR").format(ex.doubleValue());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.Selectable#refreshComputations()
+	 */
+	@Override
+	public void refreshComputations() {
+		this.computeBalanceInEUR(SecurityMarketDataStorage.get(), CryptoMarketDataStorage.get());
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#
+	 * getFormattedAmountInX()
+	 */
+	@Override
+	public String getFormattedAmountInX() {
+		return this.data.getCurrencyCode() + this.data.getAccountBalance().toString();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#
+	 * getReferenceValue()
+	 */
+	@Override
+	public BigDecimal getReferenceValue() {
+		String key = this.data.getCurrencyCode();
+		BigDecimal result = CryptoMarketDataStorage.get().getReferenceValues().get(key);
+		if (result != null) {
+			return result;
+		} else {
+			throw new RuntimeException("Could not find a reference value for the following key: " + key
+					+ "/n The data object was: " + String.valueOf(this.data));
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getExchangeRate()
+	 */
+	@Override
+	public BigDecimal getExchangeRate() {
+		String key = this.data.getCurrencyCode();
+		BigDecimal result = CryptoMarketDataStorage.get().getExchangeRates().get(key);
+		if (result != null) {
+			return result;
+		} else {
+			throw new RuntimeException("Could not find an exchange rate for the following key: " + key
+					+ "/n The data object was: " + String.valueOf(this.data));
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getRecentPaymentsSorted(int)
+	 */
+	@Override
+	public List<CryptoPayment> getRecentPaymentsSorted(int numberOfPayments) {
+		List<CryptoPayment> payments = this.data.getRecentPayments();
+		
+		payments.sort(new Comparator<CryptoPayment>() {
+
+			@Override
+			public int compare(CryptoPayment a, CryptoPayment b) {
+				long difference = Long.valueOf(b.getDateOfExecution().getTime() - a.getDateOfExecution().getTime());
+				return Long.signum(difference);
+			}
+		});
+		
+		// get only up to the given number of payments
+		
+		List<CryptoPayment> result = new ArrayList<>();
+		for (int i = 0; i < numberOfPayments && i < payments.size(); i++) {
+			result.add(payments.get(i));
+		}
+
+		return result;
 	}
 
 	protected CryptoWalletStruct(CryptoWallet data) {

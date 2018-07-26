@@ -1,10 +1,16 @@
 package org.goetheuni.investmentdashboard.server.data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
@@ -18,11 +24,15 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
+import com.google.gwt.user.datepicker.client.CalendarUtil;
+
 /**
  * This class provides dummy customers.
  */
 public class DataDummy {
 
+	public static Random R = new Random();
+	
 	public static SecurityMarketData getDummySecurities() {
 		HashMap<String, BigDecimal> marketPrizes = new HashMap<>();
 		Date dateAndTime = new Date(50000);
@@ -33,7 +43,14 @@ public class DataDummy {
 		marketPrizes.put("0003", BigDecimal.valueOf(0.72));
 		marketPrizes.put("0004", BigDecimal.valueOf(100000.50));
 
-		SecurityMarketData result = new SecurityMarketData(marketPrizes, dateAndTime);
+		// generate reference value
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("0001", BigDecimal.valueOf(6.90));
+		referenceValues.put("0002", BigDecimal.valueOf(12.83));
+		referenceValues.put("0003", BigDecimal.valueOf(0.82));
+		referenceValues.put("0004", BigDecimal.valueOf(100000.50));
+
+		SecurityMarketData result = new SecurityMarketData(marketPrizes, referenceValues, dateAndTime);
 		return result;
 	}
 
@@ -42,12 +59,19 @@ public class DataDummy {
 		HashMap<String, BigDecimal> exchangeRates = new HashMap<>();
 
 		// add exchange rates
-		exchangeRates.put("BTC", BigDecimal.valueOf(4.3));
-		exchangeRates.put("LTC", BigDecimal.valueOf(26.38));
+		exchangeRates.put("BTC", BigDecimal.valueOf(6582.24));
+		exchangeRates.put("LTC", BigDecimal.valueOf(72.41));
 		exchangeRates.put("ABC", BigDecimal.valueOf(0.09));
 		exchangeRates.put("XYZ", BigDecimal.valueOf(200000.50));
 
-		CryptoMarketData result = new CryptoMarketData(exchangeRates, dateAndTime);
+		// add reference values
+		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
+		referenceValues.put("BTC", BigDecimal.valueOf(6333.54));
+		referenceValues.put("LTC", BigDecimal.valueOf(75.67));
+		referenceValues.put("ABC", BigDecimal.valueOf(0.10));
+		referenceValues.put("XYZ", BigDecimal.valueOf(200000.50));
+
+		CryptoMarketData result = new CryptoMarketData(exchangeRates, referenceValues, dateAndTime);
 		return result;
 	}
 
@@ -73,17 +97,23 @@ public class DataDummy {
 
 		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions, BigDecimal.valueOf(100));
 
+		// create sample dates
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime yesterday = now.minusDays(1);
+		LocalDateTime twoDaysBeforeYest = now.minusDays(3);
+		
+		
 		// create cash account
-		CashPayment cp01 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC001", new Date(483500));
-		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-26.82), "EUR", "DEABC001", new Date(478800));
-		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(200.2), "EUR", "DEABC002", new Date(479500));
-		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(1435.2), "EUR", "DEABC003", new Date(483400));
-		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-1223.22), "EUR", "DEABC008", new Date(490500));
-		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(322.22), "EUR", "DEABC023", new Date(492200));
-		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(467.50), "EUR", "DEABC489", new Date(493300));
-		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(785.78), "EUR", "DEABC789", new Date(497500));
-		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(900.80), "EUR", "DEABC555", new Date(496900));
-		CashPayment cp10 = new CashPayment(BigDecimal.valueOf(-5.67), "EUR", "DEABC234", new Date(499900));
+		CashPayment cp01 = new CashPayment(BigDecimal.valueOf(1045.00), "EUR", "DEABC001", "TOM", rndmDate(now));
+		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-244.52), "EUR", "DEABC001", "GOTHAER VVaG", rndmDate(yesterday));
+		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(1200.0), "EUR", "DEABC002", "JANE", rndmDate(twoDaysBeforeYest));
+		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(-120.55), "EUR", "DEABC003", "AMAZON DE", rndmDate(now));
+		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-323.22), "EUR", "DEABC008", "VISA", rndmDate(now));
+		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(1500.00), "EUR", "DEABC023", "JIM", rndmDate(yesterday));
+		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(-1500.00), "EUR", "DEABC489", "JIM", rndmDate(twoDaysBeforeYest));
+		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday.minusMonths(1)));
+		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday));
+		CashPayment cp10 = new CashPayment(BigDecimal.valueOf(+300.00), "EUR", "DEABC234", "JIM", rndmDate(yesterday));
 
 		List<CashPayment> cashPayments1 = new ArrayList<>();
 		cashPayments1.add(cp01);
@@ -102,23 +132,39 @@ public class DataDummy {
 		cashPayments3.add(cp10);
 
 		CashAccount cashAcc0 = new CashAccount("0", "DEXYZ00001", "Girokonto", cashPayments1,
-				BigDecimal.valueOf(500.00), "EUR");
+				BigDecimal.valueOf(531.74), "EUR");
 		CashAccount cashAcc1 = new CashAccount("1", "DEXYZ00111", "Girokonto", cashPayments2,
 				BigDecimal.valueOf(265.50), "EUR");
 		CashAccount cashAcc2 = new CashAccount("2", "DEXYZ22222", "Tagesgeldkonto", cashPayments3,
 				BigDecimal.valueOf(2222.40), "EUR");
 
 		// create crypto wallet
-		CryptoPayment cryPay1 = new CryptoPayment(BigDecimal.valueOf(2000.00), "BTC", "counterPartyAddress1",
-				new Date(64545));
-		CryptoPayment cryPay2 = new CryptoPayment(BigDecimal.valueOf(-250.00), "BTC", "counterPartyAddress2",
-				new Date(78645));
+		CryptoPayment cryPay1 = new CryptoPayment(BigDecimal.valueOf(2.500), "BTC", "1P82rBjJMDFSay2Rq",
+				rndmDate(now));
+		CryptoPayment cryPay2 = new CryptoPayment(BigDecimal.valueOf(-0.015), "BTC", "1HP56rvOLzdFSay4Me",
+				rndmDate(yesterday));
+		CryptoPayment cryPay3 = new CryptoPayment(BigDecimal.valueOf(-0.015), "BTC", "1HP56rvOLzdFSay4Me",
+				rndmDate(yesterday));
 		List<CryptoPayment> cryPayments = new ArrayList<>();
 		cryPayments.add(cryPay1);
 		cryPayments.add(cryPay2);
+		cryPayments.add(cryPay3);
 
-		CryptoWallet wallet = new CryptoWallet("accountID", "BTC", "Bitcoin-Wallet", BigDecimal.valueOf(1020.45),
+		CryptoWallet wallet1 = new CryptoWallet("BTC000725112", "BTC", "Bitcoin-Wallet", BigDecimal.valueOf(7.534),
 				cryPayments);
+
+		// create another crypto wallet
+		CryptoPayment cryPay4 = new CryptoPayment(BigDecimal.valueOf(63.000), "LTC", "1P82rBjJMDFSay2Rq",
+				rndmDate(now));
+		CryptoPayment cryPay5 = new CryptoPayment(BigDecimal.valueOf(-144.0155), "LTC", "1HP56rvOLzdFSay4Me",
+				rndmDate(twoDaysBeforeYest));
+
+		List<CryptoPayment> cryPayments2 = new ArrayList<>();
+		cryPayments2.add(cryPay4);
+		cryPayments2.add(cryPay5);
+
+		CryptoWallet wallet2 = new CryptoWallet("LTC000835321", "LTC", "Litecoin-Wallet", BigDecimal.valueOf(110),
+				cryPayments2);
 
 		// create customer
 		List<CashAccount> cashAccounts = new ArrayList<>();
@@ -126,11 +172,21 @@ public class DataDummy {
 		cashAccounts.add(cashAcc1);
 		cashAccounts.add(cashAcc2);
 		List<CryptoWallet> cryptoWallets = new ArrayList<>();
-		cryptoWallets.add(wallet);
+		cryptoWallets.add(wallet1);
+		cryptoWallets.add(wallet2);
 		List<SecurityDepot> securityDepots = new ArrayList<>();
 		securityDepots.add(depot);
 
-		Customer result = new Customer("Mr X", "0000354", cashAccounts, cryptoWallets, securityDepots);
+		Customer result = new Customer("JIM", "0000354", cashAccounts, cryptoWallets, securityDepots);
 		return result;
+		
+	}
+	
+	private static Date rndmDate(LocalDateTime day) {
+		LocalDateTime result = day.minusHours(R.nextInt(day.getHour()));
+		result = result.minusMinutes(R.nextInt(result.getMinute()));
+		result = result.minusSeconds(R.nextInt(result.getSecond()));
+		ZonedDateTime dateZoned = result.atZone(ZoneId.systemDefault());
+		return Date.from(dateZoned.toInstant());
 	}
 }

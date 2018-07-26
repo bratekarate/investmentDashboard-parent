@@ -67,16 +67,6 @@ public class CryptoPayment implements ICryptoPayment {
 		return dateOfExecution;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.goetheuni.investmentdashboard.shared.domain.api.ICryptoPayment#
-	 * getFormattedAmount()
-	 */
-	@Override
-	public String getFormattedAmount() {
-		return "Sorry, not yet implemented";
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

@@ -72,18 +72,18 @@ public void testGetter() {
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyCurrencyCode() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 28, 20, 31, 30);
-		new CashPayment(BigDecimal.valueOf(15), null, "DE12345", DateConversionUtil.toDate(date1));
+		new CashPayment(BigDecimal.valueOf(15), null, "DE12345", "X", DateConversionUtil.toDate(date1));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyCounterPartyIBAN() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 28, 20, 31, 30);
-		new CashPayment(BigDecimal.valueOf(15), "BTC", null, DateConversionUtil.toDate(date1));
+		new CashPayment(BigDecimal.valueOf(15), "BTC", "X", null, DateConversionUtil.toDate(date1));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNullSafetyDateOfExecution() {
-		new CashPayment(BigDecimal.valueOf(15), "BTC", "DE12345", null);
+		new CashPayment(BigDecimal.valueOf(15), "BTC", "DE12345", "X", null);
 	}
 
 	/**

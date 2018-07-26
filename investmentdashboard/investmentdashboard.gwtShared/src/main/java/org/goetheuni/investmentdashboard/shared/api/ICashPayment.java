@@ -25,6 +25,11 @@ public interface ICashPayment {
 	 * @return the counterPartyIBAN
 	 */
 	public String getCounterPartyIBAN();
+	
+	/**
+	 * @return the counterParty's name
+	 */
+	public String getCounterPartyName();
 
 	/**
 	 * @return the dateOfExecution

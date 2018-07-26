@@ -30,6 +30,11 @@ public class CashPayment implements ICashPayment {
 	 * The counter-party's IBAN.
 	 */
 	protected String counterPartyIBAN;
+	
+	/**
+	 * The counter-party's IBAN.
+	 */
+	protected String counterPartyName;
 
 	/**
 	 * The date and time of the execution.
@@ -70,6 +75,15 @@ public class CashPayment implements ICashPayment {
 
 	
 
+
+	/**
+	 * @return the counterPartyName
+	 */
+	@Override
+	public String getCounterPartyName() {
+		return counterPartyName;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -79,6 +93,7 @@ public class CashPayment implements ICashPayment {
 		int result = 1;
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((counterPartyIBAN == null) ? 0 : counterPartyIBAN.hashCode());
+		result = prime * result + ((counterPartyName == null) ? 0 : counterPartyName.hashCode());
 		result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
 		result = prime * result + ((dateOfExecution == null) ? 0 : dateOfExecution.hashCode());
 		return result;
@@ -113,6 +128,13 @@ public class CashPayment implements ICashPayment {
 		} else if (!counterPartyIBAN.equals(other.counterPartyIBAN)) {
 			return false;
 		}
+		if (counterPartyName == null) {
+			if (other.counterPartyName != null) {
+				return false;
+			}
+		} else if (!counterPartyName.equals(other.counterPartyName)) {
+			return false;
+		}
 		if (currencyCode == null) {
 			if (other.currencyCode != null) {
 				return false;
@@ -130,15 +152,14 @@ public class CashPayment implements ICashPayment {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "CashPayment [amount=" + amount + ", currency=" + currencyCode + ", counterPartyIBAN=" + counterPartyIBAN
-				+ ", dateOfExecution=" + dateOfExecution + "]";
+		return "CashPayment [amount=" + amount + ", currencyCode=" + currencyCode + ", counterPartyIBAN="
+				+ counterPartyIBAN + ", counterPartyName=" + counterPartyName + ", dateOfExecution=" + dateOfExecution
+				+ "]";
 	}
 
 	/**
@@ -153,10 +174,12 @@ public class CashPayment implements ICashPayment {
 	public CashPayment(final @JsonProperty("amount") BigDecimal amount,
 			final @JsonProperty("currencyCode") String currencyCode,
 			final @JsonProperty("counterPartyIBAN") String counterPartyIBAN,
+			final @JsonProperty("counterPartyName") String counterPartyName,
 			final @JsonProperty("dateOfExecution") Date dateOfExecution) {
 		this.amount = Objects.requireNonNull(amount, "Amount must not be null");
 		this.currencyCode = Objects.requireNonNull(currencyCode, "Currency must not be null");
 		this.counterPartyIBAN = Objects.requireNonNull(counterPartyIBAN, "The counterparty's IBAN must not be null");
+		this.counterPartyName = Objects.requireNonNull(counterPartyName, "The counterparty's name must not be null");
 		this.dateOfExecution = Objects.requireNonNull(dateOfExecution, "The date of execution must not be null");
 	}
 
