@@ -115,7 +115,7 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 	@Override
 	public String getFormattedExchangeRate() {
 		BigDecimal ex = this.getExchangeRate();
-		return this.data.getCurrencyCode()+"1 = "+NumberFormat.getCurrencyFormat("EUR").format(ex.doubleValue());
+		return this.data.getCurrencyCode()+"-Kurs: "+NumberFormat.getCurrencyFormat("EUR").format(ex.doubleValue());
 	}
 
 	/*

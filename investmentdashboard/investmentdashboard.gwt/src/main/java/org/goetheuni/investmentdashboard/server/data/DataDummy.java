@@ -104,32 +104,39 @@ public class DataDummy {
 		
 		
 		// create cash account
+		Date date = rndmDate(yesterday);
 		CashPayment cp01 = new CashPayment(BigDecimal.valueOf(1045.00), "EUR", "DEABC001", "TOM", rndmDate(now));
-		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-244.52), "EUR", "DEABC001", "GOTHAER VVaG", rndmDate(yesterday));
-		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(1200.0), "EUR", "DEABC002", "JANE", rndmDate(twoDaysBeforeYest));
-		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(-120.55), "EUR", "DEABC003", "AMAZON DE", rndmDate(now));
-		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-323.22), "EUR", "DEABC008", "VISA", rndmDate(now));
-		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(1500.00), "EUR", "DEABC023", "JIM", rndmDate(yesterday));
-		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(-1500.00), "EUR", "DEABC489", "JIM", rndmDate(twoDaysBeforeYest));
+		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-244.52), "EUR", "DEABC001", "GOTAR VVaG", rndmDate(yesterday));
+		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(1200.0), "EUR", "DEABC002", "JANE", rndmDate(now));
+		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(-120.55), "EUR", "DEABC003", "AMAZIN DE", rndmDate(now));
+		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-323.22), "EUR", "DEABC008", "VIZA", rndmDate(now));
+		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(1500.00), "EUR", "DEABC023", "JIM", date);
+		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(-1500.00), "EUR", "DEABC489", "JIM", date);
 		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday.minusMonths(1)));
 		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday));
 		CashPayment cp10 = new CashPayment(BigDecimal.valueOf(+300.00), "EUR", "DEABC234", "JIM", rndmDate(yesterday));
+		CashPayment cp11 = new CashPayment(BigDecimal.valueOf(-60.00), "EUR", "DEABC234", "JIM", rndmDate(yesterday.minusDays(1)));
+		CashPayment cp12 = new CashPayment(BigDecimal.valueOf(-100.00), "EUR", "DEABC011", "CG BANK AG", rndmDate(now));
+		CashPayment cp13 = new CashPayment(BigDecimal.valueOf(-1355.42), "EUR", "DEABC222", "MAINOWA", rndmDate(twoDaysBeforeYest.minusDays(9)));
 
 		List<CashPayment> cashPayments1 = new ArrayList<>();
 		cashPayments1.add(cp01);
 		cashPayments1.add(cp02);
 		cashPayments1.add(cp03);
+		cashPayments1.add(cp13);
 
 		List<CashPayment> cashPayments2 = new ArrayList<>();
 		cashPayments2.add(cp04);
 		cashPayments2.add(cp05);
 		cashPayments2.add(cp06);
+		cashPayments2.add(cp12);
 
 		List<CashPayment> cashPayments3 = new ArrayList<>();
 		cashPayments3.add(cp07);
 		cashPayments3.add(cp08);
 		cashPayments3.add(cp09);
 		cashPayments3.add(cp10);
+		cashPayments3.add(cp11);
 
 		CashAccount cashAcc0 = new CashAccount("0", "DEXYZ00001", "Girokonto", cashPayments1,
 				BigDecimal.valueOf(531.74), "EUR");

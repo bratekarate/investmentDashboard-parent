@@ -38,8 +38,8 @@ public class TopUIPartBuilder {
 		topLayoutPanel.setSpacing(8);
 
 		// dummy label for links
-		Label linkActions = new Label("<links zu Kontoaktionen>");
-		Label linkContact = new Label("<andere links(Post, Kontakt)>");
+		Label linkActions = new Label("Kontoaktionen");
+		Label linkContact = new Label("Postfach");
 
 		linkActions.getElement().getStyle().setFontSize(FontConstants.CATEGORYCONTENT, FontConstants.UNIT);
 		linkContact.getElement().getStyle().setFontSize(FontConstants.CATEGORYCONTENT, FontConstants.UNIT);

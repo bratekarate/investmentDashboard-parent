@@ -90,6 +90,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		// add optional currency label
 		for(Label optionalLabel : optionalLabels) {
 			this.content.add(optionalLabel);
+			this.content.setCellHorizontalAlignment(optionalLabel, HasHorizontalAlignment.ALIGN_RIGHT);
 		}
 
 		// add formatted amount in EUR and optional in X
