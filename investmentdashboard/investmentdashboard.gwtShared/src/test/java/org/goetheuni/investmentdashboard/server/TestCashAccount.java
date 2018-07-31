@@ -87,6 +87,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -99,6 +100,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -111,6 +113,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -123,6 +126,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -135,6 +139,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 	
 	@Test(expected = RuntimeException.class)
@@ -147,6 +152,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		throw new RuntimeException();
 	}
 
 	/**
@@ -162,6 +168,7 @@ public class TestCashAccount {
 		CashAccount joe = resources.get("Joe");
 
 		// TODO
+		
 	}
 
 	@Test
