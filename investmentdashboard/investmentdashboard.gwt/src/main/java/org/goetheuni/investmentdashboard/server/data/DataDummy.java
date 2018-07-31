@@ -161,9 +161,9 @@ public class DataDummy {
 				cryPayments);
 
 		// create another crypto wallet
-		CryptoPayment cryPay4 = new CryptoPayment(BigDecimal.valueOf(63.000), "LTC", "1P82rBjJMDFSay2Rq",
+		CryptoPayment cryPay4 = new CryptoPayment(BigDecimal.valueOf(63.000), "LTC", "1MDFSay2P82rBjJRq",
 				rndmDate(now));
-		CryptoPayment cryPay5 = new CryptoPayment(BigDecimal.valueOf(-144.0155), "LTC", "1HP56rvOLzdFSay4Me",
+		CryptoPayment cryPay5 = new CryptoPayment(BigDecimal.valueOf(-144.0155), "LTC", "1H7kzdFSaP56rvy4Ke",
 				rndmDate(twoDaysBeforeYest));
 
 		List<CryptoPayment> cryPayments2 = new ArrayList<>();
