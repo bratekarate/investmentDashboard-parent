@@ -117,8 +117,8 @@ class TestResources {
 		SecurityInvestment i1 = new SecurityInvestment(sec1, 45);
 		SecurityInvestment i2 = new SecurityInvestment(sec2, 22);
 
-		SecurityTransaction t1 = new SecurityTransaction(5, BigDecimal.valueOf(50.00), sec1, new Date(50000));
-		SecurityTransaction t2 = new SecurityTransaction(-1, BigDecimal.valueOf(5.00), sec2, new Date(50000));
+		SecurityTransaction t1 = new SecurityTransaction(5, BigDecimal.valueOf(50.00), sec1, new Date(50000), false);
+		SecurityTransaction t2 = new SecurityTransaction(1, BigDecimal.valueOf(5.00), sec2, new Date(50000), false);
 
 		List<SecurityInvestment> portfolio = new ArrayList<>();
 		portfolio.add(i1);
@@ -128,7 +128,7 @@ class TestResources {
 		recentTransactions.add(t1);
 		recentTransactions.add(t2);
 
-		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions, BigDecimal.valueOf(100));
+		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions);
 
 		// create cash account
 		CashPayment cp1 = new CashPayment(BigDecimal.valueOf(22.22), "EUR", "DEABC", "X", new Date(470000));

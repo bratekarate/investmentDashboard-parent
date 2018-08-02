@@ -33,16 +33,16 @@ public class TestSecurityDepot {
 		LocalDateTime date3 = LocalDateTime.of(2015, 12, 3, 10, 28, 00);
 		LocalDateTime date4 = LocalDateTime.of(2016, 1, 10, 8, 30, 45);
 		
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
-		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2));
-		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3));
-		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
+		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2), false);
+		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3), false);
+		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4), false);
 		
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1,transaction2,transaction4);
 		List<SecurityTransaction> transactionList2 = Arrays.asList(transaction3,transaction1);
 		
-		result.put("sun", new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1, BigDecimal.valueOf(1111)));
-		result.put("oracle", new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2, BigDecimal.valueOf(22222)));
+		result.put("sun", new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1));
+		result.put("oracle", new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2));
 		
 		return result;
 		
@@ -62,10 +62,10 @@ public class TestSecurityDepot {
 		LocalDateTime date3 = LocalDateTime.of(2015, 12, 3, 10, 28, 00);
 		LocalDateTime date4 = LocalDateTime.of(2016, 1, 10, 8, 30, 45);
 		
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
-		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2));
-		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3));
-		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
+		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2), false);
+		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3), false);
+		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4), false);
 		
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1,transaction2,transaction4);
 		List<SecurityTransaction> transactionList2 = Arrays.asList(transaction3,transaction1);
@@ -89,8 +89,6 @@ public class TestSecurityDepot {
 		Assert.assertEquals("Error in get method", transactionList1, depotToTest1.getRecentTransactions());
 		Assert.assertEquals("Error in get method", transactionList2, depotToTest2.getRecentTransactions());
 		
-		Assert.assertEquals("Error in get method", BigDecimal.valueOf(1111), depotToTest1.getReferenceValue());
-		Assert.assertEquals("Error in get method", BigDecimal.valueOf(22222), depotToTest2.getReferenceValue());
 
 	}
 	
@@ -101,10 +99,10 @@ public class TestSecurityDepot {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		//List<SecurityInvestment> investmentList1 = Arrays.asList(new SecurityInvestment(sun,1110), new SecurityInvestment(sun,0513));
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
 		
-		new SecurityDepot(null, "depotID_sun", "sun", transactionList1, BigDecimal.valueOf(1111));
+		new SecurityDepot(null, "depotID_sun", "sun", transactionList1);
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -112,10 +110,10 @@ public class TestSecurityDepot {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		List<SecurityInvestment> investmentList1 = Arrays.asList(new SecurityInvestment(sun,1110), new SecurityInvestment(sun,0513));
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
 		
-		new SecurityDepot(investmentList1, null, "sun", transactionList1, BigDecimal.valueOf(1111));
+		new SecurityDepot(investmentList1, null, "sun", transactionList1);
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -123,10 +121,10 @@ public class TestSecurityDepot {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		List<SecurityInvestment> investmentList1 = Arrays.asList(new SecurityInvestment(sun,1110), new SecurityInvestment(sun,0513));
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
 		
-		new SecurityDepot(investmentList1, "depotID_sun", null, transactionList1, BigDecimal.valueOf(1111));
+		new SecurityDepot(investmentList1, "depotID_sun", null, transactionList1);
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -137,7 +135,7 @@ public class TestSecurityDepot {
 		//SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
 		//List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
 		
-		new SecurityDepot(investmentList1, "depotID_sun", "sun", null, BigDecimal.valueOf(1111));
+		new SecurityDepot(investmentList1, "depotID_sun", "sun", null);
 	}
 	
 	@Test(expected = NullPointerException.class)
@@ -145,10 +143,10 @@ public class TestSecurityDepot {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		List<SecurityInvestment> investmentList1 = Arrays.asList(new SecurityInvestment(sun,1110), new SecurityInvestment(sun,0513));
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
 		
-		new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1, null);
+		new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1);
 	}
 	
 	
@@ -165,16 +163,16 @@ public class TestSecurityDepot {
 		LocalDateTime date3 = LocalDateTime.of(2015, 12, 3, 10, 28, 00);
 		LocalDateTime date4 = LocalDateTime.of(2016, 1, 10, 8, 30, 45);
 		
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
-		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2));
-		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3));
-		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
+		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2), false);
+		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3), false);
+		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4), false);
 		
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1,transaction2,transaction4);
 		List<SecurityTransaction> transactionList2 = Arrays.asList(transaction3,transaction1);
 		
-		SecurityDepot referenceDepot1 = new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1, BigDecimal.valueOf(1111));
-		SecurityDepot referenceDepot2 = new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2, BigDecimal.valueOf(22222));
+		SecurityDepot referenceDepot1 = new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1);
+		SecurityDepot referenceDepot2 = new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2);
 		
 		// get resources
 		Map<String, SecurityDepot> resources = TestSecurityDepot.getTestResources();
@@ -213,16 +211,16 @@ public class TestSecurityDepot {
 		LocalDateTime date3 = LocalDateTime.of(2015, 12, 3, 10, 28, 00);
 		LocalDateTime date4 = LocalDateTime.of(2016, 1, 10, 8, 30, 45);
 		
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1));
-		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2));
-		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3));
-		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4));
+		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
+		SecurityTransaction transaction2 = new SecurityTransaction(23, BigDecimal.valueOf(2341), sun, DateConversionUtil.toDate(date2), false);
+		SecurityTransaction transaction3 = new SecurityTransaction(456, BigDecimal.valueOf(2573), sun, DateConversionUtil.toDate(date3), false);
+		SecurityTransaction transaction4 = new SecurityTransaction(2549, BigDecimal.valueOf(113423), sun, DateConversionUtil.toDate(date4), false);
 		
 		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1,transaction2,transaction4);
 		List<SecurityTransaction> transactionList2 = Arrays.asList(transaction3,transaction1);
 		
-		SecurityDepot referenceDepot1 = new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1, BigDecimal.valueOf(1111));
-		SecurityDepot referenceDepot2 = new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2, BigDecimal.valueOf(22222));
+		SecurityDepot referenceDepot1 = new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1);
+		SecurityDepot referenceDepot2 = new SecurityDepot(investmentList2, "depotID_oracle", "oracle", transactionList2);
 		
 		
 		// get resources

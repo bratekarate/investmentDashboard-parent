@@ -1,7 +1,6 @@
 package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.datepicker.client.CalendarUtil;
 
 /**
  * Objects of this class represent cash account substructures.
@@ -85,7 +83,7 @@ public class CashAccountStruct implements EURComputable, SelectableCashAccount {
 	 */
 	@Override
 	public String getFormattedAmountInEUR() {
-		double result = this.getCachedBalanceInEUR().doubleValue();
+		BigDecimal result = this.getCachedBalanceInEUR();
 		return NumberFormat.getCurrencyFormat("EUR").format(result);
 	}
 

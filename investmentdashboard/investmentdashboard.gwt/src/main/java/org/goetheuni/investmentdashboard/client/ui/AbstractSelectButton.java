@@ -1,6 +1,5 @@
 package org.goetheuni.investmentdashboard.client.ui;
 
-import java.util.List;
 import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.client.resourceBundles.Resources;
@@ -21,6 +20,8 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	protected S correspondingStructure;
 
 	protected ContentLabelBlack amount;
+
+	protected VolatilityLabel volatility;
 
 	/*
 	 * (non-Javadoc)
@@ -52,18 +53,19 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		return this.correspondingStructure.compareTo(o.getCorrespondingStructure());
 	}
 
-	protected AbstractSelectButton(Image icon, S correspondingStructure, List<Label> optionalLabels, Label optionalAmountLabel) {
+	protected AbstractSelectButton(Image icon, S correspondingStructure, VolatilityLabel optionalVolatilityLabel,
+			Label optionalAmountLabel) {
 
 		// validate input
 		Objects.requireNonNull(icon, "The given Image must not be null");
 		this.correspondingStructure = Objects.requireNonNull(correspondingStructure,
 				"The given account or depot must not be null");
-		Objects.requireNonNull(optionalLabels,
-				"The given list of optional labels must not be null. Please consider an empty list");
+		this.volatility = Objects.requireNonNull(optionalVolatilityLabel,
+				"The given optional label must not be null. Please consider a blank label");
 
 		Objects.requireNonNull(optionalAmountLabel,
 				"The given optional amount label must not be null. Please consider a blank label");
-				
+
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
 
@@ -86,12 +88,10 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		nameAndId.add(id);
 		this.content.add(nameAndId);
 
-		
-		// add optional currency label
-		for(Label optionalLabel : optionalLabels) {
-			this.content.add(optionalLabel);
-			this.content.setCellHorizontalAlignment(optionalLabel, HasHorizontalAlignment.ALIGN_RIGHT);
-		}
+		// add optional volatility label
+
+		this.content.add(optionalVolatilityLabel);
+		this.content.setCellHorizontalAlignment(optionalVolatilityLabel, HasHorizontalAlignment.ALIGN_RIGHT);
 
 		// add formatted amount in EUR and optional in X
 		ContentLabelBlack amount = new ContentLabelBlack(correspondingStructure.getFormattedAmountInEUR());
@@ -102,6 +102,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		this.amount = amount;
 		this.content.add(amountPanel);
 		this.content.setCellHorizontalAlignment(amountPanel, HasHorizontalAlignment.ALIGN_RIGHT);
+		this.content.setCellWidth(amountPanel, "25%");
 	}
 
 }

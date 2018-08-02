@@ -22,7 +22,7 @@ public class SecurityMarketData implements ISecurityMarketData {
 	 * Maps a security's ISIN to its prize.
 	 */
 	protected Map<String, BigDecimal> marketPrizes;
-	
+
 	/**
 	 * Maps a security's ISIN to its reference value.
 	 */
@@ -57,9 +57,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return dateAndTime;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -68,7 +68,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 				+ ", dateAndTime=" + dateAndTime + "]";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -81,7 +83,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -128,7 +132,8 @@ public class SecurityMarketData implements ISecurityMarketData {
 	 */
 	@JsonCreator
 	public SecurityMarketData(final @JsonProperty("marketPrizes") Map<String, BigDecimal> marketPrizes,
-			final @JsonProperty("referenceValues") Map<String, BigDecimal> referenceValues, final @JsonProperty("dateAndTime") Date dateAndTime) {
+			final @JsonProperty("referenceValues") Map<String, BigDecimal> referenceValues,
+			final @JsonProperty("dateAndTime") Date dateAndTime) {
 		this.marketPrizes = Objects.requireNonNull(marketPrizes,
 				"The collection for the market prizes must not be null");
 		this.referenceValues = Objects.requireNonNull(referenceValues, "The map for reference values must not be null");

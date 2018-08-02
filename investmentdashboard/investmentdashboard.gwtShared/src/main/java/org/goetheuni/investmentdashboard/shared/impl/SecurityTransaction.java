@@ -15,8 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SecurityTransaction implements ISecurityTransaction {
 
 	/**
-	 * The quantity that has been traded. Positive for a buy transaction and
-	 * negative for a sell transaction.
+	 * The quantity that has been traded.
 	 */
 	protected long quantity;
 
@@ -34,6 +33,11 @@ public class SecurityTransaction implements ISecurityTransaction {
 	 * The date and time of the execution.
 	 */
 	protected Date dateOfExecution;
+
+	/**
+	 * True -> Sell, False -> Buy
+	 */
+	protected boolean isSellTransaction;
 
 	/**
 	 * @return the quantity
@@ -67,7 +71,17 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return dateOfExecution;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the isSellTransaction
+	 */
+	@Override
+	public boolean isSellTransaction() {
+		return isSellTransaction;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -81,7 +95,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -145,8 +161,16 @@ public class SecurityTransaction implements ISecurityTransaction {
 	@JsonCreator
 	public SecurityTransaction(final @JsonProperty("quantity") long quantity,
 			final @JsonProperty("totalPrize") BigDecimal totalPrize, final @JsonProperty("security") Security security,
-			final @JsonProperty("dateOfExecution") Date dateOfExecution) {
-		this.quantity = quantity;
+			final @JsonProperty("dateOfExecution") Date dateOfExecution,
+			final @JsonProperty("isSellTransaction") boolean isSellTransaction) {
+
+		if (quantity > 0) {
+			this.quantity = quantity;
+		} else {
+			throw new RuntimeException(
+					"The given quantity must be positive. Please consider the use of the isSellTransaction field.");
+		}
+
 		this.totalPrize = Objects.requireNonNull(totalPrize, "The object for the total prize must not be null");
 
 		// the price is assumed to be non negative
@@ -157,6 +181,7 @@ public class SecurityTransaction implements ISecurityTransaction {
 
 		this.security = Objects.requireNonNull(security, "The given security must not be null");
 		this.dateOfExecution = Objects.requireNonNull(dateOfExecution, "The date must not be null");
+		this.isSellTransaction = isSellTransaction;
 	}
 
 	protected SecurityTransaction() {

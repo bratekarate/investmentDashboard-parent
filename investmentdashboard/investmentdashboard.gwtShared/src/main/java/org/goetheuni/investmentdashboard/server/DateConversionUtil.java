@@ -13,9 +13,11 @@ import java.util.Date;
 public class DateConversionUtil {
 
 	/**
-	 * Method to convert between the old GWT-compatible java
-	 * Date API and the java 8 time API, which is more appropriate.
-	 * @param dateNew the date as LocalDateTime
+	 * Method to convert between the old GWT-compatible java Date API and the java 8
+	 * time API, which is more appropriate.
+	 * 
+	 * @param dateNew
+	 *            the date as LocalDateTime
 	 * @return the date as old GWT-compatible java Date object.
 	 */
 	public static Date toDate(LocalDateTime dateNew) {

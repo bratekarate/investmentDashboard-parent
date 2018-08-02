@@ -93,9 +93,9 @@ public class CashAccount implements ICashAccount {
 		return currency;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -111,7 +111,9 @@ public class CashAccount implements ICashAccount {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

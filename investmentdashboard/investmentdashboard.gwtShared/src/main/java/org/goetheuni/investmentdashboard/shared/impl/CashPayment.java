@@ -30,7 +30,7 @@ public class CashPayment implements ICashPayment {
 	 * The counter-party's IBAN.
 	 */
 	protected String counterPartyIBAN;
-	
+
 	/**
 	 * The counter-party's IBAN.
 	 */
@@ -73,9 +73,6 @@ public class CashPayment implements ICashPayment {
 		return dateOfExecution;
 	}
 
-	
-
-
 	/**
 	 * @return the counterPartyName
 	 */
@@ -84,7 +81,9 @@ public class CashPayment implements ICashPayment {
 		return counterPartyName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -99,7 +98,9 @@ public class CashPayment implements ICashPayment {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -152,7 +153,9 @@ public class CashPayment implements ICashPayment {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

@@ -24,8 +24,8 @@ public class TestSecurityTransaction {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
 		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
 
-		result.put("sun", new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1)));
-		result.put("oracle", new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle,DateConversionUtil.toDate(date2)));
+		result.put("sun", new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false));
+		result.put("oracle", new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle,DateConversionUtil.toDate(date2), false));
 		
 		return result;
 	}
@@ -61,19 +61,19 @@ public class TestSecurityTransaction {
 	public void testTotalPrizeRequireNoneNull() {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new SecurityTransaction(1110, null, sun, DateConversionUtil.toDate(date1));
+		new SecurityTransaction(1110, null, sun, DateConversionUtil.toDate(date1), false);
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void testSecurityRequireNoneNull() {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new SecurityTransaction(1110, BigDecimal.valueOf(567890), null, DateConversionUtil.toDate(date1));
+		new SecurityTransaction(1110, BigDecimal.valueOf(567890), null, DateConversionUtil.toDate(date1), false);
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void testDateOfExecutionRequireNoneNull() {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
-		new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, null);
+		new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, null, false);
 	}
 	
 	
@@ -82,7 +82,7 @@ public class TestSecurityTransaction {
 	public void testTotalPrizeNotNegative() {
 		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		new SecurityTransaction(1110, BigDecimal.valueOf(-400), sun, DateConversionUtil.toDate(date1));
+		new SecurityTransaction(1110, BigDecimal.valueOf(-400), sun, DateConversionUtil.toDate(date1), false);
 	}
 	
 	
@@ -108,8 +108,8 @@ public class TestSecurityTransaction {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
 		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
 
-		Assert.assertTrue(msg, case1.equals(new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1))));
-		Assert.assertTrue(msg, case2.equals(new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle, DateConversionUtil.toDate(date2))));
+		Assert.assertTrue(msg, case1.equals(new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false)));
+		Assert.assertTrue(msg, case2.equals(new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle, DateConversionUtil.toDate(date2), false)));
 	}
 	
 	
@@ -128,8 +128,8 @@ public class TestSecurityTransaction {
 		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
 		LocalDateTime date2 = LocalDateTime.of(2017, 6, 26, 14, 33, 30);
 		
-		Assert.assertEquals(msg, case1.hashCode(), new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1)).hashCode());
-		Assert.assertEquals(msg, case2.hashCode(), new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle, DateConversionUtil.toDate(date2)).hashCode());
+		Assert.assertEquals(msg, case1.hashCode(), new SecurityTransaction(1110, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false).hashCode());
+		Assert.assertEquals(msg, case2.hashCode(), new SecurityTransaction(7829, BigDecimal.valueOf(150), oracle, DateConversionUtil.toDate(date2), false).hashCode());
 		
 		Assert.assertFalse(msg, case2.hashCode() == case1.hashCode());
 	}

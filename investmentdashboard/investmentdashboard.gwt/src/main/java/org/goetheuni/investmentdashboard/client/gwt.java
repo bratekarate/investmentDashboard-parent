@@ -1,7 +1,6 @@
 package org.goetheuni.investmentdashboard.client;
 
 import org.fusesource.restygwt.client.Defaults;
-import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
 import org.goetheuni.investmentdashboard.client.load.Loader;
 import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
@@ -10,7 +9,6 @@ import org.goetheuni.investmentdashboard.client.ui.UIBuilder;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -47,8 +45,7 @@ public class gwt implements EntryPoint {
 
 				// build UI
 				UIBuilder.buildUI(rootPanel, RootStructure.get());
-				
-				
+
 			}
 		});
 

@@ -27,21 +27,21 @@ public interface ISecurityMarketData {
 	 * @return the reference values for the contained securities.
 	 */
 	public Map<String, BigDecimal> getReferenceValues();
-	
+
 	/**
 	 * Maps an object's values to a number in a deterministic way.
 	 * 
-	 * @return the number 
+	 * @return the number
 	 */
 	public int hashCode();
 
-
-
 	/**
-	 * Returns true if the objects values are equal to the given object.
-	 * Otherwise false.
-	 * @param obj The object for comparison.
-	 * @return	True if the object's values are equal otherwise false.
+	 * Returns true if the objects values are equal to the given object. Otherwise
+	 * false.
+	 * 
+	 * @param obj
+	 *            The object for comparison.
+	 * @return True if the object's values are equal otherwise false.
 	 */
 	public boolean equals(Object obj);
 

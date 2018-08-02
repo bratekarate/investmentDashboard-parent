@@ -5,8 +5,6 @@ import java.util.Date;
 
 import org.goetheuni.investmentdashboard.shared.impl.Security;
 
-
-
 /**
  * An object with this interface represents an executed transaction of
  * securities. As GWT is based on source code mapping, these interface can only
@@ -33,20 +31,26 @@ public interface ISecurityTransaction {
 	 * @return the dateOfExecution
 	 */
 	public Date getDateOfExecution();
-	
+
+	/**
+	 * @return true -> sell , false -> buy transaction
+	 */
+	boolean isSellTransaction();
+
 	/**
 	 * Maps an object's values to a number in a deterministic way.
 	 * 
-	 * @return the number 
+	 * @return the number
 	 */
 	public int hashCode();
 
-
 	/**
-	 * Returns true if the objects values are equal to the given object.
-	 * Otherwise false.
-	 * @param obj The object for comparison.
-	 * @return	True if the object's values are equal otherwise false.
+	 * Returns true if the objects values are equal to the given object. Otherwise
+	 * false.
+	 * 
+	 * @param obj
+	 *            The object for comparison.
+	 * @return True if the object's values are equal otherwise false.
 	 */
 	public boolean equals(Object obj);
 
@@ -57,4 +61,5 @@ public interface ISecurityTransaction {
 	 */
 	@Override
 	public String toString();
+
 }

@@ -10,9 +10,9 @@ public class StyleConstants {
 	static String WIDGET_BACKGROUND_COLOR = "white";
 
 	static String SELECTED_COLOR = "aliceblue";
-	
+
 	static String NEGATIVE_COLOR = "crimson";
-	
+
 	static String POSITIVE_COLOR = "green";
 
 }

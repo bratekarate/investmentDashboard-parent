@@ -2,8 +2,6 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.util.List;
 
-
-
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 
 import com.google.gwt.dom.client.Style.TextAlign;
@@ -30,15 +28,15 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 				.getRecentPaymentsSorted(DetailWidgetCashAccount.NUMBER_OF_PAYMENTS);
 
 		// reset the table, but only the content
-		for(int row = 0; row<this.getRowCount(); row++) {
-			for(int col = 0; col<this.getColumnCount(); col++) {
+		for (int row = 0; row < this.getRowCount(); row++) {
+			for (int col = 0; col < this.getColumnCount(); col++) {
 				this.setText(row, col, "");
 			}
 		}
 
-		// add description 
+		// add description
 		this.setText(0, 0, "letzte Buchungen:");
-		
+
 		// plot payments
 		for (int indexOfPayment = 0; indexOfPayment < payments.size(); indexOfPayment++) {
 			// get the payment
@@ -54,9 +52,10 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 			// set the amount
 			this.getCellFormatter().getElement(indexOfPayment + 1, 2).getStyle().setTextAlign(TextAlign.RIGHT);
 			this.setText(indexOfPayment + 1, 2, NumberFormat.getCurrencyFormat("EUR").format(payment.getAmount()));
-			
+
 			// set the color
-			String color = payment.getAmount().signum() < 0 ? StyleConstants.NEGATIVE_COLOR : StyleConstants.POSITIVE_COLOR;
+			String color = payment.getAmount().signum() < 0 ? StyleConstants.NEGATIVE_COLOR
+					: StyleConstants.POSITIVE_COLOR;
 			this.getCellFormatter().getElement(indexOfPayment + 1, 2).getStyle().setColor(color);
 
 		}

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
@@ -42,6 +44,11 @@ public class RootStructure {
 	 * The corresponding Customer data object
 	 */
 	protected Customer data;
+
+	/**
+	 * The most recent value for the total balance
+	 */
+	protected BigDecimal cachedAmount;
 
 	/**
 	 * @return the cashAccounts
@@ -97,7 +104,20 @@ public class RootStructure {
 			result = result.add(wallet.computeBalanceInEUR(secMarket, cryptoMarket));
 		}
 
+		// initialize the cache for the total balance
+		this.cachedAmount = result;
+
 		return result;
+	}
+
+	/**
+	 * @return The most recent value for the total balance If the market data
+	 *         storages have been changed,
+	 *         {@link RootStructure#computeTotalBalanceInEUR(SecurityMarketData, CryptoMarketData)}
+	 *         must be called in order to update the cached value.
+	 */
+	public BigDecimal getCachedTotalBalance() {
+		return this.cachedAmount;
 	}
 
 	/**
@@ -144,7 +164,11 @@ public class RootStructure {
 		}
 
 		// create and put the new root structure
-		RootStructure.root = new RootStructure(cashAccounts, depots, wallets, customerData);
+		RootStructure newRoot = new RootStructure(cashAccounts, depots, wallets, customerData);
+		RootStructure.root = newRoot;
+
+		// initialize the cache for the total balance
+		newRoot.computeTotalBalanceInEUR(SecurityMarketDataStorage.get(), CryptoMarketDataStorage.get());
 	}
 
 	/**

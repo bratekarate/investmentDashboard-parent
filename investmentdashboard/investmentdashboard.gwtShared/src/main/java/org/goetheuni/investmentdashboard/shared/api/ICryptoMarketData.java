@@ -22,25 +22,26 @@ public interface ICryptoMarketData {
 	 * @return the dateAndTime
 	 */
 	public Date getDateAndTime();
-	
+
 	/**
 	 * Maps an object's values to a number in a deterministic way.
 	 * 
-	 * @return the number 
+	 * @return the number
 	 */
 	public int hashCode();
-	
+
 	/**
 	 * @return the reference values for the contained crypto assets.
 	 */
 	public Map<String, BigDecimal> getReferenceValues();
 
-
 	/**
-	 * Returns true if the objects values are equal to the given object.
-	 * Otherwise false.
-	 * @param obj The object for comparison.
-	 * @return	True if the object's values are equal otherwise false.
+	 * Returns true if the objects values are equal to the given object. Otherwise
+	 * false.
+	 * 
+	 * @param obj
+	 *            The object for comparison.
+	 * @return True if the object's values are equal otherwise false.
 	 */
 	public boolean equals(Object obj);
 

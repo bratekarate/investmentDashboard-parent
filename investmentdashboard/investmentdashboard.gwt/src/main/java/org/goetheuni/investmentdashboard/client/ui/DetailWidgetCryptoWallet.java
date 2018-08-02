@@ -4,13 +4,12 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 
-import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
 
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Grid;
 
 public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidget<SelectableCryptoWallet> {
@@ -36,7 +35,7 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 				this.setText(row, col, "");
 			}
 		}
-		
+
 		// add description in the first row
 		this.setText(0, 0, "letzte Buchungen:");
 
@@ -46,11 +45,11 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 			CryptoPayment payment = payments.get(indexOfPayments);
 
 			// set the date
-			this.setText(indexOfPayments+1, 0,
+			this.setText(indexOfPayments + 1, 0,
 					DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM).format(payment.getDateOfExecution()));
 
 			// set the counter party name
-			this.setText(indexOfPayments+1, 1, payment.getCounterPartyAddress());
+			this.setText(indexOfPayments + 1, 1, payment.getCounterPartyAddress());
 
 			// format the amount
 			BigDecimal rounded = payment.getAmount().setScale(6, RoundingMode.DOWN);
@@ -59,18 +58,19 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 			BigDecimal absolute = rounded.abs();
 
 			// set the amount
-			this.getCellFormatter().getElement(indexOfPayments+1, 2).getStyle().setTextAlign(TextAlign.RIGHT);
-			this.setText(indexOfPayments+1, 2, sign + payment.getCurrencyCode() + format.format(absolute.doubleValue()));
+			this.getCellFormatter().getElement(indexOfPayments + 1, 2).getStyle().setTextAlign(TextAlign.RIGHT);
+			this.setText(indexOfPayments + 1, 2,
+					sign + payment.getCurrencyCode() + format.format(absolute.doubleValue()));
 
 			// set the color
 			String color = payment.getAmount().signum() < 0 ? StyleConstants.NEGATIVE_COLOR
 					: StyleConstants.POSITIVE_COLOR;
-			this.getCellFormatter().getElement(indexOfPayments+1, 2).getStyle().setColor(color);
+			this.getCellFormatter().getElement(indexOfPayments + 1, 2).getStyle().setColor(color);
 		}
 	}
 
 	public DetailWidgetCryptoWallet() {
-		super(DetailWidgetCryptoWallet.NUMBER_OF_PAYMENTS+1, 3);
+		super(DetailWidgetCryptoWallet.NUMBER_OF_PAYMENTS + 1, 3);
 		this.getColumnFormatter().setWidth(0, "40%");
 		this.getColumnFormatter().setWidth(1, "40%");
 		this.getColumnFormatter().setWidth(2, "20%");

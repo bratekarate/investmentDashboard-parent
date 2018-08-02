@@ -2,8 +2,6 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.math.BigDecimal;
 
-import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
-import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.structure.RootStructure;
 
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -17,12 +15,20 @@ public class UIBuilder {
 
 		// set default color (of the text)
 		rootPanel.getElement().getStyle().setColor(FontConstants.DEFAULTCOLOR);
-		;
+		
+		// create a own rootpanel
+		VerticalPanel myRoot = new VerticalPanel();
+		myRoot.setWidth("100%");
+		myRoot.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		rootPanel.add(myRoot);
 
 		// create the fundamental layout
 		VerticalPanel fundamentalLayout = new VerticalPanel();
-		rootPanel.add(fundamentalLayout);
-
+		myRoot.add(fundamentalLayout);
+		
+		fundamentalLayout.setWidth(SizeConstants.getTotalWidth());
+		fundamentalLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		
 		// create panels
 		VerticalPanel topPanel = new VerticalPanel();
 		HorizontalPanel panelForWidgets = new HorizontalPanel();
@@ -31,29 +37,35 @@ public class UIBuilder {
 
 		// configure the panel's size
 		topPanel.setWidth(SizeConstants.getTotalWidth());
-		panelForWidgets.setWidth(SizeConstants.getTotalWidth());
-		leftPanel.setWidth(SizeConstants.ForCatWidgets.getWidth());
-		rightPanel.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		panelForWidgets.setWidth("100%");
+		
+		
 
 		// add panels according to their position
 		fundamentalLayout.add(topPanel);
 		fundamentalLayout.add(panelForWidgets);
 		panelForWidgets.add(leftPanel);
 		panelForWidgets.add(rightPanel);
+		
+		
 
 		// specify alignment
-		fundamentalLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+
 		panelForWidgets.setCellHorizontalAlignment(leftPanel, HasHorizontalAlignment.ALIGN_LEFT);
 		panelForWidgets.setCellHorizontalAlignment(rightPanel, HasHorizontalAlignment.ALIGN_RIGHT);
+		leftPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		rightPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		topPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 
 		// build the top part
 		// compute the balance
-		BigDecimal totalBalance = RootStructure.get().computeTotalBalanceInEUR(SecurityMarketDataStorage.get(),
-				CryptoMarketDataStorage.get());
+		BigDecimal totalBalance = RootStructure.get().getCachedTotalBalance();
 
 		TopUIPartBuilder.buildUI(totalBalance, topPanel);
 
 		LeftUIPartBuilder.buildUI(leftPanel, rootStruct);
+
+		RightUIPartBuilder.build(rightPanel, rootStruct);
 
 	}
 

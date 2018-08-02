@@ -1,8 +1,6 @@
 package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,7 +10,6 @@ import java.util.Objects;
 import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet;
-import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
@@ -106,16 +103,19 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 	@Override
 	public String getFormattedAmountInEUR() {
 		BigDecimal rounded = this.cachedBalance.setScale(2, RoundingMode.DOWN);
-		return NumberFormat.getCurrencyFormat("EUR").format(rounded.doubleValue());
+		return NumberFormat.getCurrencyFormat("EUR").format(rounded);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getFormattedExchangeRate()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#
+	 * getFormattedExchangeRate()
 	 */
 	@Override
 	public String getFormattedExchangeRate() {
 		BigDecimal ex = this.getExchangeRate();
-		return this.data.getCurrencyCode()+"-Kurs: "+NumberFormat.getCurrencyFormat("EUR").format(ex.doubleValue());
+		return this.data.getCurrencyCode() + "-Kurs: " + NumberFormat.getCurrencyFormat("EUR").format(ex);
 	}
 
 	/*
@@ -159,8 +159,11 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getExchangeRate()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#
+	 * getExchangeRate()
 	 */
 	@Override
 	public BigDecimal getExchangeRate() {
@@ -174,13 +177,16 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#getRecentPaymentsSorted(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#
+	 * getRecentPaymentsSorted(int)
 	 */
 	@Override
 	public List<CryptoPayment> getRecentPaymentsSorted(int numberOfPayments) {
 		List<CryptoPayment> payments = this.data.getRecentPayments();
-		
+
 		payments.sort(new Comparator<CryptoPayment>() {
 
 			@Override
@@ -189,15 +195,26 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 				return Long.signum(difference);
 			}
 		});
-		
+
 		// get only up to the given number of payments
-		
+
 		List<CryptoPayment> result = new ArrayList<>();
 		for (int i = 0; i < numberOfPayments && i < payments.size(); i++) {
 			result.add(payments.get(i));
 		}
 
 		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#isEmpty()
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.data.getAccountBalance().signum() == 0;
 	}
 
 	protected CryptoWalletStruct(CryptoWallet data) {

@@ -5,9 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -24,15 +22,13 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
-import com.google.gwt.user.datepicker.client.CalendarUtil;
-
 /**
  * This class provides dummy customers.
  */
 public class DataDummy {
 
 	public static Random R = new Random();
-	
+
 	public static SecurityMarketData getDummySecurities() {
 		HashMap<String, BigDecimal> marketPrizes = new HashMap<>();
 		Date dateAndTime = new Date(50000);
@@ -41,14 +37,14 @@ public class DataDummy {
 		marketPrizes.put("0001", BigDecimal.valueOf(6.83));
 		marketPrizes.put("0002", BigDecimal.valueOf(12.83));
 		marketPrizes.put("0003", BigDecimal.valueOf(0.72));
-		marketPrizes.put("0004", BigDecimal.valueOf(100000.50));
+		marketPrizes.put("0004", BigDecimal.valueOf(1000.50));
 
 		// generate reference value
 		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
 		referenceValues.put("0001", BigDecimal.valueOf(6.90));
 		referenceValues.put("0002", BigDecimal.valueOf(12.83));
 		referenceValues.put("0003", BigDecimal.valueOf(0.82));
-		referenceValues.put("0004", BigDecimal.valueOf(100000.50));
+		referenceValues.put("0004", BigDecimal.valueOf(900.50));
 
 		SecurityMarketData result = new SecurityMarketData(marketPrizes, referenceValues, dateAndTime);
 		return result;
@@ -77,6 +73,11 @@ public class DataDummy {
 
 	public static Customer getDummyCustomer() {
 
+		// create sample dates
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime yesterday = now.minusDays(1);
+		LocalDateTime twoDaysBeforeYest = now.minusDays(3);
+
 		// create depot
 		Security sec1 = new Security("0001", "COMP1", "C1");
 		Security sec2 = new Security("0002", "COMP2", "C2");
@@ -84,40 +85,61 @@ public class DataDummy {
 		SecurityInvestment i1 = new SecurityInvestment(sec1, 45);
 		SecurityInvestment i2 = new SecurityInvestment(sec2, 22);
 
-		SecurityTransaction t1 = new SecurityTransaction(5, BigDecimal.valueOf(50.00), sec1, new Date(50000));
-		SecurityTransaction t2 = new SecurityTransaction(-1, BigDecimal.valueOf(5.00), sec2, new Date(50000));
+		SecurityTransaction t1 = new SecurityTransaction(5, BigDecimal.valueOf(50.00), sec1, rndmDate(now), false);
+		SecurityTransaction t2 = new SecurityTransaction(1, BigDecimal.valueOf(5.00), sec2, rndmDate(now), true);
 
-		List<SecurityInvestment> portfolio = new ArrayList<>();
-		portfolio.add(i1);
-		portfolio.add(i2);
+		List<SecurityInvestment> portfolioAlter = new ArrayList<>();
+		portfolioAlter.add(i1);
+		portfolioAlter.add(i2);
 
-		List<SecurityTransaction> recentTransactions = new ArrayList<>();
-		recentTransactions.add(t1);
-		recentTransactions.add(t2);
+		List<SecurityTransaction> recentTrAlter = new ArrayList<>();
+		recentTrAlter.add(t1);
+		recentTrAlter.add(t2);
 
-		SecurityDepot depot = new SecurityDepot(portfolio, "ID", "name", recentTransactions, BigDecimal.valueOf(100));
+		SecurityDepot depotAlter = new SecurityDepot(portfolioAlter, "000440222", "Altersvorsorge", recentTrAlter);
 
-		// create sample dates
-		LocalDateTime now = LocalDateTime.now();
-		LocalDateTime yesterday = now.minusDays(1);
-		LocalDateTime twoDaysBeforeYest = now.minusDays(3);
-		
-		
+		List<SecurityInvestment> portfolioTech = new ArrayList<>();
+		Security secTech1 = new Security("0003", "NVDIA CORPORATION", "NVDIA CORP.");
+		Security secTech2 = new Security("0004", "OARCLE CORPORATION", "OARCLE CORP.");
+
+		SecurityInvestment iTech1 = new SecurityInvestment(secTech1, 43);
+		SecurityInvestment iTech2 = new SecurityInvestment(secTech2, 12);
+
+		portfolioTech.add(iTech1);
+		portfolioTech.add(iTech2);
+
+		List<SecurityTransaction> recentTrTech = new ArrayList<>();
+
+		SecurityTransaction tTech1 = new SecurityTransaction(20, BigDecimal.valueOf(5), secTech1,
+				rndmDate(yesterday.minusMonths(1)), false);
+		SecurityTransaction tTech2 = new SecurityTransaction(20, BigDecimal.valueOf(20), secTech2,
+				rndmDate(yesterday.minusMonths(1)), false);
+
+		recentTrTech.add(tTech1);
+		recentTrTech.add(tTech2);
+
+		SecurityDepot depotTech = new SecurityDepot(portfolioTech, "000440395", "Technologie", recentTrAlter);
+
 		// create cash account
 		Date date = rndmDate(yesterday);
 		CashPayment cp01 = new CashPayment(BigDecimal.valueOf(1045.00), "EUR", "DEABC001", "TOM", rndmDate(now));
-		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-244.52), "EUR", "DEABC001", "GOTAR VVaG", rndmDate(yesterday));
+		CashPayment cp02 = new CashPayment(BigDecimal.valueOf(-244.52), "EUR", "DEABC001", "GOTAR VVaG",
+				rndmDate(yesterday));
 		CashPayment cp03 = new CashPayment(BigDecimal.valueOf(1200.0), "EUR", "DEABC002", "JANE", rndmDate(now));
 		CashPayment cp04 = new CashPayment(BigDecimal.valueOf(-120.55), "EUR", "DEABC003", "AMAZIN DE", rndmDate(now));
 		CashPayment cp05 = new CashPayment(BigDecimal.valueOf(-323.22), "EUR", "DEABC008", "VIZA", rndmDate(now));
 		CashPayment cp06 = new CashPayment(BigDecimal.valueOf(1500.00), "EUR", "DEABC023", "JIM", date);
 		CashPayment cp07 = new CashPayment(BigDecimal.valueOf(-1500.00), "EUR", "DEABC489", "JIM", date);
-		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday.minusMonths(1)));
-		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS", rndmDate(yesterday));
+		CashPayment cp08 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS",
+				rndmDate(yesterday.minusMonths(1)));
+		CashPayment cp09 = new CashPayment(BigDecimal.valueOf(4425.78), "EUR", "DEABC789", "JIM'S BOSS",
+				rndmDate(yesterday));
 		CashPayment cp10 = new CashPayment(BigDecimal.valueOf(+300.00), "EUR", "DEABC234", "JIM", rndmDate(yesterday));
-		CashPayment cp11 = new CashPayment(BigDecimal.valueOf(-60.00), "EUR", "DEABC234", "JIM", rndmDate(yesterday.minusDays(1)));
+		CashPayment cp11 = new CashPayment(BigDecimal.valueOf(-60.00), "EUR", "DEABC234", "JIM",
+				rndmDate(yesterday.minusDays(1)));
 		CashPayment cp12 = new CashPayment(BigDecimal.valueOf(-100.00), "EUR", "DEABC011", "CG BANK AG", rndmDate(now));
-		CashPayment cp13 = new CashPayment(BigDecimal.valueOf(-1355.42), "EUR", "DEABC222", "MAINOWA", rndmDate(twoDaysBeforeYest.minusDays(9)));
+		CashPayment cp13 = new CashPayment(BigDecimal.valueOf(-1355.42), "EUR", "DEABC222", "MAINOWA",
+				rndmDate(twoDaysBeforeYest.minusDays(9)));
 
 		List<CashPayment> cashPayments1 = new ArrayList<>();
 		cashPayments1.add(cp01);
@@ -146,8 +168,7 @@ public class DataDummy {
 				BigDecimal.valueOf(2222.40), "EUR");
 
 		// create crypto wallet
-		CryptoPayment cryPay1 = new CryptoPayment(BigDecimal.valueOf(2.500), "BTC", "1P82rBjJMDFSay2Rq",
-				rndmDate(now));
+		CryptoPayment cryPay1 = new CryptoPayment(BigDecimal.valueOf(2.500), "BTC", "1P82rBjJMDFSay2Rq", rndmDate(now));
 		CryptoPayment cryPay2 = new CryptoPayment(BigDecimal.valueOf(-0.015), "BTC", "1HP56rvOLzdFSay4Me",
 				rndmDate(yesterday));
 		CryptoPayment cryPay3 = new CryptoPayment(BigDecimal.valueOf(-0.015), "BTC", "1HP56rvOLzdFSay4Me",
@@ -182,17 +203,18 @@ public class DataDummy {
 		cryptoWallets.add(wallet1);
 		cryptoWallets.add(wallet2);
 		List<SecurityDepot> securityDepots = new ArrayList<>();
-		securityDepots.add(depot);
+		securityDepots.add(depotAlter);
+		securityDepots.add(depotTech);
 
 		Customer result = new Customer("JIM", "0000354", cashAccounts, cryptoWallets, securityDepots);
 		return result;
-		
+
 	}
-	
+
 	private static Date rndmDate(LocalDateTime day) {
-		LocalDateTime result = day.minusHours(R.nextInt(day.getHour()));
-		result = result.minusMinutes(R.nextInt(result.getMinute()));
-		result = result.minusSeconds(R.nextInt(result.getSecond()));
+		LocalDateTime result = day.minusHours(R.nextInt(day.getHour() + 1));
+		result = result.minusMinutes(R.nextInt(result.getMinute() + 1));
+		result = result.minusSeconds(R.nextInt(result.getSecond() + 1));
 		ZonedDateTime dateZoned = result.atZone(ZoneId.systemDefault());
 		return Date.from(dateZoned.toInstant());
 	}

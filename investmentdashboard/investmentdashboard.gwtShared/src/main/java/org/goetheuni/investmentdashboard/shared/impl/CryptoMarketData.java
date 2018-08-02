@@ -22,7 +22,7 @@ public class CryptoMarketData implements ICryptoMarketData {
 	 * Maps a crypto currency's identifier to its exchange rate to EUR.
 	 */
 	protected Map<String, BigDecimal> exchangeRates;
-	
+
 	/**
 	 * Maps a crypto currency's identifier to its reference exchange rate to EUR.
 	 */
@@ -57,8 +57,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return dateAndTime;
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -67,7 +68,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 				+ ", dateAndTime=" + dateAndTime + "]";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -80,7 +83,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

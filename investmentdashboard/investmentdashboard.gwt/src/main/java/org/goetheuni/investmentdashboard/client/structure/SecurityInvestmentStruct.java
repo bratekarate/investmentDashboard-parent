@@ -5,6 +5,7 @@ package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
 
+import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
@@ -61,6 +62,29 @@ public class SecurityInvestmentStruct implements EURComputable {
 	@Override
 	public BigDecimal getCachedBalanceInEUR() {
 		return this.cachedValue;
+	}
+
+	public String getISIN() {
+		return this.data.getSecurity().getIsin();
+	}
+
+	public long getQuantity() {
+		return this.data.getQuantity();
+	}
+
+	protected BigDecimal getSingleSecurityReferenceValue() {
+		String key = this.getISIN();
+		BigDecimal result = SecurityMarketDataStorage.get().getReferenceValues().get(key);
+		if (result != null) {
+			return result;
+		} else {
+			throw new RuntimeException("Could not find a reference value for the following key: " + key
+					+ "/n The data object was: " + String.valueOf(this.data));
+		}
+	}
+
+	protected BigDecimal getTotalInvestmentReferenceValue() {
+		return this.getSingleSecurityReferenceValue().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
 
 	/**

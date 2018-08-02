@@ -45,8 +45,6 @@ public class LoginController {
       return new ModelAndView("redirect:" + defaultTargetUrl);
     }
     
-    // this is only a dummy and can be removed
-    new SecurityTransaction(3, BigDecimal.valueOf(30), new Security("isin", "name", "shortName"), new Date(500000));
     
     ModelAndView model = new ModelAndView();
     if (authentication_failed) {

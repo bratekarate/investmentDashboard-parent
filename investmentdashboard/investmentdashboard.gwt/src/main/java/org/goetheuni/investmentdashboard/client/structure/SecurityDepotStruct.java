@@ -5,16 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityDepot;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
+import com.google.gwt.i18n.client.NumberFormat;
+
 /**
  * Objects of this class represent security depots in the logical structure of
  * the dash board page.
  */
-public class SecurityDepotStruct implements EURComputable {
+public class SecurityDepotStruct implements EURComputable, SelectableSecurityDepot {
 
 	/**
 	 * The data of this security depot
@@ -66,6 +71,90 @@ public class SecurityDepotStruct implements EURComputable {
 	@Override
 	public BigDecimal getCachedBalanceInEUR() {
 		return this.cachedBalance;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#getName()
+	 */
+	@Override
+	public String getName() {
+		return this.data.getName();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#getID()
+	 */
+	@Override
+	public String getID() {
+		return this.data.getDepotID();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.Selectable#
+	 * getFormattedAmountInEUR()
+	 */
+	@Override
+	public String getFormattedAmountInEUR() {
+		return NumberFormat.getCurrencyFormat("EUR").format(this.cachedBalance);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.Selectable#refreshComputations()
+	 */
+	@Override
+	public void refreshComputations() {
+		this.computeBalanceInEUR(SecurityMarketDataStorage.get(), CryptoMarketDataStorage.get());
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot#
+	 * getReferenceValue()
+	 */
+	@Override
+	public BigDecimal getReferenceValue() {
+		BigDecimal result = BigDecimal.ZERO;
+
+		// aggregate all investments of the depot
+		for (SecurityInvestmentStruct investment : this.investments) {
+			result = result.add(investment.getTotalInvestmentReferenceValue());
+		}
+
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot#getAmount
+	 * ()
+	 */
+	@Override
+	public BigDecimal getAmount() {
+		return this.cachedBalance;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot#isEmpty()
+	 */
+	@Override
+	public boolean isEmpty() {
+		return this.data.getPortfolio().isEmpty();
 	}
 
 	/**

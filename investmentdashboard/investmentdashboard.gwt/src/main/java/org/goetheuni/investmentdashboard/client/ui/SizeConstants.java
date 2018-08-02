@@ -5,7 +5,7 @@ package org.goetheuni.investmentdashboard.client.ui;
  */
 public class SizeConstants {
 
-	private static int totalWidth = 91;
+	private static int totalWidth = 94;
 
 	public static String getTotalWidth() {
 		return SizeConstants.totalWidth + "vw";
@@ -13,7 +13,7 @@ public class SizeConstants {
 
 	static class ForCatWidgets {
 
-		private static int categoryWidgetWidth = 42;
+		private static int categoryWidgetWidth = 44;
 
 		public static String getWidth() {
 			return SizeConstants.ForCatWidgets.categoryWidgetWidth + "vw";

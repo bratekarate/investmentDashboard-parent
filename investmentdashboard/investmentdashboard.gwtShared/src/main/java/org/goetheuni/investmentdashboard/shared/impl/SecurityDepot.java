@@ -73,15 +73,9 @@ public class SecurityDepot implements ISecurityDepot {
 		return recentTransactions;
 	}
 
-	/**
-	 * @return the referenceValue
-	 */
-	@Override
-	public BigDecimal getReferenceValue() {
-		return referenceValue;
-	}
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -96,7 +90,9 @@ public class SecurityDepot implements ISecurityDepot {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -172,14 +168,13 @@ public class SecurityDepot implements ISecurityDepot {
 	@JsonCreator
 	public SecurityDepot(final @JsonProperty("portfolio") List<SecurityInvestment> portfolio,
 			final @JsonProperty("depotID") String depotID, final @JsonProperty("name") String name,
-			final @JsonProperty("recentTransactions") List<SecurityTransaction> recentTransactions,
-			final @JsonProperty("referenceValue") BigDecimal referenceValue) {
+			final @JsonProperty("recentTransactions") List<SecurityTransaction> recentTransactions) {
 		this.portfolio = Objects.requireNonNull(portfolio, "The collection of securities must not be null");
 		this.depotID = Objects.requireNonNull(depotID, "The depotID must not be null");
 		this.name = Objects.requireNonNull(name, "The depot's name must not be null");
 		this.recentTransactions = Objects.requireNonNull(recentTransactions,
 				"The list of transactions must not be null");
-		this.referenceValue = Objects.requireNonNull(referenceValue, "The reference value must not be null");
+
 	}
 
 	protected SecurityDepot() {
