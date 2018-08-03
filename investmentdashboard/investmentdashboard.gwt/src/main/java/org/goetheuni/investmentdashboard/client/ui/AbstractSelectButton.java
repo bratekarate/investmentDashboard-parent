@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.client.resourceBundles.Resources;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
@@ -68,6 +69,9 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		
+		// set cursor style to pointer
+		this.getElement().getStyle().setCursor(Style.Cursor.POINTER);
 
 		// create a panel for the content
 		this.content = new HorizontalPanel();
@@ -78,6 +82,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		// insert the icon
 		this.content.add(icon);
 		this.content.setCellWidth(icon, (Resources.getPictogramWidth() + 4) + "px");
+		this.content.setCellVerticalAlignment(icon, HasVerticalAlignment.ALIGN_MIDDLE);
 
 		// insert the name and the id
 		VerticalPanel nameAndId = new VerticalPanel();
