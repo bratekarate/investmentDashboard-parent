@@ -69,7 +69,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
-		
+
 		// set cursor style to pointer
 		this.getElement().getStyle().setCursor(Style.Cursor.POINTER);
 

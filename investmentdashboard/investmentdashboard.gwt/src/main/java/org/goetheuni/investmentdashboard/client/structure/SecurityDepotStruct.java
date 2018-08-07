@@ -2,6 +2,7 @@ package org.goetheuni.investmentdashboard.client.structure;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityDepot;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityInvestment;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
 import com.google.gwt.i18n.client.NumberFormat;
 
@@ -83,6 +85,14 @@ public class SecurityDepotStruct implements EURComputable, SelectableSecurityDep
 		return this.data.getName();
 	}
 
+	/**
+	 * @return the investments
+	 */
+	@Override
+	public List<SecurityInvestmentStruct> getInvestments() {
+		return investments;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -144,6 +154,39 @@ public class SecurityDepotStruct implements EURComputable, SelectableSecurityDep
 	@Override
 	public BigDecimal getAmount() {
 		return this.cachedBalance;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot#
+	 * getRecentTransactionsSorted()
+	 */
+	@Override
+	public List<SecurityTransaction> getRecentTransactionsSorted(int numberOfTransactions) {
+
+		// create a comparator which sorts the list such that the most recent
+		// transaction is the first element
+		Comparator<SecurityTransaction> sortRecentFirst = new Comparator<SecurityTransaction>() {
+
+			@Override
+			public int compare(SecurityTransaction a, SecurityTransaction b) {
+				long difference = Long.valueOf(b.getDateOfExecution().getTime() - a.getDateOfExecution().getTime());
+				return Long.signum(difference);
+			}
+		};
+
+		// get all transactions from the storage an sort them
+		List<SecurityTransaction> transactions = this.data.getRecentTransactions();
+		transactions.sort(sortRecentFirst);
+
+		// add at most the given number of transactions to the result
+		List<SecurityTransaction> result = new ArrayList<>();
+		for (int i = 0; i < numberOfTransactions && i < transactions.size(); i++) {
+			result.add(transactions.get(i));
+		}
+
+		return result;
 	}
 
 	/*

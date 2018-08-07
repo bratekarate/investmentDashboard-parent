@@ -196,7 +196,7 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 			}
 		});
 
-		// get only up to the given number of payments
+		// get at most the given number of payments
 
 		List<CryptoPayment> result = new ArrayList<>();
 		for (int i = 0; i < numberOfPayments && i < payments.size(); i++) {

@@ -15,7 +15,7 @@ public class UIBuilder {
 
 		// set default color (of the text)
 		rootPanel.getElement().getStyle().setColor(FontConstants.DEFAULTCOLOR);
-		
+
 		// create a own rootpanel
 		VerticalPanel myRoot = new VerticalPanel();
 		myRoot.setWidth("100%");
@@ -25,10 +25,10 @@ public class UIBuilder {
 		// create the fundamental layout
 		VerticalPanel fundamentalLayout = new VerticalPanel();
 		myRoot.add(fundamentalLayout);
-		
+
 		fundamentalLayout.setWidth(SizeConstants.getTotalWidth());
 		fundamentalLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		
+
 		// create panels
 		VerticalPanel topPanel = new VerticalPanel();
 		HorizontalPanel panelForWidgets = new HorizontalPanel();
@@ -38,16 +38,12 @@ public class UIBuilder {
 		// configure the panel's size
 		topPanel.setWidth(SizeConstants.getTotalWidth());
 		panelForWidgets.setWidth("100%");
-		
-		
 
 		// add panels according to their position
 		fundamentalLayout.add(topPanel);
 		fundamentalLayout.add(panelForWidgets);
 		panelForWidgets.add(leftPanel);
 		panelForWidgets.add(rightPanel);
-		
-		
 
 		// specify alignment
 

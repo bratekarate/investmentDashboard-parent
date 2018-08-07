@@ -14,7 +14,7 @@ public class LeftUIPartBuilder {
 
 	protected static void buildUI(VerticalPanel leftLayoutPanel, RootStructure rootStruct) {
 
-		leftLayoutPanel.setSpacing(10);
+		leftLayoutPanel.setSpacing(14);
 
 		leftLayoutPanel.add(WidgetCashAccounts.generate(rootStruct.getCashAccounts()));
 

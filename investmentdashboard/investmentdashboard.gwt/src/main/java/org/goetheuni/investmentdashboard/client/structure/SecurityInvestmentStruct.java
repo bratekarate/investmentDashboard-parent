@@ -24,7 +24,12 @@ public class SecurityInvestmentStruct implements EURComputable {
 	/**
 	 * The latest value for the balance
 	 */
-	protected BigDecimal cachedValue;
+	protected BigDecimal valueCache;
+
+	/**
+	 * The latest value for the difference of current value and reference value.
+	 */
+	protected BigDecimal deltaCache;
 
 	/*
 	 * (non-Javadoc)
@@ -43,8 +48,11 @@ public class SecurityInvestmentStruct implements EURComputable {
 			// a prize for the ISIN is known -> this is fine
 			// result = prize * quantity
 			BigDecimal result = prize.multiply(BigDecimal.valueOf(this.data.getQuantity()));
-			// put the result into the cache and return the result
-			this.cachedValue = result;
+			// put the result into the cache
+			this.valueCache = result;
+			// put the delta into to cache, delta = total value - total reference value
+			this.deltaCache = result.subtract(this.getTotalInvestmentReferenceValue());
+			// return the result
 			return result;
 		} else {
 			throw new RuntimeException(
@@ -61,7 +69,14 @@ public class SecurityInvestmentStruct implements EURComputable {
 	 */
 	@Override
 	public BigDecimal getCachedBalanceInEUR() {
-		return this.cachedValue;
+		return this.valueCache;
+	}
+
+	/**
+	 * @return the deltaCache
+	 */
+	public BigDecimal getCachedDelta() {
+		return this.deltaCache;
 	}
 
 	public String getISIN() {
@@ -94,7 +109,8 @@ public class SecurityInvestmentStruct implements EURComputable {
 	 *            The corresponding data object.
 	 */
 	protected SecurityInvestmentStruct(SecurityInvestment data) {
-		this.cachedValue = BigDecimal.ZERO;
+		this.valueCache = BigDecimal.ZERO;
+		this.deltaCache = BigDecimal.ZERO;
 		this.data = data;
 	}
 
