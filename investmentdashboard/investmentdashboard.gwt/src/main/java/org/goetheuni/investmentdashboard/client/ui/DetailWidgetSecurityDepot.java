@@ -13,37 +13,28 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
-import com.google.gwt.user.client.Timer;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.googlecode.gwt.charts.client.ChartLoader;
-import com.googlecode.gwt.charts.client.ChartPackage;
-import com.googlecode.gwt.charts.client.ColumnType;
-import com.googlecode.gwt.charts.client.DataTable;
-import com.googlecode.gwt.charts.client.corechart.BarChart;
-import com.googlecode.gwt.charts.client.corechart.BarChartOptions;
-import com.googlecode.gwt.charts.client.options.HAxis;
-import com.googlecode.gwt.charts.client.options.VAxis;
 
 public class DetailWidgetSecurityDepot extends VerticalPanel implements AbstractDetailWidget<SelectableSecurityDepot> {
 
 	protected static final int NUMBER_OF_TOPS = 3;
-	
+
 	protected static final int NUMBER_OF_FLOPS = 3;
-	
+
 	/**
 	 * Number of pixels between the first level child widgets
 	 */
 	protected static final int VERTICAL_PADDING = 12;
-	
+
 	protected SelectableSecurityDepot currentCorrespondingObject;
-	
+
 	protected AggregationsWidget aggregations;
 
 	protected HorizontalPanel middle;
@@ -56,49 +47,49 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 	private static BigDecimal getTotalValueGain(List<SecurityInvestmentStruct> sortedInvestments) {
 		BigDecimal result = BigDecimal.ZERO;
-		
-		for(int i = 0; i<sortedInvestments.size(); i++) {
+
+		for (int i = 0; i < sortedInvestments.size(); i++) {
 			BigDecimal investmentGain = sortedInvestments.get(i).getCachedDelta();
-			if(investmentGain.signum()>0) {
+			if (investmentGain.signum() > 0) {
 				// accumulate
 				result = result.add(investmentGain);
-			}else {
+			} else {
 				// no more gains left
 				break;
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	private static BigDecimal getTopsValueGain(List<SecurityInvestmentStruct> sortedInvestments, int numberOfTops) {
 		BigDecimal result = BigDecimal.ZERO;
 		int accumulated = 0;
-		
-		for(int i = 0; i<sortedInvestments.size() && accumulated<numberOfTops; i++) {
+
+		for (int i = 0; i < sortedInvestments.size() && accumulated < numberOfTops; i++) {
 			BigDecimal investmentGain = sortedInvestments.get(i).getCachedDelta();
-			if(investmentGain.signum()>0) {
+			if (investmentGain.signum() > 0) {
 				// accumulate
 				result = result.add(investmentGain);
 				accumulated++;
-			}else {
+			} else {
 				// no more gains left
 				break;
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	private static BigDecimal getTotalValueDecline(List<SecurityInvestmentStruct> sortedInvestments) {
 		BigDecimal result = BigDecimal.ZERO;
-		
-		for(int i = sortedInvestments.size() - 1; i>=0; i--) {
+
+		for (int i = sortedInvestments.size() - 1; i >= 0; i--) {
 			BigDecimal investmentDecline = sortedInvestments.get(i).getCachedDelta();
-			if(investmentDecline.signum()<0) {
+			if (investmentDecline.signum() < 0) {
 				// accumulate
 				result = result.add(investmentDecline);
-			}else {
+			} else {
 				// no more declines left
 				break;
 			}
@@ -106,18 +97,19 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		// return the absolute value
 		return result.abs();
 	}
-	
-	private static BigDecimal getFlopsValueDecline(List<SecurityInvestmentStruct> sortedInvestments, int numberOfFlops) {
+
+	private static BigDecimal getFlopsValueDecline(List<SecurityInvestmentStruct> sortedInvestments,
+			int numberOfFlops) {
 		BigDecimal result = BigDecimal.ZERO;
 		int accumulated = 0;
-		
-		for(int i = sortedInvestments.size() - 1; i>=0 && accumulated < numberOfFlops; i--) {
+
+		for (int i = sortedInvestments.size() - 1; i >= 0 && accumulated < numberOfFlops; i--) {
 			BigDecimal investmentDecline = sortedInvestments.get(i).getCachedDelta();
-			if(investmentDecline.signum()<0) {
+			if (investmentDecline.signum() < 0) {
 				// accumulate
 				result = result.add(investmentDecline);
 				accumulated++;
-			}else {
+			} else {
 				// no more declines left
 				break;
 			}
@@ -125,39 +117,41 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		// return the absolute value
 		return result.abs();
 	}
-	
-	private static List<SecurityInvestmentStruct> getTops(List<SecurityInvestmentStruct> sortedInvestments, int numberOfTops){
+
+	private static List<SecurityInvestmentStruct> getTops(List<SecurityInvestmentStruct> sortedInvestments,
+			int numberOfTops) {
 		List<SecurityInvestmentStruct> result = new ArrayList<>();
 		int accumulated = 0;
-		
-		for(int i = 0; i<sortedInvestments.size() && accumulated<numberOfTops; i++) {
+
+		for (int i = 0; i < sortedInvestments.size() && accumulated < numberOfTops; i++) {
 			SecurityInvestmentStruct investment = sortedInvestments.get(i);
 			BigDecimal investmentGain = investment.getCachedDelta();
-			if(investmentGain.signum()>0) {
+			if (investmentGain.signum() > 0) {
 				// add to list
 				result.add(investment);
 				accumulated++;
-			}else {
+			} else {
 				// no more gains left
 				break;
 			}
 		}
-		
+
 		return result;
 	}
-	
-	private static List<SecurityInvestmentStruct> getFlops(List<SecurityInvestmentStruct> sortedInvestments, int numberOfFlops){
+
+	private static List<SecurityInvestmentStruct> getFlops(List<SecurityInvestmentStruct> sortedInvestments,
+			int numberOfFlops) {
 		List<SecurityInvestmentStruct> result = new ArrayList<>();
 		int accumulated = 0;
-		
-		for(int i = sortedInvestments.size() - 1; i>=0 && accumulated < numberOfFlops; i--) {
+
+		for (int i = sortedInvestments.size() - 1; i >= 0 && accumulated < numberOfFlops; i--) {
 			SecurityInvestmentStruct investment = sortedInvestments.get(i);
 			BigDecimal investmentDecline = investment.getCachedDelta();
-			if(investmentDecline.signum()<0) {
+			if (investmentDecline.signum() < 0) {
 				// add to list
 				result.add(investment);
 				accumulated++;
-			}else {
+			} else {
 				// no more declines left
 				break;
 			}
@@ -165,7 +159,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 		return result;
 	}
-	
+
 	/**
 	 * @return the currentCorrespondingObject
 	 */
@@ -176,12 +170,13 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	@Override
 	public void update(SelectableSecurityDepot correspondingObject) {
 		// update the current structure object
-		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
-		
-		// ensure visibility 
+		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject,
+				"The given structure object must not be null");
+
+		// ensure visibility
 		this.tops.setVisible(true);
 		this.flops.setVisible(true);
-		
+
 		List<SecurityInvestmentStruct> sortedInv = correspondingObject.getInvestments();
 		sortedInv.sort(new Comparator<SecurityInvestmentStruct>() {
 
@@ -191,36 +186,33 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				return b.getCachedDelta().subtract(a.getCachedDelta()).signum();
 			}
 		});
-						
+
 		BigDecimal totalPlus = DetailWidgetSecurityDepot.getTotalValueGain(sortedInv);
 		BigDecimal totalMinus = DetailWidgetSecurityDepot.getTotalValueDecline(sortedInv);
 		BigDecimal topsPlus = DetailWidgetSecurityDepot.getTopsValueGain(sortedInv, NUMBER_OF_TOPS);
 		BigDecimal flopsMinus = DetailWidgetSecurityDepot.getFlopsValueDecline(sortedInv, NUMBER_OF_FLOPS);
-		
+
 		// update the widget for aggregations
 		this.aggregations.update(totalPlus, totalMinus, topsPlus, flopsMinus);
-		
+
 		// update the tops widget
 		this.tops.update(DetailWidgetSecurityDepot.getTops(sortedInv, NUMBER_OF_TOPS));
-		
+
 		// update the flops widget
 		this.flops.update(DetailWidgetSecurityDepot.getFlops(sortedInv, NUMBER_OF_FLOPS));
-		
+
 		// update the widgets for the most recent transactions
 		this.transactions.update(correspondingObject);
-		
+
 	}
-	
-	
 
 	private static void initialize(DetailWidgetSecurityDepot that) {
-		
+
 		that.setWidth("100%");
-		
+
 		// set the space between the widgets
 		that.setSpacing(6);
-		
-		
+
 		// create and add the child widget
 		AggregationsWidget newAggregations = that.new AggregationsWidget();
 		that.aggregations = newAggregations;
@@ -228,13 +220,11 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		newAggregations.getElement().getStyle().setPaddingTop(VERTICAL_PADDING, Unit.PX);
 		newAggregations.getElement().getStyle().setPaddingBottom(VERTICAL_PADDING, Unit.PX);
 
-
 		HorizontalPanel newMiddle = new HorizontalPanel();
 		that.middle = newMiddle;
 		that.add(newMiddle);
 		newMiddle.setWidth("100%");
 		newMiddle.getElement().getStyle().setPaddingBottom(VERTICAL_PADDING, Unit.PX);
-		
 
 		TopsWidget newTops = that.new TopsWidget();
 		that.tops = newTops;
@@ -259,25 +249,27 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		DetailWidgetSecurityDepot.initialize(this);
 	}
 
-	protected class AggregationsWidget extends Grid{
-		
+	protected class AggregationsWidget extends Grid {
+
 		private static final int NUMBER_OF_COLUMNS = 5;
-		
+
 		private static final int NUMBER_OF_ROWS = 4;
-		
-		protected void update(BigDecimal sumOfValueGains, BigDecimal sumOfValueDeclines, BigDecimal topsValueGain, BigDecimal flopsValueDecline) {
+
+		protected void update(BigDecimal sumOfValueGains, BigDecimal sumOfValueDeclines, BigDecimal topsValueGain,
+				BigDecimal flopsValueDecline) {
 
 			// prepare header
 			this.setText(0, 0, "Kursverändungen zum Vortag:");
-			
+
 			// set the portfolio's gain in value or decline
 			BigDecimal gainOrDeclineOfPortfolioValue = sumOfValueGains.subtract(sumOfValueDeclines);
-			
+
 			if (gainOrDeclineOfPortfolioValue.signum() == -1) {
 				// the total value declined
 				this.setText(0, 3, "Portfolio-Kursverlust");
 				this.setText(0, 4, NumberFormat.getCurrencyFormat("EUR").format(gainOrDeclineOfPortfolioValue.abs()));
-				this.getCellFormatter().getElement(0, 4).getStyle().setColor(StyleConstants.NEGATIVE_COLOR);;
+				this.getCellFormatter().getElement(0, 4).getStyle().setColor(StyleConstants.NEGATIVE_COLOR);
+				;
 			} else {
 				// the total value did not decline
 				this.setText(0, 3, "Portfolio-Kursgewinn");
@@ -285,25 +277,24 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				this.getCellFormatter().getElement(0, 4).getStyle().setColor(StyleConstants.POSITIVE_COLOR);
 			}
 
-			
-			// set the labels for the other aggregations and the values 
+			// set the labels for the other aggregations and the values
 			this.setText(2, 0, "Kursgewinne der Tops");
 			this.setText(2, 1, NumberFormat.getCurrencyFormat("EUR").format(topsValueGain));
 			this.getCellFormatter().getElement(2, 1).getStyle().setColor(StyleConstants.POSITIVE_COLOR);
-			
+
 			this.setText(3, 0, "Summe aller Kursgewinne");
 			this.setText(3, 1, NumberFormat.getCurrencyFormat("EUR").format(sumOfValueGains));
 			this.getCellFormatter().getElement(3, 1).getStyle().setColor(StyleConstants.POSITIVE_COLOR);
-			
+
 			this.setText(2, 3, "Kursverluste der Flops");
 			this.setText(2, 4, NumberFormat.getCurrencyFormat("EUR").format(flopsValueDecline));
 			this.getCellFormatter().getElement(2, 4).getStyle().setColor(StyleConstants.NEGATIVE_COLOR);
-			
+
 			this.setText(3, 3, "Summe aller Kursverluste");
 			this.setText(3, 4, NumberFormat.getCurrencyFormat("EUR").format(sumOfValueDeclines));
 			this.getCellFormatter().getElement(3, 4).getStyle().setColor(StyleConstants.NEGATIVE_COLOR);
 		}
-		
+
 		protected AggregationsWidget() {
 			super(NUMBER_OF_ROWS, NUMBER_OF_COLUMNS);
 			this.setWidth("100%");
@@ -312,7 +303,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			this.getColumnFormatter().setWidth(2, "2%");
 			this.getColumnFormatter().setWidth(3, "34%");
 			this.getColumnFormatter().setWidth(4, "15%");
-			
+
 			this.getCellFormatter().getElement(2, 1).getStyle().setTextAlign(TextAlign.RIGHT);
 			this.getCellFormatter().getElement(3, 1).getStyle().setTextAlign(TextAlign.RIGHT);
 			this.getCellFormatter().getElement(0, 4).getStyle().setTextAlign(TextAlign.RIGHT);
@@ -320,12 +311,13 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			this.getCellFormatter().getElement(3, 4).getStyle().setTextAlign(TextAlign.RIGHT);
 		}
 	}
-	
+
 	protected class SecurityTransactionsWidget extends Grid {
-		
+
 		private final static int NUMBER_OF_TRANSACTIONS = 3;
-		
+
 		protected void update(SelectableSecurityDepot correspondingObject) {
+
 			
 			// reset the table, but only the content
 			for (int row = 0; row < this.getRowCount(); row++) {
@@ -333,44 +325,46 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 					this.setText(row, col, "");
 				}
 			}
-			
+
 			// set the header
 			this.setText(0, 0, "letzte Transaktionen:");
+
+			List<SecurityTransaction> listOfTransaction = correspondingObject
+					.getRecentTransactionsSorted(NUMBER_OF_TRANSACTIONS);
+
 			
-			List<SecurityTransaction> listOfTransaction = correspondingObject.getRecentTransactionsSorted(NUMBER_OF_TRANSACTIONS);
-			
-			
-			for(int transactionIndex = 0; transactionIndex < listOfTransaction.size(); transactionIndex++) {
+			for (int transactionIndex = 0; transactionIndex < listOfTransaction.size(); transactionIndex++) {
 				// get the transaction
 				SecurityTransaction aTransact = listOfTransaction.get(transactionIndex);
-				
-				// set the date 
-				String dateString = DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM).format(aTransact.getDateOfExecution());
+
+				// set the date
+				String dateString = DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM)
+						.format(aTransact.getDateOfExecution());
 				this.setText(1 + transactionIndex, 0, dateString);
-				
+
 				// set the security's name
 				this.setText(1 + transactionIndex, 1, aTransact.getSecurity().getShortName());
-				
+
 				// set the transaction's type
-				String typeString = aTransact.isSellTransaction()? "Verkauf" : "Kauf";
+				String typeString = aTransact.getIsSellTransaction() ? "Verkauf" : "Kauf";
 				this.setText(1 + transactionIndex, 2, typeString);
-				
+
 				// set the quantity
 				String quantityString = aTransact.getQuantity() + " Stk.";
 				this.setText(1 + transactionIndex, 3, quantityString);
-				
+
 				// compute the average prize per security and set it
 				BigDecimal totalPrize = aTransact.getTotalPrize().setScale(4, RoundingMode.DOWN);
 				BigDecimal quantity = BigDecimal.valueOf(aTransact.getQuantity()).setScale(4, RoundingMode.DOWN);
 				BigDecimal averagePrize = totalPrize.divide(quantity, RoundingMode.DOWN);
-				String prizeString = NumberFormat.getCurrencyFormat("EUR").format(averagePrize)+"/Stk.";
+				String prizeString = NumberFormat.getCurrencyFormat("EUR").format(averagePrize) + "/Stk.";
 				this.setText(1 + transactionIndex, 4, prizeString);
-				
+
 				// set the text alignment for the last column
 				this.getCellFormatter().getElement(1 + transactionIndex, 4).getStyle().setTextAlign(TextAlign.RIGHT);
 			}
 		}
-		
+
 		protected SecurityTransactionsWidget() {
 			super(NUMBER_OF_TRANSACTIONS + 1, 5);
 			this.setWidth("100%");
@@ -384,20 +378,20 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 	protected class TopsWidget extends VerticalPanel {
 		protected VerticalPanel content;
-		
+
 		protected Label header;
-		
+
 		protected void update(List<SecurityInvestmentStruct> sortedTops) {
 			this.content.clear();
 			this.header.setVisible(true);
-			
+
 			// add widgets
-			for(int i = 0; i<sortedTops.size(); i++) {
+			for (int i = 0; i < sortedTops.size(); i++) {
 				SecurityInvestmentStruct aTop = sortedTops.get(i);
 				this.content.add(new TopInvestmentWidget(aTop));
 			}
 		}
-		
+
 		protected TopsWidget() {
 			this.setWidth("100%");
 			this.setSpacing(4);
@@ -409,7 +403,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			newHeader.getElement().getStyle().setPaddingBottom(4, Unit.PX);
 			this.add(newHeader);
 			this.setCellHorizontalAlignment(newHeader, HasHorizontalAlignment.ALIGN_CENTER);
-			
+
 			VerticalPanel newContent = new VerticalPanel();
 			this.content = newContent;
 			newContent.setWidth("100%");
@@ -419,20 +413,20 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 	protected class FlopsWidget extends VerticalPanel {
 		protected VerticalPanel content;
-		
+
 		protected Label header;
-		
+
 		protected void update(List<SecurityInvestmentStruct> sortedFlops) {
 			this.content.clear();
 			this.header.setVisible(true);
-			
+
 			// add widgets
-			for(int i = 0; i<sortedFlops.size(); i++) {
+			for (int i = 0; i < sortedFlops.size(); i++) {
 				SecurityInvestmentStruct aFlop = sortedFlops.get(i);
 				this.content.add(new FlopInvestmentWidget(aFlop));
 			}
 		}
-		
+
 		protected FlopsWidget() {
 			this.setWidth("100%");
 			this.setSpacing(4);
@@ -444,13 +438,13 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			newHeader.setVisible(false);
 			this.add(newHeader);
 			this.setCellHorizontalAlignment(newHeader, HasHorizontalAlignment.ALIGN_CENTER);
-			
+
 			VerticalPanel newContent = new VerticalPanel();
 			this.content = newContent;
 			newContent.setWidth("100%");
 			this.add(newContent);
 		}
-		
+
 	}
 
 }

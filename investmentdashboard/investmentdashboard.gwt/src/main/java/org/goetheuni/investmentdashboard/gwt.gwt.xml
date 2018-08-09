@@ -21,7 +21,6 @@
   <!-- Other module inherits                                      -->
   <inherits name='org.goetheuni.investmentdashboard.gwtShared'/>
   <inherits name="com.google.gwt.resources.Resources" />
-  <inherits name="com.googlecode.gwt.charts.Charts"/>
   
   <!-- Specify the app entry point class.                         -->
   <entry-point class='org.goetheuni.investmentdashboard.client.gwt'/>

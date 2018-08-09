@@ -7,7 +7,7 @@ public class SmallContentLabelDefault extends Label {
 	public SmallContentLabelDefault() {
 		this("");
 	}
-	
+
 	public SmallContentLabelDefault(String content) {
 		super(content);
 		this.getElement().getStyle().setColor(FontConstants.DEFAULTCOLOR);

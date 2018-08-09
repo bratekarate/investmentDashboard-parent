@@ -75,7 +75,7 @@ public class SecurityTransaction implements ISecurityTransaction {
 	 * @return the isSellTransaction
 	 */
 	@Override
-	public boolean isSellTransaction() {
+	public boolean getIsSellTransaction() {
 		return isSellTransaction;
 	}
 

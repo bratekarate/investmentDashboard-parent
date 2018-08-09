@@ -12,25 +12,23 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-
 public class AbstractInvestmentWidget extends HorizontalPanel {
-	
+
 	protected SecurityInvestmentStruct correspondingObject;
-	
+
 	protected VerticalPanel quotationPanel;
-	
+
 	protected VerticalPanel volumePanel;
-	
+
 	protected Label name;
-	
+
 	protected Label quotation;
 
 	protected Label quotationDelta;
-	
+
 	protected Label delta;
-	
+
 	protected Label quantity;
-	
 
 	protected static Label createQuotationDeltaLabel(SecurityInvestmentStruct correspondingObject) {
 
@@ -73,13 +71,13 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		Label result = new SmallContentLabelBlack(euroVolume);
 		return result;
 	}
-	
+
 	protected static Label createQuantityLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text and return the label
-		String content = correspondingObject.getQuantity()+" Stk.";
+		String content = correspondingObject.getQuantity() + " Stk.";
 		return new SmallContentLabelDefault(content);
 	}
-	
+
 	protected static Label createDeltaLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text
 		BigDecimal delta = correspondingObject.getCachedDelta();
@@ -92,16 +90,17 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		// set the color
 		String color = isNegaitve ? StyleConstants.NEGATIVE_COLOR : StyleConstants.POSITIVE_COLOR;
 		result.getElement().getStyle().setColor(color);
-		
+
 		return result;
 	}
 
 	protected AbstractInvestmentWidget(SecurityInvestmentStruct correspondingObject) {
 		// validate input
-		this.correspondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
-		
+		this.correspondingObject = Objects.requireNonNull(correspondingObject,
+				"The given structure object must not be null");
+
 		this.setWidth("100%");
-		
+
 		// configure the first level of child widgets
 		Label newName = new SmallContentLabelDefault(correspondingObject.getSecurityShortName());
 		this.name = newName;
@@ -109,7 +108,7 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		this.setCellWidth(newName, "40%");
 		newName.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		this.setCellHorizontalAlignment(newName, HasHorizontalAlignment.ALIGN_LEFT);
-		
+
 		VerticalPanel newQuotPanel = new VerticalPanel();
 		this.quotationPanel = newQuotPanel;
 		this.add(newQuotPanel);
@@ -117,7 +116,7 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		newQuotPanel.setWidth("100%");
 		newQuotPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		this.setCellHorizontalAlignment(newQuotPanel, HasHorizontalAlignment.ALIGN_RIGHT);
-		
+
 		VerticalPanel newVolumePanel = new VerticalPanel();
 		this.volumePanel = newVolumePanel;
 		this.add(newVolumePanel);
@@ -125,24 +124,24 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		newVolumePanel.setWidth("100%");
 		newVolumePanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		this.setCellHorizontalAlignment(newVolumePanel, HasHorizontalAlignment.ALIGN_RIGHT);
-		
+
 		// configure the second level of child widgets
-		String quotationString = NumberFormat.getCurrencyFormat("EUR").format(correspondingObject.getSingleSecurityQuotation()) + "/Stk.";
+		String quotationString = NumberFormat.getCurrencyFormat("EUR")
+				.format(correspondingObject.getSingleSecurityQuotation()) + "/Stk.";
 		Label newQuotation = new SmallContentLabelDefault(quotationString);
 		this.quotation = newQuotation;
 		this.quotationPanel.add(newQuotation);
-		
+
 		this.quotationPanel.add(AbstractInvestmentWidget.createQuotationDeltaLabel(correspondingObject));
-		
+
 		Label newQuantity = AbstractInvestmentWidget.createQuantityLabel(correspondingObject);
 		this.quantity = newQuantity;
-		this.volumePanel.add(newQuantity);		
-		
+		this.volumePanel.add(newQuantity);
+
 		Label newDelta = AbstractInvestmentWidget.createDeltaLabel(correspondingObject);
 		this.delta = newDelta;
 		this.volumePanel.add(newDelta);
-		
+
 	}
-	
 
 }

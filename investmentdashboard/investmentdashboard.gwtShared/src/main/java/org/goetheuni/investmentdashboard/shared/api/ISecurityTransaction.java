@@ -35,7 +35,7 @@ public interface ISecurityTransaction {
 	/**
 	 * @return true -> sell , false -> buy transaction
 	 */
-	boolean isSellTransaction();
+	boolean getIsSellTransaction();
 
 	/**
 	 * Maps an object's values to a number in a deterministic way.

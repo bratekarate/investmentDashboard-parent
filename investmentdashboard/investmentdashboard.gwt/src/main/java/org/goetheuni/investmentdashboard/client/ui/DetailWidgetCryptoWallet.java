@@ -18,7 +18,7 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 	private static int NUMBER_OF_PAYMENTS = 2;
 
 	protected SelectableCryptoWallet currentCorrespondingObject;
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,8 +29,9 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 	@Override
 	public void update(SelectableCryptoWallet correspondingObject) {
 		// set the currently displayed object
-		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
-		
+		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject,
+				"The given structure object must not be null");
+
 		// get recent payments
 		List<CryptoPayment> payments = correspondingObject
 				.getRecentPaymentsSorted(DetailWidgetCryptoWallet.NUMBER_OF_PAYMENTS);

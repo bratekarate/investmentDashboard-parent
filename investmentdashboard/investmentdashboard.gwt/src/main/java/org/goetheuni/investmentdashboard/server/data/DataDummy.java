@@ -28,7 +28,7 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 public class DataDummy {
 
 	public static Random R = new Random();
-	
+
 	private static final Security SECA01 = new Security("0001", "Baier", "Baier");
 	private static final Security SECA02 = new Security("0002", "Allians", "Alliants");
 	private static final Security SECA03 = new Security("0003", "BAZF", "BAZF");
@@ -41,7 +41,7 @@ public class DataDummy {
 	private static final Security SECA10 = new Security("0010", "adydas AG", "adyads AG");
 	private static final Security SECA11 = new Security("0011", "Frisinius MC", "Frisinius MC");
 	private static final Security SECA12 = new Security("0012", "Baiersdorff", "Baiersdorf");
-	
+
 	private static final Security SECT01 = new Security("0013", "SAMSANG ADRs", "SAUMSANG ADRs");
 	private static final Security SECT02 = new Security("0014", "Intal Corp.", "Intal Corp.");
 	private static final Security SECT03 = new Security("0015", "Cesco Inc.", "Cesco Inc.");
@@ -85,8 +85,6 @@ public class DataDummy {
 		marketPrizes.put(SECT11.getIsin(), BigDecimal.valueOf(71.92));
 		marketPrizes.put(SECT12.getIsin(), BigDecimal.valueOf(112.99));
 
-		
-		
 		// generate reference value
 		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
 		referenceValues.put(SECA01.getIsin(), BigDecimal.valueOf(95));
@@ -147,7 +145,7 @@ public class DataDummy {
 		LocalDateTime twoDaysBeforeYest = now.minusDays(3);
 
 		List<SecurityInvestment> portfolioAlter = new ArrayList<>();
-	
+
 		portfolioAlter.add(new SecurityInvestment(SECA02, 12));
 		portfolioAlter.add(new SecurityInvestment(SECA03, 3));
 		portfolioAlter.add(new SecurityInvestment(SECA04, 4));
@@ -158,17 +156,20 @@ public class DataDummy {
 		portfolioAlter.add(new SecurityInvestment(SECA09, 11));
 		portfolioAlter.add(new SecurityInvestment(SECA10, 1));
 		portfolioAlter.add(new SecurityInvestment(SECA11, 7));
-	
-		
-		List<SecurityTransaction> recentTrAlter = new ArrayList<>();
-		
-		SecurityTransaction t1 = new SecurityTransaction(3, BigDecimal.valueOf(552.86), SECA02, rndmDate(yesterday), false);
-		SecurityTransaction t2 = new SecurityTransaction(4, BigDecimal.valueOf(725.25), SECA09, rndmDate(yesterday), false);
-		SecurityTransaction t3 = new SecurityTransaction(2, BigDecimal.valueOf(162.52), SECA07, rndmDate(now.minusDays(5)), true);
-		SecurityTransaction t4 = new SecurityTransaction(10, BigDecimal.valueOf(2009.2), SECA10, rndmDate(now.minusDays(8)), true);
-		SecurityTransaction t5 = new SecurityTransaction(1, BigDecimal.valueOf(186.83), SECA08, rndmDate(now.minusDays(15)), false);
 
-		
+		List<SecurityTransaction> recentTrAlter = new ArrayList<>();
+
+		SecurityTransaction t1 = new SecurityTransaction(3, BigDecimal.valueOf(552.86), SECA02, rndmDate(yesterday),
+				false);
+		SecurityTransaction t2 = new SecurityTransaction(4, BigDecimal.valueOf(725.25), SECA09, rndmDate(yesterday),
+				false);
+		SecurityTransaction t3 = new SecurityTransaction(2, BigDecimal.valueOf(162.52), SECA07,
+				rndmDate(now.minusDays(5)), true);
+		SecurityTransaction t4 = new SecurityTransaction(10, BigDecimal.valueOf(2009.2), SECA10,
+				rndmDate(now.minusDays(8)), true);
+		SecurityTransaction t5 = new SecurityTransaction(1, BigDecimal.valueOf(186.83), SECA08,
+				rndmDate(now.minusDays(15)), false);
+
 		recentTrAlter.add(t1);
 		recentTrAlter.add(t2);
 		recentTrAlter.add(t3);
@@ -178,26 +179,26 @@ public class DataDummy {
 		SecurityDepot depotAlter = new SecurityDepot(portfolioAlter, "000440222", "Altersvorsorge", recentTrAlter);
 
 		List<SecurityInvestment> portfolioTech = new ArrayList<>();
-		
-		portfolioTech.add( new SecurityInvestment(SECT01, 1));
-		portfolioTech.add( new SecurityInvestment(SECT02, 15));
-		portfolioTech.add( new SecurityInvestment(SECT04, 8));
-		portfolioTech.add( new SecurityInvestment(SECT05, 12));
-		portfolioTech.add( new SecurityInvestment(SECT06, 3));
-		portfolioTech.add( new SecurityInvestment(SECT07, 5));
-		portfolioTech.add( new SecurityInvestment(SECT08, 60));
-		portfolioTech.add( new SecurityInvestment(SECT09, 15));
-		portfolioTech.add( new SecurityInvestment(SECT10, 5));
-		portfolioTech.add( new SecurityInvestment(SECT12, 2));
-		
+
+		portfolioTech.add(new SecurityInvestment(SECT01, 1));
+		portfolioTech.add(new SecurityInvestment(SECT02, 15));
+		portfolioTech.add(new SecurityInvestment(SECT04, 8));
+		portfolioTech.add(new SecurityInvestment(SECT05, 12));
+		portfolioTech.add(new SecurityInvestment(SECT06, 3));
+		portfolioTech.add(new SecurityInvestment(SECT07, 5));
+		portfolioTech.add(new SecurityInvestment(SECT08, 60));
+		portfolioTech.add(new SecurityInvestment(SECT09, 15));
+		portfolioTech.add(new SecurityInvestment(SECT10, 5));
+		portfolioTech.add(new SecurityInvestment(SECT12, 2));
+
 		List<SecurityTransaction> recentTrTech = new ArrayList<>();
 
-		SecurityTransaction tTech1 = new SecurityTransaction(15, BigDecimal.valueOf(1653.34), SECT09,
-				rndmDate(now), false);
-		SecurityTransaction tTech2 = new SecurityTransaction(3, BigDecimal.valueOf(654.71), SECT04,
-				rndmDate(now), true);
-		SecurityTransaction tTech3 = new SecurityTransaction(1, BigDecimal.valueOf(156.90), SECT10,
-				rndmDate(yesterday), false);
+		SecurityTransaction tTech1 = new SecurityTransaction(15, BigDecimal.valueOf(1653.34), SECT09, rndmDate(now),
+				false);
+		SecurityTransaction tTech2 = new SecurityTransaction(3, BigDecimal.valueOf(654.71), SECT04, rndmDate(now),
+				true);
+		SecurityTransaction tTech3 = new SecurityTransaction(1, BigDecimal.valueOf(156.90), SECT10, rndmDate(yesterday),
+				false);
 		SecurityTransaction tTech4 = new SecurityTransaction(5, BigDecimal.valueOf(214.98), SECT02,
 				rndmDate(yesterday.minusDays(3)), false);
 		SecurityTransaction tTech5 = new SecurityTransaction(2, BigDecimal.valueOf(1473.55), SECT01,

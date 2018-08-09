@@ -14,9 +14,9 @@ public class StyleConstants {
 	static String NEGATIVE_COLOR = "crimson";
 
 	static String POSITIVE_COLOR = "green";
-	
+
 	static String TOP_WIDGET_COLOR = "mintcream";
-	
+
 	static String FLOP_WIDGET_COLOR = "mistyrose";
 
 }

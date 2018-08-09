@@ -86,7 +86,7 @@ public class SecurityInvestmentStruct implements EURComputable {
 	public long getQuantity() {
 		return this.data.getQuantity();
 	}
-	
+
 	public BigDecimal getSingleSecurityQuotation() {
 		String key = this.getISIN();
 		BigDecimal result = SecurityMarketDataStorage.get().getMarketPrizes().get(key);
@@ -97,7 +97,7 @@ public class SecurityInvestmentStruct implements EURComputable {
 					+ "/n The data object was: " + String.valueOf(this.data));
 		}
 	}
-	
+
 	public BigDecimal getTotalInvestmentEuroVolume() {
 		return this.getSingleSecurityQuotation().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
@@ -116,12 +116,14 @@ public class SecurityInvestmentStruct implements EURComputable {
 	public BigDecimal getTotalInvestmentReferenceValue() {
 		return this.getSingleSecurityReferenceValue().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
-	
+
 	public String getSecurityShortName() {
 		return this.data.getSecurity().getShortName();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

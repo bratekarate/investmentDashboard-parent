@@ -132,11 +132,11 @@ public class Security implements ISecurity {
 		this.isin = Objects.requireNonNull(isin, "Cannot create a security with a given isin, that is null.");
 		this.name = Objects.requireNonNull(name, "Cannot create a security with a given name that is null.");
 		Objects.requireNonNull(shortName, "The given short name must not be null");
-		
-		if(shortName.length() <= 12) {
+
+		if (shortName.length() <= 12) {
 			// this is fine
 			this.shortName = shortName;
-		}else {
+		} else {
 			// short name must be reduced
 			this.shortName = shortName.substring(0, 11);
 		}

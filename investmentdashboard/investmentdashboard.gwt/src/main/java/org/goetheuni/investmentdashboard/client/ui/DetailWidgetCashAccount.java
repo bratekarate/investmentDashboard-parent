@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Grid;
 public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidget<SelectableCashAccount> {
 
 	protected SelectableCashAccount currentCorrespondingObject;
-	
+
 	private static final int NUMBER_OF_PAYMENTS = 4;
 
 	/**
@@ -33,10 +33,11 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 	 */
 	@Override
 	public void update(SelectableCashAccount correspondingObject) {
-		
-		// set the current corresponding object 
-		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
-		
+
+		// set the current corresponding object
+		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject,
+				"The given structure object must not be null");
+
 		// get recent payments
 		List<CashPayment> payments = correspondingObject
 				.getRecentPaymentsSorted(DetailWidgetCashAccount.NUMBER_OF_PAYMENTS);
