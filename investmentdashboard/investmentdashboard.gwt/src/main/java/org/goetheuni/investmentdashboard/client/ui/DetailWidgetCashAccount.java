@@ -1,6 +1,7 @@
 package org.goetheuni.investmentdashboard.client.ui;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 
@@ -12,7 +13,16 @@ import com.google.gwt.user.client.ui.Grid;
 
 public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidget<SelectableCashAccount> {
 
-	static private int NUMBER_OF_PAYMENTS = 4;
+	protected SelectableCashAccount currentCorrespondingObject;
+	
+	private static final int NUMBER_OF_PAYMENTS = 4;
+
+	/**
+	 * @return the currentCorrespondingObject
+	 */
+	public SelectableCashAccount getCurrentCorrespondingObject() {
+		return currentCorrespondingObject;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -23,6 +33,10 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 	 */
 	@Override
 	public void update(SelectableCashAccount correspondingObject) {
+		
+		// set the current corresponding object 
+		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
+		
 		// get recent payments
 		List<CashPayment> payments = correspondingObject
 				.getRecentPaymentsSorted(DetailWidgetCashAccount.NUMBER_OF_PAYMENTS);

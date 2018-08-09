@@ -3,6 +3,7 @@ package org.goetheuni.investmentdashboard.client.ui;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
 
@@ -16,6 +17,8 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 
 	private static int NUMBER_OF_PAYMENTS = 2;
 
+	protected SelectableCryptoWallet currentCorrespondingObject;
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -25,6 +28,9 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 	 */
 	@Override
 	public void update(SelectableCryptoWallet correspondingObject) {
+		// set the currently displayed object
+		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject, "The given structure object must not be null");
+		
 		// get recent payments
 		List<CryptoPayment> payments = correspondingObject
 				.getRecentPaymentsSorted(DetailWidgetCryptoWallet.NUMBER_OF_PAYMENTS);
@@ -67,6 +73,13 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 					: StyleConstants.POSITIVE_COLOR;
 			this.getCellFormatter().getElement(indexOfPayments + 1, 2).getStyle().setColor(color);
 		}
+	}
+
+	/**
+	 * @return the currentCorrespondingObject
+	 */
+	public SelectableCryptoWallet getCurrentCorrespondingObject() {
+		return currentCorrespondingObject;
 	}
 
 	public DetailWidgetCryptoWallet() {

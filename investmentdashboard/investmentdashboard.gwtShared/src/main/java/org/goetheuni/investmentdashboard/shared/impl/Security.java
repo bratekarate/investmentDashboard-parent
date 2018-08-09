@@ -1,5 +1,7 @@
 package org.goetheuni.investmentdashboard.shared.impl;
 
+import java.util.Objects;
+
 import org.goetheuni.investmentdashboard.shared.api.ISecurity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -126,9 +128,18 @@ public class Security implements ISecurity {
 	@JsonCreator
 	public Security(final @JsonProperty("isin") String isin, final @JsonProperty("name") String name,
 			final @JsonProperty("shortName") String shortName) {
-		this.isin = isin;
-		this.name = name;
-		this.shortName = shortName;
+		// validate input
+		this.isin = Objects.requireNonNull(isin, "Cannot create a security with a given isin, that is null.");
+		this.name = Objects.requireNonNull(name, "Cannot create a security with a given name that is null.");
+		Objects.requireNonNull(shortName, "The given short name must not be null");
+		
+		if(shortName.length() <= 12) {
+			// this is fine
+			this.shortName = shortName;
+		}else {
+			// short name must be reduced
+			this.shortName = shortName.substring(0, 11);
+		}
 	}
 
 	protected Security() {

@@ -7,12 +7,16 @@ public class StyleConstants {
 
 	static int WIDEGT_BORDER_WIDTH = 5;
 
-	static String WIDGET_BACKGROUND_COLOR = "white";
+	static String WIDGET_BACKGROUND_COLOR = "ghostwhite";
 
 	static String SELECTED_COLOR = "aliceblue";
 
 	static String NEGATIVE_COLOR = "crimson";
 
 	static String POSITIVE_COLOR = "green";
+	
+	static String TOP_WIDGET_COLOR = "mintcream";
+	
+	static String FLOP_WIDGET_COLOR = "mistyrose";
 
 }

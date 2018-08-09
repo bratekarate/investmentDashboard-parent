@@ -30,7 +30,7 @@ public class VolatilityLabel extends Label {
 			this.setText(formattedAmount + "  " + "(" + potentialPlus + inPercentage.toString() + "%)");
 		} else /* must be an empty depot or wallet */ {
 			throw new RuntimeException(
-					"Cannot construct a volatility label for a reference value of 0. Empty depots or wallets are not allowed for this method. Was: "
+					"Cannot construct a volatility label for a reference value of 0 or smaller. Empty depots or wallets are not allowed for this method. Was: "
 							+ referenceValue.toString());
 		}
 

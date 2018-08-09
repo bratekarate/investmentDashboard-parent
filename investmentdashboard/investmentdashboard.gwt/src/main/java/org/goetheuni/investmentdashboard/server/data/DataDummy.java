@@ -28,30 +28,98 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 public class DataDummy {
 
 	public static Random R = new Random();
+	
+	private static final Security SECA01 = new Security("0001", "Baier", "Baier");
+	private static final Security SECA02 = new Security("0002", "Allians", "Alliants");
+	private static final Security SECA03 = new Security("0003", "BAZF", "BAZF");
+	private static final Security SECA04 = new Security("0004", "VMAG Vz.", "VMAG Vz.");
+	private static final Security SECA05 = new Security("0005", "D.Telecom", "D.Telecom");
+	private static final Security SECA06 = new Security("0006", "Daymlehr AG", "Daymlehr AG");
+	private static final Security SECA07 = new Security("0007", "BWM AG", "BWM AG");
+	private static final Security SECA08 = new Security("0008", "Centinental", "Centinetal");
+	private static final Security SECA09 = new Security("0009", "Minich Re", "Minich Re");
+	private static final Security SECA10 = new Security("0010", "adydas AG", "adyads AG");
+	private static final Security SECA11 = new Security("0011", "Frisinius MC", "Frisinius MC");
+	private static final Security SECA12 = new Security("0012", "Baiersdorff", "Baiersdorf");
+	
+	private static final Security SECT01 = new Security("0013", "SAMSANG ADRs", "SAUMSANG ADRs");
+	private static final Security SECT02 = new Security("0014", "Intal Corp.", "Intal Corp.");
+	private static final Security SECT03 = new Security("0015", "Cesco Inc.", "Cesco Inc.");
+	private static final Security SECT04 = new Security("0016", "NVDYA Corp.", "NVDYA Corp.");
+	private static final Security SECT05 = new Security("0017", "3W Co.", "3W Co.");
+	private static final Security SECT06 = new Security("0018", "Taxes I. Inc.", "Taxes I. Inc.");
+	private static final Security SECT07 = new Security("0019", "Sany Corp.", "Sany Corp.");
+	private static final Security SECT08 = new Security("0020", "Toshabi", "Toshabi");
+	private static final Security SECT09 = new Security("0021", "Rockwall ATM", "Rockwall ATM");
+	private static final Security SECT10 = new Security("0022", "AMT Inc.", "AMT Inc.");
+	private static final Security SECT11 = new Security("0023", "Novartes AG", "Novartes AG");
+	private static final Security SECT12 = new Security("0024", "Johnsen & J.", "Johnsen & J.");
 
 	public static SecurityMarketData getDummySecurities() {
 		HashMap<String, BigDecimal> marketPrizes = new HashMap<>();
-		Date dateAndTime = new Date(50000);
+		Date dateAndTime = new Date();
 
 		// add prizes
-		marketPrizes.put("0001", BigDecimal.valueOf(6.83));
-		marketPrizes.put("0002", BigDecimal.valueOf(12.83));
-		marketPrizes.put("0003", BigDecimal.valueOf(0.72));
-		marketPrizes.put("0004", BigDecimal.valueOf(1000.50));
+		marketPrizes.put(SECA01.getIsin(), BigDecimal.valueOf(95.54));
+		marketPrizes.put(SECA02.getIsin(), BigDecimal.valueOf(189.42));
+		marketPrizes.put(SECA03.getIsin(), BigDecimal.valueOf(80.39));
+		marketPrizes.put(SECA04.getIsin(), BigDecimal.valueOf(147.76));
+		marketPrizes.put(SECA05.getIsin(), BigDecimal.valueOf(14.28));
+		marketPrizes.put(SECA06.getIsin(), BigDecimal.valueOf(59.01));
+		marketPrizes.put(SECA07.getIsin(), BigDecimal.valueOf(84.78));
+		marketPrizes.put(SECA08.getIsin(), BigDecimal.valueOf(188.95));
+		marketPrizes.put(SECA09.getIsin(), BigDecimal.valueOf(183.30));
+		marketPrizes.put(SECA10.getIsin(), BigDecimal.valueOf(208.8));
+		marketPrizes.put(SECA11.getIsin(), BigDecimal.valueOf(84.30));
+		marketPrizes.put(SECA12.getIsin(), BigDecimal.valueOf(98.22));
+		marketPrizes.put(SECT01.getIsin(), BigDecimal.valueOf(736.11));
+		marketPrizes.put(SECT02.getIsin(), BigDecimal.valueOf(43.09));
+		marketPrizes.put(SECT03.getIsin(), BigDecimal.valueOf(37.91));
+		marketPrizes.put(SECT04.getIsin(), BigDecimal.valueOf(222.59));
+		marketPrizes.put(SECT05.getIsin(), BigDecimal.valueOf(177.50));
+		marketPrizes.put(SECT06.getIsin(), BigDecimal.valueOf(99.67));
+		marketPrizes.put(SECT07.getIsin(), BigDecimal.valueOf(47.40));
+		marketPrizes.put(SECT08.getIsin(), BigDecimal.valueOf(2.57));
+		marketPrizes.put(SECT09.getIsin(), BigDecimal.valueOf(118.06));
+		marketPrizes.put(SECT10.getIsin(), BigDecimal.valueOf(16.73));
+		marketPrizes.put(SECT11.getIsin(), BigDecimal.valueOf(71.92));
+		marketPrizes.put(SECT12.getIsin(), BigDecimal.valueOf(112.99));
 
+		
+		
 		// generate reference value
 		HashMap<String, BigDecimal> referenceValues = new HashMap<>();
-		referenceValues.put("0001", BigDecimal.valueOf(6.90));
-		referenceValues.put("0002", BigDecimal.valueOf(12.83));
-		referenceValues.put("0003", BigDecimal.valueOf(0.82));
-		referenceValues.put("0004", BigDecimal.valueOf(900.50));
+		referenceValues.put(SECA01.getIsin(), BigDecimal.valueOf(95));
+		referenceValues.put(SECA02.getIsin(), BigDecimal.valueOf(183.42));
+		referenceValues.put(SECA03.getIsin(), BigDecimal.valueOf(81));
+		referenceValues.put(SECA04.getIsin(), BigDecimal.valueOf(155.76));
+		referenceValues.put(SECA05.getIsin(), BigDecimal.valueOf(14.78));
+		referenceValues.put(SECA06.getIsin(), BigDecimal.valueOf(60.01));
+		referenceValues.put(SECA07.getIsin(), BigDecimal.valueOf(84.5));
+		referenceValues.put(SECA08.getIsin(), BigDecimal.valueOf(190.95));
+		referenceValues.put(SECA09.getIsin(), BigDecimal.valueOf(165));
+		referenceValues.put(SECA10.getIsin(), BigDecimal.valueOf(210.8));
+		referenceValues.put(SECA11.getIsin(), BigDecimal.valueOf(83.30));
+		referenceValues.put(SECA12.getIsin(), BigDecimal.valueOf(99));
+		referenceValues.put(SECT01.getIsin(), BigDecimal.valueOf(728.11));
+		referenceValues.put(SECT02.getIsin(), BigDecimal.valueOf(51.09));
+		referenceValues.put(SECT03.getIsin(), BigDecimal.valueOf(39.91));
+		referenceValues.put(SECT04.getIsin(), BigDecimal.valueOf(248.59));
+		referenceValues.put(SECT05.getIsin(), BigDecimal.valueOf(145.50));
+		referenceValues.put(SECT06.getIsin(), BigDecimal.valueOf(98.67));
+		referenceValues.put(SECT07.getIsin(), BigDecimal.valueOf(43.40));
+		referenceValues.put(SECT08.getIsin(), BigDecimal.valueOf(2.37));
+		referenceValues.put(SECT09.getIsin(), BigDecimal.valueOf(100.06));
+		referenceValues.put(SECT10.getIsin(), BigDecimal.valueOf(17.73));
+		referenceValues.put(SECT11.getIsin(), BigDecimal.valueOf(71.52));
+		referenceValues.put(SECT12.getIsin(), BigDecimal.valueOf(111.99));
 
 		SecurityMarketData result = new SecurityMarketData(marketPrizes, referenceValues, dateAndTime);
 		return result;
 	}
 
 	public static CryptoMarketData getDummyCrypto() {
-		Date dateAndTime = new Date(600000);
+		Date dateAndTime = new Date();
 		HashMap<String, BigDecimal> exchangeRates = new HashMap<>();
 
 		// add exchange rates
@@ -78,47 +146,73 @@ public class DataDummy {
 		LocalDateTime yesterday = now.minusDays(1);
 		LocalDateTime twoDaysBeforeYest = now.minusDays(3);
 
-		// create depot
-		Security sec1 = new Security("0001", "COMP1", "C1");
-		Security sec2 = new Security("0002", "COMP2", "C2");
-
-		SecurityInvestment i1 = new SecurityInvestment(sec1, 45);
-		SecurityInvestment i2 = new SecurityInvestment(sec2, 22);
-
-		SecurityTransaction t1 = new SecurityTransaction(5, BigDecimal.valueOf(50.00), sec1, rndmDate(now), false);
-		SecurityTransaction t2 = new SecurityTransaction(1, BigDecimal.valueOf(5.00), sec2, rndmDate(now), true);
-
 		List<SecurityInvestment> portfolioAlter = new ArrayList<>();
-		portfolioAlter.add(i1);
-		portfolioAlter.add(i2);
-
+	
+		portfolioAlter.add(new SecurityInvestment(SECA02, 12));
+		portfolioAlter.add(new SecurityInvestment(SECA03, 3));
+		portfolioAlter.add(new SecurityInvestment(SECA04, 4));
+		portfolioAlter.add(new SecurityInvestment(SECA05, 1));
+		portfolioAlter.add(new SecurityInvestment(SECA06, 10));
+		portfolioAlter.add(new SecurityInvestment(SECA07, 5));
+		portfolioAlter.add(new SecurityInvestment(SECA08, 2));
+		portfolioAlter.add(new SecurityInvestment(SECA09, 11));
+		portfolioAlter.add(new SecurityInvestment(SECA10, 1));
+		portfolioAlter.add(new SecurityInvestment(SECA11, 7));
+	
+		
 		List<SecurityTransaction> recentTrAlter = new ArrayList<>();
+		
+		SecurityTransaction t1 = new SecurityTransaction(3, BigDecimal.valueOf(552.86), SECA02, rndmDate(yesterday), false);
+		SecurityTransaction t2 = new SecurityTransaction(4, BigDecimal.valueOf(725.25), SECA09, rndmDate(yesterday), false);
+		SecurityTransaction t3 = new SecurityTransaction(2, BigDecimal.valueOf(162.52), SECA07, rndmDate(now.minusDays(5)), true);
+		SecurityTransaction t4 = new SecurityTransaction(10, BigDecimal.valueOf(2009.2), SECA10, rndmDate(now.minusDays(8)), true);
+		SecurityTransaction t5 = new SecurityTransaction(1, BigDecimal.valueOf(186.83), SECA08, rndmDate(now.minusDays(15)), false);
+
+		
 		recentTrAlter.add(t1);
 		recentTrAlter.add(t2);
+		recentTrAlter.add(t3);
+		recentTrAlter.add(t4);
+		recentTrAlter.add(t5);
 
 		SecurityDepot depotAlter = new SecurityDepot(portfolioAlter, "000440222", "Altersvorsorge", recentTrAlter);
 
 		List<SecurityInvestment> portfolioTech = new ArrayList<>();
-		Security secTech1 = new Security("0003", "NVDIA CORPORATION", "NVDIA CORP.");
-		Security secTech2 = new Security("0004", "OARCLE CORPORATION", "OARCLE CORP.");
-
-		SecurityInvestment iTech1 = new SecurityInvestment(secTech1, 43);
-		SecurityInvestment iTech2 = new SecurityInvestment(secTech2, 12);
-
-		portfolioTech.add(iTech1);
-		portfolioTech.add(iTech2);
-
+		
+		portfolioTech.add( new SecurityInvestment(SECT01, 1));
+		portfolioTech.add( new SecurityInvestment(SECT02, 15));
+		portfolioTech.add( new SecurityInvestment(SECT04, 8));
+		portfolioTech.add( new SecurityInvestment(SECT05, 12));
+		portfolioTech.add( new SecurityInvestment(SECT06, 3));
+		portfolioTech.add( new SecurityInvestment(SECT07, 5));
+		portfolioTech.add( new SecurityInvestment(SECT08, 60));
+		portfolioTech.add( new SecurityInvestment(SECT09, 15));
+		portfolioTech.add( new SecurityInvestment(SECT10, 5));
+		portfolioTech.add( new SecurityInvestment(SECT12, 2));
+		
 		List<SecurityTransaction> recentTrTech = new ArrayList<>();
 
-		SecurityTransaction tTech1 = new SecurityTransaction(20, BigDecimal.valueOf(5), secTech1,
-				rndmDate(yesterday.minusMonths(1)), false);
-		SecurityTransaction tTech2 = new SecurityTransaction(20, BigDecimal.valueOf(20), secTech2,
+		SecurityTransaction tTech1 = new SecurityTransaction(15, BigDecimal.valueOf(1653.34), SECT09,
+				rndmDate(now), false);
+		SecurityTransaction tTech2 = new SecurityTransaction(3, BigDecimal.valueOf(654.71), SECT04,
+				rndmDate(now), true);
+		SecurityTransaction tTech3 = new SecurityTransaction(1, BigDecimal.valueOf(156.90), SECT10,
+				rndmDate(yesterday), false);
+		SecurityTransaction tTech4 = new SecurityTransaction(5, BigDecimal.valueOf(214.98), SECT02,
+				rndmDate(yesterday.minusDays(3)), false);
+		SecurityTransaction tTech5 = new SecurityTransaction(2, BigDecimal.valueOf(1473.55), SECT01,
+				rndmDate(yesterday.minusDays(10)), true);
+		SecurityTransaction tTech6 = new SecurityTransaction(8, BigDecimal.valueOf(90.13), SECT02,
 				rndmDate(yesterday.minusMonths(1)), false);
 
 		recentTrTech.add(tTech1);
 		recentTrTech.add(tTech2);
+		recentTrTech.add(tTech3);
+		recentTrTech.add(tTech4);
+		recentTrTech.add(tTech5);
+		recentTrTech.add(tTech6);
 
-		SecurityDepot depotTech = new SecurityDepot(portfolioTech, "000440395", "Technologie", recentTrAlter);
+		SecurityDepot depotTech = new SecurityDepot(portfolioTech, "000440395", "Technologie", recentTrTech);
 
 		// create cash account
 		Date date = rndmDate(yesterday);

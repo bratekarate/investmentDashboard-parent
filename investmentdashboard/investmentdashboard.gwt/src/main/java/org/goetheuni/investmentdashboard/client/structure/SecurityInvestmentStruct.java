@@ -86,8 +86,23 @@ public class SecurityInvestmentStruct implements EURComputable {
 	public long getQuantity() {
 		return this.data.getQuantity();
 	}
+	
+	public BigDecimal getSingleSecurityQuotation() {
+		String key = this.getISIN();
+		BigDecimal result = SecurityMarketDataStorage.get().getMarketPrizes().get(key);
+		if (result != null) {
+			return result;
+		} else {
+			throw new RuntimeException("Could not find a quotation for the following key: " + key
+					+ "/n The data object was: " + String.valueOf(this.data));
+		}
+	}
+	
+	public BigDecimal getTotalInvestmentEuroVolume() {
+		return this.getSingleSecurityQuotation().multiply(BigDecimal.valueOf(this.getQuantity()));
+	}
 
-	protected BigDecimal getSingleSecurityReferenceValue() {
+	public BigDecimal getSingleSecurityReferenceValue() {
 		String key = this.getISIN();
 		BigDecimal result = SecurityMarketDataStorage.get().getReferenceValues().get(key);
 		if (result != null) {
@@ -98,8 +113,21 @@ public class SecurityInvestmentStruct implements EURComputable {
 		}
 	}
 
-	protected BigDecimal getTotalInvestmentReferenceValue() {
+	public BigDecimal getTotalInvestmentReferenceValue() {
 		return this.getSingleSecurityReferenceValue().multiply(BigDecimal.valueOf(this.getQuantity()));
+	}
+	
+	public String getSecurityShortName() {
+		return this.data.getSecurity().getShortName();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SecurityInvestmentStruct [data=" + data + ", valueCache=" + valueCache + ", deltaCache=" + deltaCache
+				+ "]";
 	}
 
 	/**

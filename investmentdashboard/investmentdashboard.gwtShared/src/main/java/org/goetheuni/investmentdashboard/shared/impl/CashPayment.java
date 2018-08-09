@@ -179,7 +179,16 @@ public class CashPayment implements ICashPayment {
 			final @JsonProperty("counterPartyIBAN") String counterPartyIBAN,
 			final @JsonProperty("counterPartyName") String counterPartyName,
 			final @JsonProperty("dateOfExecution") Date dateOfExecution) {
-		this.amount = Objects.requireNonNull(amount, "Amount must not be null");
+		
+		// validate input
+		Objects.requireNonNull(amount, "Amount must not be null");
+		
+		if(amount.signum() != 0) {
+			this.amount = amount;
+		}else {
+			throw new IllegalArgumentException("Cannot create a payment with a given amount of 0");
+		}
+		
 		this.currencyCode = Objects.requireNonNull(currencyCode, "Currency must not be null");
 		this.counterPartyIBAN = Objects.requireNonNull(counterPartyIBAN, "The counterparty's IBAN must not be null");
 		this.counterPartyName = Objects.requireNonNull(counterPartyName, "The counterparty's name must not be null");
