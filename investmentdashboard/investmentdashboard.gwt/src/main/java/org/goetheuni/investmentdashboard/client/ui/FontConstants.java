@@ -7,11 +7,11 @@ import com.google.gwt.dom.client.Style.Unit;
  */
 public class FontConstants {
 
-	static int CATEGORYHEADER = 19;
+	static int CATEGORYHEADER = 17;
 
-	static int CATEGORYCONTENT = 16;
+	static int CATEGORYCONTENT = 15;
 
-	static int SMALLCATEGORYCONTENT = 12;
+	static int SMALLCATEGORYCONTENT = 10;
 
 	static Unit UNIT = Unit.PX;
 

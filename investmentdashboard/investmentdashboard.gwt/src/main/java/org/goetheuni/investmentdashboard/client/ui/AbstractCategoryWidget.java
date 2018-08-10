@@ -30,7 +30,7 @@ public abstract class AbstractCategoryWidget<S extends Selectable> extends Verti
 		this.add(new HeaderLabelDefault(header));
 
 		// set distance between header and SelectWidget
-		this.setSpacing(6);
+		this.setSpacing(5);
 
 		// add widgets
 		this.add(selectWidget);

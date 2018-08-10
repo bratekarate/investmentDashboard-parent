@@ -15,7 +15,6 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Grid;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -31,7 +30,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	/**
 	 * Number of pixels between the first level child widgets
 	 */
-	protected static final int VERTICAL_PADDING = 12;
+	protected static final int VERTICAL_PADDING = 10;
 
 	protected SelectableSecurityDepot currentCorrespondingObject;
 
@@ -211,7 +210,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		that.setWidth("100%");
 
 		// set the space between the widgets
-		that.setSpacing(6);
+		that.setSpacing(5);
 
 		// create and add the child widget
 		AggregationsWidget newAggregations = that.new AggregationsWidget();
@@ -259,7 +258,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				BigDecimal flopsValueDecline) {
 
 			// prepare header
-			this.setText(0, 0, "Kursverändungen zum Vortag:");
+			this.setText(0, 0, "verglichen zum Vortag:");
 
 			// set the portfolio's gain in value or decline
 			BigDecimal gainOrDeclineOfPortfolioValue = sumOfValueGains.subtract(sumOfValueDeclines);
@@ -318,7 +317,6 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 		protected void update(SelectableSecurityDepot correspondingObject) {
 
-			
 			// reset the table, but only the content
 			for (int row = 0; row < this.getRowCount(); row++) {
 				for (int col = 0; col < this.getColumnCount(); col++) {
@@ -332,7 +330,6 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			List<SecurityTransaction> listOfTransaction = correspondingObject
 					.getRecentTransactionsSorted(NUMBER_OF_TRANSACTIONS);
 
-			
 			for (int transactionIndex = 0; transactionIndex < listOfTransaction.size(); transactionIndex++) {
 				// get the transaction
 				SecurityTransaction aTransact = listOfTransaction.get(transactionIndex);
