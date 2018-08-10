@@ -11,7 +11,7 @@ public class FontConstants {
 
 	static int CATEGORYCONTENT = 15;
 
-	static int SMALLCATEGORYCONTENT = 10;
+	static int SMALLCATEGORYCONTENT = 12;
 
 	static Unit UNIT = Unit.PX;
 

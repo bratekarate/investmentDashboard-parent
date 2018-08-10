@@ -1,17 +1,22 @@
 package org.goetheuni.investmentdashboard.client.restCallAPI;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
-import org.goetheuni.investmentdashboard.shared.StringForRest;
+import org.goetheuni.investmentdashboard.shared.impl.AuthenticationToken;
+import org.goetheuni.investmentdashboard.shared.impl.LoginInfo;
 
-@Path("/" + ServicePaths.STRING_DIRECTORY + "/" + ServicePaths.STRING_TEST_SERVICE)
-public interface IDummyStringRestService extends RestService {
+@Path("/" + ServicePaths.LOGIN_DIRECTORY + "/" + ServicePaths.LOGIN_SERVICE)
+public interface IDummyLoginService extends RestService {
 
-	@GET
-	public void getStringObjectAsync(MethodCallback<StringForRest> obj);
+	@POST
+	@Path(ServicePaths.LOGIN_RESOURCE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void performLogin(LoginInfo loginInfo, MethodCallback<AuthenticationToken> token);
 
 }

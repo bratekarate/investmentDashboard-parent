@@ -6,7 +6,7 @@
 
 	<!-- Servlets -->
 	<servlet>
-		<servlet-name>StringRestService</servlet-name>
+		<servlet-name>LoginService</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
@@ -16,8 +16,8 @@
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>StringRestService</servlet-name>
-		<url-pattern>/string/*</url-pattern>
+		<servlet-name>LoginService</servlet-name>
+		<url-pattern>/login/*</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
