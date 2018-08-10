@@ -341,6 +341,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 				// set the security's name
 				this.setText(1 + transactionIndex, 1, aTransact.getSecurity().getShortName());
+				this.getCellFormatter().getElement(1 + transactionIndex, 1).getStyle().setColor("black");
 
 				// set the transaction's type
 				String typeString = aTransact.getIsSellTransaction() ? "Verkauf" : "Kauf";
@@ -357,8 +358,9 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				String prizeString = NumberFormat.getCurrencyFormat("EUR").format(averagePrize) + "/Stk.";
 				this.setText(1 + transactionIndex, 4, prizeString);
 
-				// set the text alignment for the last column
+				// set the text alignment and color for the last column
 				this.getCellFormatter().getElement(1 + transactionIndex, 4).getStyle().setTextAlign(TextAlign.RIGHT);
+				this.getCellFormatter().getElement(1 + transactionIndex, 4).getStyle().setColor("black");
 			}
 		}
 

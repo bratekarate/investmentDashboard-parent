@@ -64,13 +64,6 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		}
 	}
 
-	protected static Label createEuroVolumeLabel(SecurityInvestmentStruct correspondingObject) {
-		// generate the text
-		String euroVolume = NumberFormat.getCurrencyFormat("EUR")
-				.format(correspondingObject.getTotalInvestmentEuroVolume());
-		Label result = new SmallContentLabelBlack(euroVolume);
-		return result;
-	}
 
 	protected static Label createQuantityLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text and return the label
@@ -102,7 +95,7 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		this.setWidth("100%");
 
 		// configure the first level of child widgets
-		Label newName = new SmallContentLabelDefault(correspondingObject.getSecurityShortName());
+		Label newName = new SmallContentLabelBlack(correspondingObject.getSecurityShortName());
 		this.name = newName;
 		this.add(newName);
 		this.setCellWidth(newName, "40%");
