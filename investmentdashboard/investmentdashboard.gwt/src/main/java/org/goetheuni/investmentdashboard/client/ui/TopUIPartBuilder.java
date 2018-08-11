@@ -25,7 +25,7 @@ public class TopUIPartBuilder {
 
 		topLayoutPanel.setSpacing(7);
 
-		// dummy label
+		// dummy labels
 		ContentLabelDefault linkActions = new ContentLabelDefault("Kontoaktionen");
 		ContentLabelDefault linkContact = new ContentLabelDefault("Postfach");
 
@@ -45,10 +45,8 @@ public class TopUIPartBuilder {
 		// row 2
 		// get total balance
 
-		ContentLabelDefault labelTotalBalanceText = new ContentLabelDefault("Gesamtsaldo");
-		// with
-		// pixel
-
+		HeaderLabelDefault labelTotalBalanceText = new HeaderLabelDefault("Gesamtsaldo");
+		
 		ContentLabelBlack labelTotalBalance = new ContentLabelBlack(
 				NumberFormat.getCurrencyFormat("EUR").format(totalBalance.doubleValue()));
 		panelTotalBalance.add(labelTotalBalanceText);
