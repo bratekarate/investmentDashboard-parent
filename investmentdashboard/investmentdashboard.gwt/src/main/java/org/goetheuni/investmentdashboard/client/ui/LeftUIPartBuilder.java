@@ -18,7 +18,7 @@ public class LeftUIPartBuilder {
 
 		leftLayoutPanel.add(WidgetCashAccounts.generate(rootStruct.getCashAccounts()));
 
-		leftLayoutPanel.add(WidgetCryptoWallet.generate(rootStruct.getWallets()));
+		leftLayoutPanel.add(WidgetCryptoWallets.generate(rootStruct.getWallets()));
 
 	}
 }

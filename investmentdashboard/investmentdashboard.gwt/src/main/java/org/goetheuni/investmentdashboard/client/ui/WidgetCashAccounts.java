@@ -2,6 +2,8 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.util.List;
 
+import org.goetheuni.investmentdashboard.client.global.DashBoardWidgets;
+
 public class WidgetCashAccounts extends AbstractCategoryWidget<SelectableCashAccount> {
 
 	public static WidgetCashAccounts generate(List<? extends SelectableCashAccount> cashAccounts) {
@@ -20,6 +22,7 @@ public class WidgetCashAccounts extends AbstractCategoryWidget<SelectableCashAcc
 	protected WidgetCashAccounts(String header, AbstractSelectWidget<SelectableCashAccount> selectWidget,
 			AbstractDetailWidget<SelectableCashAccount> detailWidget) {
 		super(header, selectWidget, detailWidget);
+		DashBoardWidgets.setCashAccounts(this);
 	}
 
 }

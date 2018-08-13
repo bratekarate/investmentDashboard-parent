@@ -2,6 +2,8 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.math.BigDecimal;
 
+import org.goetheuni.investmentdashboard.client.global.DashBoardWidgets;
+
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -42,15 +44,17 @@ public class TopUIPartBuilder {
 		firstRowPanel.setCellHorizontalAlignment(topLabel, HasHorizontalAlignment.ALIGN_LEFT);
 		firstRowPanel.setCellHorizontalAlignment(panelLinks, HasHorizontalAlignment.ALIGN_RIGHT);
 
-		// row 2
-		// get total balance
-
+		// create the part for the total balance
+		
 		HeaderLabelDefault labelTotalBalanceText = new HeaderLabelDefault("Gesamtsaldo");
 		
 		ContentLabelBlack labelTotalBalance = new ContentLabelBlack(
 				NumberFormat.getCurrencyFormat("EUR").format(totalBalance.doubleValue()));
 		panelTotalBalance.add(labelTotalBalanceText);
 		panelTotalBalance.add(labelTotalBalance);
+		
+		// put the total balance label to the storage
+		DashBoardWidgets.setTotalBalanceLabel(labelTotalBalance);
 
 		// specify alignment
 		panelLinks.setCellHorizontalAlignment(linkContact, HasHorizontalAlignment.ALIGN_LOCALE_END);

@@ -2,9 +2,11 @@ package org.goetheuni.investmentdashboard.client.ui;
 
 import java.util.List;
 
-public class WidgetCryptoWallet extends AbstractCategoryWidget<SelectableCryptoWallet> {
+import org.goetheuni.investmentdashboard.client.global.DashBoardWidgets;
 
-	public static WidgetCryptoWallet generate(List<? extends SelectableCryptoWallet> wallets) {
+public class WidgetCryptoWallets extends AbstractCategoryWidget<SelectableCryptoWallet> {
+
+	public static WidgetCryptoWallets generate(List<? extends SelectableCryptoWallet> wallets) {
 		// generate detail widget
 		DetailWidgetCryptoWallet details = new DetailWidgetCryptoWallet();
 
@@ -15,12 +17,13 @@ public class WidgetCryptoWallet extends AbstractCategoryWidget<SelectableCryptoW
 		String header = "Krypto-Anlagen";
 
 		// return result
-		return new WidgetCryptoWallet(header, selectWidget, details);
+		return new WidgetCryptoWallets(header, selectWidget, details);
 	}
 
-	protected WidgetCryptoWallet(String header, AbstractSelectWidget<SelectableCryptoWallet> selectWidget,
+	protected WidgetCryptoWallets(String header, AbstractSelectWidget<SelectableCryptoWallet> selectWidget,
 			AbstractDetailWidget<SelectableCryptoWallet> detailWidget) {
 		super(header, selectWidget, detailWidget);
+		DashBoardWidgets.setCryptoWallets(this);
 	}
 
 }

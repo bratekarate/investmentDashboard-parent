@@ -121,7 +121,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		this.amount = amount;
 		this.content.add(amountPanel);
 		this.content.setCellHorizontalAlignment(amountPanel, HasHorizontalAlignment.ALIGN_RIGHT);
-		this.content.setCellWidth(amountPanel, "25%");
+		this.content.setCellWidth(amountPanel, "22%");
 	}
 
 }
