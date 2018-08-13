@@ -4,8 +4,8 @@ import java.util.Objects;
 
 /**
  * Provides a storage for the authentication token. The token is set after a
- * successful login. This global storage simplifies the code of
- * microservice-access serialization tremendously.
+ * successful login. This simplifies the code of microservice-access
+ * serialization.
  *
  * JAVADOC DONE
  */
@@ -17,7 +17,7 @@ public class TokenStorage {
 	protected static String token;
 
 	/**
-	 * A method to check whether a token is currently present in the storage.
+	 * A method to check whether a token is currently present at the storage.
 	 * 
 	 * @return true if a token is present, otherwise false
 	 */

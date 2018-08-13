@@ -2,11 +2,14 @@ package org.goetheuni.investmentdashboard.client.load;
 
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
+import org.goetheuni.investmentdashboard.client.global.CustomerIDStorage;
 import org.goetheuni.investmentdashboard.client.global.TokenStorage;
 import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyLoginService;
 import org.goetheuni.investmentdashboard.client.ui.HeaderLabelBlack;
 import org.goetheuni.investmentdashboard.shared.impl.AuthenticationToken;
+import org.goetheuni.investmentdashboard.shared.impl.CustomerID;
 import org.goetheuni.investmentdashboard.shared.impl.LoginInfo;
+import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -41,8 +44,9 @@ public class LoaderForDummyBackend implements Loader {
 			public void onSuccess(Method method, AuthenticationToken response) {
 				if (response != null) {
 					// this is fine, the response is the token
-					// store the token
+					// store the token and the ID used
 					TokenStorage.put(response.getToken());
+					CustomerIDStorage.put(customerID);
 					// perform the follow-up actions
 					actionAfterLoginAttempt.run();
 				} else {
@@ -66,8 +70,9 @@ public class LoaderForDummyBackend implements Loader {
 	 * String, java.lang.Runnable)
 	 */
 	@Override
-	public void loadAndStore(String token, Runnable actionAfterLoadingCompleted) {
-		new DummyParentDataService(token, actionAfterLoadingCompleted).startRequest();
+	public void loadAndStore(String customerID, String token, Runnable actionAfterLoadingCompleted) {
+		RequestInfo requestInfo = new RequestInfo(new CustomerID(customerID), new AuthenticationToken(token));
+		new DummyParentDataService(requestInfo, actionAfterLoadingCompleted).startRequest();
 	}
 
 }

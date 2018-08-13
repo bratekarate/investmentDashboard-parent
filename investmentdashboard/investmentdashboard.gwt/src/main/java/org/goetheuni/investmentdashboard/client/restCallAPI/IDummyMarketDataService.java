@@ -9,6 +9,7 @@ import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
@@ -29,7 +30,7 @@ public interface IDummyMarketDataService extends RestService {
 	@POST
 	@Path(ServicePaths.SECURITIES_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void requestSecurityData(String token, MethodCallback<SecurityMarketData> securitiesData);
+	public void requestSecurityData(RequestInfo requestInfo, MethodCallback<SecurityMarketData> securitiesData);
 
 	/**
 	 * Asynchronous method returning sample data for the crypto market.
@@ -42,5 +43,5 @@ public interface IDummyMarketDataService extends RestService {
 	@POST
 	@Path(ServicePaths.CRYPTO_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void requestCryptoData(String token, MethodCallback<CryptoMarketData> cryptoData);
+	public void requestCryptoData(RequestInfo requestInfo, MethodCallback<CryptoMarketData> cryptoData);
 }

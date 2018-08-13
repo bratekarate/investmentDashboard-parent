@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.jetty.http.HttpGenerator.RequestInfo;
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
@@ -25,7 +26,7 @@ public class MarketDataService {
 	@POST
 	@Path(ServicePaths.SECURITIES_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public SecurityMarketData requestSecurityMarketData(String token) {
+	public SecurityMarketData requestSecurityMarketData(RequestInfo requestInfo) {
 		// ignore the token as it is a dummy
 		return DataDummy.getDummySecurities();
 	}
@@ -39,7 +40,7 @@ public class MarketDataService {
 	@POST
 	@Path(ServicePaths.CRYPTO_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public CryptoMarketData requestCryptoMarketData(String token) {
+	public CryptoMarketData requestCryptoMarketData(RequestInfo requestInfo) {
 		// ignore the token as it is a dummy
 		return DataDummy.getDummyCrypto();
 	}

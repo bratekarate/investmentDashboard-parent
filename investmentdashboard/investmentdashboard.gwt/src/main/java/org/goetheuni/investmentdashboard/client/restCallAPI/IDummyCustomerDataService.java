@@ -7,6 +7,7 @@ import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 
 /**
  * This is the client-side interface for the customer data service.
@@ -24,5 +25,5 @@ public interface IDummyCustomerDataService extends RestService {
 	 */
 	@POST
 	@Path(ServicePaths.CUSTOMER_RESOURCE)
-	public void requestCustomerData(String token, MethodCallback<Customer> customerData);
+	public void requestCustomerData(RequestInfo requestInfo, MethodCallback<Customer> customerData);
 }

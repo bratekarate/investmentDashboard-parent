@@ -12,6 +12,7 @@ import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyCustomerDataSe
 import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyMarketDataService;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
+import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 import com.google.gwt.core.client.GWT;
@@ -38,9 +39,9 @@ public class DummyParentDataService {
 	protected Runnable actionAfterLoadingCompleted;
 
 	/**
-	 * The token for authentication
+	 * The authentication token and the customer id.
 	 */
-	protected String token;
+	protected RequestInfo requestInfo;
 
 	/**
 	 * Counts the number of child-calls, that have terminated successfully.
@@ -104,6 +105,8 @@ public class DummyParentDataService {
 	 */
 	public void startRequest() {
 
+		// required because "this" points to the method callback in the method
+		// callback's definition.
 		DummyParentDataService that = this;
 
 		// create interfaces to the micro-services
@@ -111,7 +114,7 @@ public class DummyParentDataService {
 		IDummyMarketDataService marketService = GWT.create(IDummyMarketDataService.class);
 
 		// load and store customer data
-		customerService.requestCustomerData(token, new MethodCallback<Customer>() {
+		customerService.requestCustomerData(this.requestInfo, new MethodCallback<Customer>() {
 
 			@Override
 			public void onFailure(Method method, Throwable exception) {
@@ -126,7 +129,7 @@ public class DummyParentDataService {
 		});
 
 		// load and store security market data
-		marketService.requestSecurityData(token, new MethodCallback<SecurityMarketData>() {
+		marketService.requestSecurityData(this.requestInfo, new MethodCallback<SecurityMarketData>() {
 
 			@Override
 			public void onSuccess(Method method, SecurityMarketData response) {
@@ -141,7 +144,7 @@ public class DummyParentDataService {
 		});
 
 		// get and store crypto market data
-		marketService.requestCryptoData(token, new MethodCallback<CryptoMarketData>() {
+		marketService.requestCryptoData(this.requestInfo, new MethodCallback<CryptoMarketData>() {
 
 			@Override
 			public void onSuccess(Method method, CryptoMarketData response) {
@@ -160,15 +163,15 @@ public class DummyParentDataService {
 	 * This method creates a new parent service request for the initial loading
 	 * process.
 	 * 
-	 * @param authToken
-	 *            The authentication token for the mid-tier.
+	 * @param requestInfo
+	 *            The authentication token for the mid-tier and the customer id.
 	 * @param actionAfterLoadingCompleted
 	 *            The action that will be executed after all child requests have
 	 *            finished successfully.
 	 */
-	public DummyParentDataService(String authToken, Runnable actionAfterLoadingCompleted) {
+	public DummyParentDataService(RequestInfo requestInfo, Runnable actionAfterLoadingCompleted) {
 		this.numberOfDones = new AtomicInteger(0);
-		this.token = Objects.requireNonNull(authToken, "The given authentification token must not be null");
+		this.requestInfo = Objects.requireNonNull(requestInfo, "The given request information must not be null");
 		this.actionAfterLoadingCompleted = Objects.requireNonNull(actionAfterLoadingCompleted,
 				"The object containing the action after loading must not be null");
 	}

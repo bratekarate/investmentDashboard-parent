@@ -13,12 +13,14 @@ public interface Loader {
 	 * performs parallel and synchronized calls. It retrieves the customer and
 	 * market data from the mid-tier.
 	 * 
+	 * @param customerID
+	 *            The customer's ID
 	 * @param token
 	 *            The token retrieved by the login process.
 	 * @param actionAfterLoadingCompleted
 	 *            The action, that will be executed, on success.
 	 */
-	public void loadAndStore(String token, Runnable actionAfterLoadingCompleted);
+	public void loadAndStore(String customerID, String token, Runnable actionAfterLoadingCompleted);
 
 	/**
 	 * This method performs the login at the server with the given login

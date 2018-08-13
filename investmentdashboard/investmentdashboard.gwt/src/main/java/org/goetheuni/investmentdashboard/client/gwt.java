@@ -2,6 +2,7 @@ package org.goetheuni.investmentdashboard.client;
 
 import org.fusesource.restygwt.client.Defaults;
 import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
+import org.goetheuni.investmentdashboard.client.global.CustomerIDStorage;
 import org.goetheuni.investmentdashboard.client.global.TokenStorage;
 import org.goetheuni.investmentdashboard.client.load.Loader;
 import org.goetheuni.investmentdashboard.client.load.LoaderForDummyBackend;
@@ -42,12 +43,13 @@ public class gwt implements EntryPoint {
 		// perform login
 		loader.performLoginAndStoreToken(customerID, passwordInfo, new Runnable() {
 
-			// action after a successful login (the token is present at the storage)
+			// action after a successful login (the token and the customer ID are present at
+			// the storage)
 			@Override
 			public void run() {
 
 				// load data
-				loader.loadAndStore(TokenStorage.get(), new Runnable() {
+				loader.loadAndStore(CustomerIDStorage.get(), TokenStorage.get(), new Runnable() {
 
 					// action after the loading process has finished (data is at the storages)
 					@Override

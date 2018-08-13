@@ -7,8 +7,8 @@ import org.goetheuni.investmentdashboard.shared.impl.Customer;
 /**
  * This class provides global methods for the storage of the customer's data.
  * The storage must be filled with data from a rest call. Data is not
- * automatically present. This global storage simplifies the code of
- * microservice-access serialization tremendously.
+ * automatically present. This simplifies the code of microservice-access
+ * serialization.
  * 
  * JAVADOC DONE
  */

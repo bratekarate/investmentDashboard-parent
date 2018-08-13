@@ -5,6 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.eclipse.jetty.http.HttpGenerator.RequestInfo;
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
@@ -25,7 +26,7 @@ public class CustomerDataService {
 	@POST
 	@Path(ServicePaths.CUSTOMER_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Customer requestCustomerData(String token) {
+	public Customer requestCustomerData(RequestInfo requestInfo) {
 		return DataDummy.getDummyCustomer();
 	}
 }

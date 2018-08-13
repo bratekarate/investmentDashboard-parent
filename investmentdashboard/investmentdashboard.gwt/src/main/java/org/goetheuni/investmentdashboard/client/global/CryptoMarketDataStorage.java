@@ -7,8 +7,8 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 /**
  * This class provides global methods to store and access crypto market data.
  * The storage must be filled with data from a rest call. Data is not
- * automatically present. This global storage simplifies the code of
- * microservice-access serialization tremendously.
+ * automatically present. This simplifies the code of microservice-access
+ * serialization.
  * 
  * JAVADOC DONE
  */
