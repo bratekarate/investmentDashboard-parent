@@ -5,10 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.eclipse.jetty.http.HttpGenerator.RequestInfo;
+
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
+import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
