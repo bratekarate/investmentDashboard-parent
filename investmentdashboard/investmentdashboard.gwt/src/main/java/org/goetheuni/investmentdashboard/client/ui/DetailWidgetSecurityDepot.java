@@ -10,6 +10,7 @@ import java.util.Objects;
 import org.goetheuni.investmentdashboard.client.structure.SecurityInvestmentStruct;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -173,8 +174,10 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				"The given structure object must not be null");
 
 		// ensure visibility
+		this.aggregations.setTableContentVisibility(true);
 		this.tops.setVisible(true);
 		this.flops.setVisible(true);
+		this.transactions.setTableContentVisibility(true);
 
 		List<SecurityInvestmentStruct> sortedInv = correspondingObject.getInvestments();
 		sortedInv.sort(new Comparator<SecurityInvestmentStruct>() {
@@ -203,6 +206,21 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		// update the widgets for the most recent transactions
 		this.transactions.update(correspondingObject);
 
+	}
+
+	
+
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.ui.AbstractDetailWidget#resetAppearance()
+	 */
+	@Override
+	public void resetAppearance() {
+		
+		// set the visibility of the child widgets to false
+		this.aggregations.setTableContentVisibility(false);
+		this.tops.setVisible(false);
+		this.flops.setVisible(false);
+		this.transactions.setTableContentVisibility(false);
 	}
 
 	private static void initialize(DetailWidgetSecurityDepot that) {
@@ -253,6 +271,25 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		private static final int NUMBER_OF_COLUMNS = 5;
 
 		private static final int NUMBER_OF_ROWS = 4;
+		
+		/**
+		 * Allows to set the visibility of the contained HTML tables content.
+		 * 
+		 * @param visibility true = visible, false = not visible
+		 */
+		protected void setTableContentVisibility(boolean visibility) {
+			if(visibility) {
+				for(int index = 0; index<this.getRowCount(); index++) {
+					// set visible
+					this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.VISIBLE);
+				}
+			}else {
+				for(int index = 0; index<this.getRowCount(); index++) {
+					// set invisible
+					this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.HIDDEN);
+				}
+			}
+		}
 
 		protected void update(BigDecimal sumOfValueGains, BigDecimal sumOfValueDeclines, BigDecimal topsValueGain,
 				BigDecimal flopsValueDecline) {
@@ -315,6 +352,25 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 		private final static int NUMBER_OF_TRANSACTIONS = 3;
 
+		/**
+		 * Allows to set the visibility of the contained HTML tables content.
+		 * 
+		 * @param visibility true = visible, false = not visible
+		 */
+		protected void setTableContentVisibility(boolean visibility) {
+			if(visibility) {
+				for(int index = 0; index<this.getRowCount(); index++) {
+					// set visible
+					this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.VISIBLE);
+				}
+			}else {
+				for(int index = 0; index<this.getRowCount(); index++) {
+					// set invisible
+					this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.HIDDEN);
+				}
+			}
+		}
+		
 		protected void update(SelectableSecurityDepot correspondingObject) {
 
 			// reset the table, but only the content

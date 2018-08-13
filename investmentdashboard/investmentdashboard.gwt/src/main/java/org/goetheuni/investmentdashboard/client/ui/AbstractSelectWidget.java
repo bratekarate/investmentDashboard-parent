@@ -19,21 +19,37 @@ public abstract class AbstractSelectWidget<S extends Selectable> extends Vertica
 
 	protected List<AbstractSelectButton<S>> selectButtons;
 
-	protected ClickHandler generateClickHandler(S correspondingStructure, AbstractSelectButton<S> selectButton,
+	protected ClickHandler generateClickHandler(S correspondingStructure, AbstractSelectButton<S> clickedButton,
 			List<AbstractSelectButton<S>> allButtons, AbstractDetailWidget<S> detailWidget) {
 
 		return new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent arg0) {
+				// check whether the clicked button was marked
+				boolean wasMarked = clickedButton.isMarked();
+				
 				// set all buttons of this widget unmarked
 				for (AbstractSelectButton<S> abtn : allButtons) {
 					abtn.setUnmarked();
 				}
-				// set the button marked
-				selectButton.setMarked();
-				// update the widget
-				detailWidget.update(correspondingStructure);
+				
+				// two cases:
+				// 1. the clicked button has not been marked
+				// 2. the clicked button is the marked button 
+				
+				if(!wasMarked) {
+					// first case
+					// set the button marked
+					clickedButton.setMarked();
+					// update the widget
+					detailWidget.update(correspondingStructure);
+				}else {
+					// second case
+					// do not mark any buttons
+					// instead reset the datil widget
+					detailWidget.resetAppearance();
+				}
 			}
 		};
 

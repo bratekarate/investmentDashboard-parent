@@ -23,6 +23,8 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	protected ContentLabelBlack amount;
 
 	protected VolatilityLabel volatility;
+	
+	protected boolean isMarked;
 
 	/*
 	 * (non-Javadoc)
@@ -36,11 +38,20 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		return correspondingStructure;
 	}
 
+	/**
+	 * @return the isMarked
+	 */
+	public boolean isMarked() {
+		return isMarked;
+	}
+
 	protected void setMarked() {
+		this.isMarked = true;
 		this.getElement().getStyle().setBackgroundColor(StyleConstants.SELECTED_COLOR);
 	}
 
 	protected void setUnmarked() {
+		this.isMarked = false;
 		this.getElement().getStyle().setBackgroundColor(StyleConstants.WIDGET_BACKGROUND_COLOR);
 	}
 
@@ -67,6 +78,9 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		Objects.requireNonNull(optionalAmountLabel,
 				"The given optional amount label must not be null. Please consider a blank label");
 
+		// initial state is unmarked
+		this.isMarked = false;
+		
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
 

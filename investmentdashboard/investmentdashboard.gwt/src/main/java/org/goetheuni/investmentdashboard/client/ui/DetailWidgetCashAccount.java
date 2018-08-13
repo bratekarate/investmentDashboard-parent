@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
@@ -38,6 +40,9 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 		this.currentCorrespondingObject = Objects.requireNonNull(correspondingObject,
 				"The given structure object must not be null");
 
+		// ensure visibility
+		this.setTableContentVisibility(true);
+		
 		// get recent payments
 		List<CashPayment> payments = correspondingObject
 				.getRecentPaymentsSorted(DetailWidgetCashAccount.NUMBER_OF_PAYMENTS);
@@ -73,6 +78,37 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 					: StyleConstants.POSITIVE_COLOR;
 			this.getCellFormatter().getElement(indexOfPayment + 1, 2).getStyle().setColor(color);
 
+		}
+	}
+
+	
+
+	
+	/* (non-Javadoc)
+	 * @see org.goetheuni.investmentdashboard.client.ui.AbstractDetailWidget#resetAppearance()
+	 */
+	@Override
+	public void resetAppearance() {
+		// hide table content
+		this.setTableContentVisibility(false);
+	}
+	
+	/**
+	 * Allows to set the visibility of the contained HTML tables content.
+	 * 
+	 * @param visibility true = visible, false = not visible
+	 */
+	protected void setTableContentVisibility(boolean visibility) {
+		if(visibility) {
+			for(int index = 0; index<this.getRowCount(); index++) {
+				// set visible
+				this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.VISIBLE);
+			}
+		}else {
+			for(int index = 0; index<this.getRowCount(); index++) {
+				// set invisible
+				this.getRowFormatter().getElement(index).getStyle().setVisibility(Style.Visibility.HIDDEN);
+			}
 		}
 	}
 
