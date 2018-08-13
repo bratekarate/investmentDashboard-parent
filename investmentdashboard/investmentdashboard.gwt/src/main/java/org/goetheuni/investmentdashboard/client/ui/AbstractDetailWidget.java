@@ -17,9 +17,10 @@ public interface AbstractDetailWidget<S extends Selectable> extends IsWidget {
 	 *            The Selectable to shown
 	 */
 	void update(S correspondingObject);
-	
+
 	/**
-	 * Sets the detail widget's appearance back to its original state after initialization.
+	 * Sets the detail widget's appearance back to its original state after
+	 * initialization.
 	 */
 	void resetAppearance();
 }

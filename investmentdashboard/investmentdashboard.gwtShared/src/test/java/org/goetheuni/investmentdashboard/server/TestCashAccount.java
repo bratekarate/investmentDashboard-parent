@@ -1,28 +1,16 @@
 package org.goetheuni.investmentdashboard.server;
 
-import static org.junit.Assert.assertEquals;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
 import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
-import org.junit.Assert;
 import org.junit.Test;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class TestCashAccount {
 

@@ -8,7 +8,8 @@ import com.google.gwt.user.client.ui.Label;
 public class SelectButtonSecurityDepot extends AbstractSelectButton<SelectableSecurityDepot> {
 
 	private static VolatilityLabel createLabel(SelectableSecurityDepot correspondingObject) {
-		return new VolatilityLabel("Entwicklung zum Vortag: ", correspondingObject.getAmount(), correspondingObject.getReferenceValue());
+		return new VolatilityLabel("Entwicklung zum Vortag: ", correspondingObject.getAmount(),
+				correspondingObject.getReferenceValue());
 	}
 
 	public SelectButtonSecurityDepot(SelectableSecurityDepot correspondingObject) {

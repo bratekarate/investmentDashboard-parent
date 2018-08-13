@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
-
 import org.junit.Assert;
 import org.junit.Test;
 

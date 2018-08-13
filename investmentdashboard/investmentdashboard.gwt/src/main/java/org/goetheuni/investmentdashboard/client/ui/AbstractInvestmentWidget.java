@@ -64,7 +64,6 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		}
 	}
 
-
 	protected static Label createQuantityLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text and return the label
 		String content = correspondingObject.getQuantity() + " Stk.";

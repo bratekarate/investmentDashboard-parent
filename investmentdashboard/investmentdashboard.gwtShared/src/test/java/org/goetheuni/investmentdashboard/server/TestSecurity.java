@@ -1,10 +1,8 @@
 package org.goetheuni.investmentdashboard.server;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.goetheuni.investmentdashboard.shared.impl.CashPayment;
 import org.goetheuni.investmentdashboard.shared.impl.Security;
 import org.junit.Assert;
 import org.junit.Test;

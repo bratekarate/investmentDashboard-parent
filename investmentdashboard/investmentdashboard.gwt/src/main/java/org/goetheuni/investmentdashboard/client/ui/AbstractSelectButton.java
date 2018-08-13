@@ -23,7 +23,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	protected ContentLabelBlack amount;
 
 	protected VolatilityLabel volatility;
-	
+
 	protected boolean isMarked;
 
 	/*
@@ -80,7 +80,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 
 		// initial state is unmarked
 		this.isMarked = false;
-		
+
 		// set width
 		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
 

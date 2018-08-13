@@ -1,10 +1,9 @@
 package org.goetheuni.investmentdashboard.server;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.goetheuni.investmentdashboard.shared.impl.Security;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;

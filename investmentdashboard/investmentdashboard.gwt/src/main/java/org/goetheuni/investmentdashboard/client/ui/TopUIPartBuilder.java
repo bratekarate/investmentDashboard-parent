@@ -45,14 +45,14 @@ public class TopUIPartBuilder {
 		firstRowPanel.setCellHorizontalAlignment(panelLinks, HasHorizontalAlignment.ALIGN_RIGHT);
 
 		// create the part for the total balance
-		
+
 		HeaderLabelDefault labelTotalBalanceText = new HeaderLabelDefault("Gesamtsaldo");
-		
+
 		ContentLabelBlack labelTotalBalance = new ContentLabelBlack(
 				NumberFormat.getCurrencyFormat("EUR").format(totalBalance.doubleValue()));
 		panelTotalBalance.add(labelTotalBalanceText);
 		panelTotalBalance.add(labelTotalBalance);
-		
+
 		// put the total balance label to the storage
 		DashBoardWidgets.setTotalBalanceLabel(labelTotalBalance);
 
