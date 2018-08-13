@@ -13,19 +13,20 @@ import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
+ * This is the client-side interface for services for securities' and crypto asset' market and reference data.
  * 
- * This is the client-side interface of the market data service.
+ * JAVADOC DONE
  */
 @Path("/" + ServicePaths.MARKET_DIRECTORY + "/" + ServicePaths.MARKET_DATA_SERVICE)
 public interface IDummyMarketDataService extends RestService {
 
 	/**
-	 * Asynchronous method returning sample data for the security market.
+	 * Asynchronous method for retrieving market and reference data for securities.
 	 * 
-	 * @param token
-	 *            dummy token
+	 * @param requestInfo
+	 *            The customer ID and the authentication token
 	 * @param securitiesData
-	 *            callback for a sample for security market data
+	 *            callback that returns the requested data
 	 */
 	@POST
 	@Path(ServicePaths.SECURITIES_RESOURCE)
@@ -33,12 +34,12 @@ public interface IDummyMarketDataService extends RestService {
 	public void requestSecurityData(RequestInfo requestInfo, MethodCallback<SecurityMarketData> securitiesData);
 
 	/**
-	 * Asynchronous method returning sample data for the crypto market.
+	 * Asynchronous method returning for retrieving market and reference data for crypto assets.
 	 * 
-	 * @param token
-	 *            dummy token
-	 * @param securitiesData
-	 *            callback for a sample for crypto market data
+	 * @param requestInfo
+	 *            The customer ID and the authentication token
+	 * @param cryptoData
+	 *            callback that returns the requested data
 	 */
 	@POST
 	@Path(ServicePaths.CRYPTO_RESOURCE)

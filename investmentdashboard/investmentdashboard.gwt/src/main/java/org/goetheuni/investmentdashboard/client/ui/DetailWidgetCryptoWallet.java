@@ -93,7 +93,7 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 	}
 
 	/**
-	 * Allows to set the visibility of the contained HTML tables content.
+	 * Allows to set the visibility of the contained HTML table's content.
 	 * 
 	 * @param visibility
 	 *            true = visible, false = not visible
@@ -119,6 +119,9 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 		return currentCorrespondingObject;
 	}
 
+	/**
+	 * Creates a detail widget for crypto wallets.
+	 */
 	public DetailWidgetCryptoWallet() {
 		super(DetailWidgetCryptoWallet.NUMBER_OF_PAYMENTS + 1, 3);
 		this.getColumnFormatter().setWidth(0, "40%");

@@ -17,7 +17,10 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 import com.google.gwt.i18n.client.NumberFormat;
 
 /**
- * Objects of this class represent cash account substructures.
+ * Objects of this class represent cash account substructures of the root structure.
+ * Structure objects are a logical representation of the the dashboard's UI's content.
+ * 
+ * JAVADOC DONE
  */
 public class CashAccountStruct implements EURComputable, SelectableCashAccount {
 
@@ -128,6 +131,7 @@ public class CashAccountStruct implements EURComputable, SelectableCashAccount {
 
 	/**
 	 * Creates a new structure element representing a cash account.
+	 * @param data the data object to represent 
 	 */
 	protected CashAccountStruct(CashAccount data) {
 		this.data = Objects.requireNonNull(data, "The cash account data object given must not be null.");

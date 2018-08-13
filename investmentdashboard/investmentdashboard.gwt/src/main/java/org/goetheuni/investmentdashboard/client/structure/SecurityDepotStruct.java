@@ -19,7 +19,9 @@ import com.google.gwt.i18n.client.NumberFormat;
 
 /**
  * Objects of this class represent security depots in the logical structure of
- * the dash board page.
+ * the dash board front-end.
+ * 
+ * JAVADOC DONE
  */
 public class SecurityDepotStruct implements EURComputable, SelectableSecurityDepot {
 
@@ -201,7 +203,7 @@ public class SecurityDepotStruct implements EURComputable, SelectableSecurityDep
 	}
 
 	/**
-	 * Creates a strucutre for the given SecurityDepot. It also generates
+	 * Creates a structure object for the given SecurityDepot. It also generates
 	 * substructures for the SecurityInvestments.
 	 * 
 	 * @param depotData

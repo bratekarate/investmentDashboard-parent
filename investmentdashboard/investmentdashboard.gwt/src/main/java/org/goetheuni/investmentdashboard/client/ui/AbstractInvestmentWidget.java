@@ -12,24 +12,59 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+/**
+ * Objects of this class represent widgets, that visualize  security investments.
+ * They are either tops or flops. 
+ * 
+ * JAVADOC DONE
+ */
 public class AbstractInvestmentWidget extends HorizontalPanel {
 
+	/**
+	 * The corresponding security investment
+	 */
 	protected SecurityInvestmentStruct correspondingObject;
 
+	/**
+	 * The panel for the quotation and the relative difference
+	 */
 	protected VerticalPanel quotationPanel;
 
+	/**
+	 * The panel for the quantity of securities and the delta
+	 */
 	protected VerticalPanel volumePanel;
 
+	/**
+	 * The label for the security's name
+	 */
 	protected Label name;
 
+	/**
+	 * The label for the security's quotation (of a single instance)
+	 */
 	protected Label quotation;
 
+	/**
+	 * The label for the relative difference of quotation and reference value
+	 */
 	protected Label quotationDelta;
 
+	/**
+	 * The label for the investments total market value and its reference value.
+	 */
 	protected Label delta;
 
+	/**
+	 * The label for the number of instances of securities contained in this investment
+	 */
 	protected Label quantity;
 
+	/**
+	 * Creates the label for the security's quotation.
+	 * @param correspondingObject The security investment
+	 * @return label for the security's quotation (of a single instance)
+	 */
 	protected static Label createQuotationDeltaLabel(SecurityInvestmentStruct correspondingObject) {
 
 		BigDecimal referenceValue = correspondingObject.getSingleSecurityReferenceValue();
@@ -64,12 +99,22 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		}
 	}
 
+	/**
+	 * Creates a label for the number of instances of securities contained in this investment.
+	 * @param correspondingObject The security investment
+	 * @return a label for the number of instances of securities contained in this investment
+	 */
 	protected static Label createQuantityLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text and return the label
 		String content = correspondingObject.getQuantity() + " Stk.";
 		return new SmallContentLabelDefault(content);
 	}
 
+	/**
+	 * Creates a label for the investments total market value and its reference value.
+	 * @param correspondingObject The security investment
+	 * @return a label for the investments total market value and its reference valuea label for the investments total market value and its reference value
+	 */
 	protected static Label createDeltaLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text
 		BigDecimal delta = correspondingObject.getCachedDelta();
@@ -86,6 +131,10 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 		return result;
 	}
 
+	/**
+	 * Creates a new investment widget
+	 * @param correspondingObject The security investment to represent
+	 */
 	protected AbstractInvestmentWidget(SecurityInvestmentStruct correspondingObject) {
 		// validate input
 		this.correspondingObject = Objects.requireNonNull(correspondingObject,

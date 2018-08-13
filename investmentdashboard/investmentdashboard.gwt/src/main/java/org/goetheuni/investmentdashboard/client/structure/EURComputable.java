@@ -9,21 +9,23 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
- * Objects with this interface have balance, that can be computed in EUR.
+ * Objects with this interface have a balance, that can be computed in EUR.
+ * 
+ * JAVADOC DONE
  */
 public interface EURComputable {
 
 	/**
-	 * Computes the balance in EUR for this cash account and updates the cached
-	 * value
+	 * Computes the balance in EUR for this substructure and updates the cache for the total balance.
+	 * For SecurityInvestmentStructs it also updates to delta cache.
 	 * 
 	 * @return The balance in EUR.
 	 */
 	public BigDecimal computeBalanceInEUR(SecurityMarketData secMarket, CryptoMarketData cryptoMarket);
 
 	/**
-	 * 
-	 * @return The latest computed value for the depot's or account's balance.
+	 * Accesses the cache for the total balance and returns the stored value.
+	 * @return The latest computed value for the depot's, wallet's or account's balance.
 	 */
 	public BigDecimal getCachedBalanceInEUR();
 }

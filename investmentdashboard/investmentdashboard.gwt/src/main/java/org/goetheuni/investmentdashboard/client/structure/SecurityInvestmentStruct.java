@@ -13,6 +13,7 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 /**
  * Objects of this class represent substructures for security investments.
  *
+ * JAVADOC DONE
  */
 public class SecurityInvestmentStruct implements EURComputable {
 
@@ -79,14 +80,24 @@ public class SecurityInvestmentStruct implements EURComputable {
 		return this.deltaCache;
 	}
 
+	/**
+	 * @return the ISIN of the security used in this investment
+	 */
 	public String getISIN() {
 		return this.data.getSecurity().getIsin();
 	}
 
+	/**
+	 * @return the number of instances of the security in this investment.
+	 */
 	public long getQuantity() {
 		return this.data.getQuantity();
 	}
 
+	/**
+	 * @return gathers and returns the quotation of a single instance of the security from the storage.
+	 * @throws a RuntimeException if the storage returned null.
+	 */
 	public BigDecimal getSingleSecurityQuotation() {
 		String key = this.getISIN();
 		BigDecimal result = SecurityMarketDataStorage.get().getMarketPrizes().get(key);
@@ -98,10 +109,18 @@ public class SecurityInvestmentStruct implements EURComputable {
 		}
 	}
 
+	/**
+	 * @return product of the quotation of a single security and the quantity.
+	 * @throws a RuntimeException if the storage returned null.
+	 */
 	public BigDecimal getTotalInvestmentEuroVolume() {
 		return this.getSingleSecurityQuotation().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
 
+	/**
+	 * @return gathers and returns the reference value of a single instance of the security from the storage.
+	 * @throws a RuntimeException if the storage returned null.
+	 */
 	public BigDecimal getSingleSecurityReferenceValue() {
 		String key = this.getISIN();
 		BigDecimal result = SecurityMarketDataStorage.get().getReferenceValues().get(key);
@@ -113,10 +132,17 @@ public class SecurityInvestmentStruct implements EURComputable {
 		}
 	}
 
+	/**
+	 * @return product of the reference value of a single security and the quantity.
+	 * @throws a RuntimeException if the storage returned null.
+	 */
 	public BigDecimal getTotalInvestmentReferenceValue() {
 		return this.getSingleSecurityReferenceValue().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
 
+	/**
+	 * @return the short name of the security
+	 */
 	public String getSecurityShortName() {
 		return this.data.getSecurity().getShortName();
 	}

@@ -16,7 +16,9 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
  * This class provides access to the logical structure of the investment dash
- * board.
+ * board's content.
+ * 
+ * JAVADOC DONE
  */
 public class RootStructure {
 
@@ -73,7 +75,7 @@ public class RootStructure {
 
 	/**
 	 * Computes the total balance in EUR incorporating all cash accounts, wallets
-	 * and depots.
+	 * and depots. It computes tha balances and updates the caches in all substructures.
 	 * 
 	 * @param secMarket
 	 *            The list of security prizes used.
@@ -131,7 +133,7 @@ public class RootStructure {
 
 	/**
 	 * This method initializes the logical structure of the dash board page. It
-	 * should only be called once in the page setup process.
+	 * should only be called once in the UI initialization process.
 	 * 
 	 * @param customerData
 	 *            The customer data as a basis for the structure.
@@ -172,8 +174,7 @@ public class RootStructure {
 	}
 
 	/**
-	 * Creates a root struct. This method should only be called in once in the page
-	 * setup process.
+	 * Creates a root struct. This method should only be called in once in the UI initialization process.
 	 * 
 	 * @param cashAccounts
 	 *            sub-structure

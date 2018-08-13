@@ -12,10 +12,22 @@ import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.ui.Grid;
 
+/**
+ * Objects of this class represent detail widgets for the cash account category.
+ * Please notice the implemented interface.
+ * 
+ * JAVADOC DONE
+ */
 public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidget<SelectableCashAccount> {
 
+	/**
+	 * The cash account, that is currently shown.
+	 */
 	protected SelectableCashAccount currentCorrespondingObject;
 
+	/**
+	 * The number of payments shown in a cash account detail widget.
+	 */
 	private static final int NUMBER_OF_PAYMENTS = 4;
 
 	/**
@@ -93,7 +105,7 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 	}
 
 	/**
-	 * Allows to set the visibility of the contained HTML tables content.
+	 * Allows to set the visibility of the contained HTML table's content.
 	 * 
 	 * @param visibility
 	 *            true = visible, false = not visible
@@ -112,6 +124,9 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 		}
 	}
 
+	/**
+	 * Creates a detail widget for cash accounts.
+	 */
 	public DetailWidgetCashAccount() {
 		super(DetailWidgetCashAccount.NUMBER_OF_PAYMENTS + 1, 3);
 		this.getColumnFormatter().setWidth(0, "40%");

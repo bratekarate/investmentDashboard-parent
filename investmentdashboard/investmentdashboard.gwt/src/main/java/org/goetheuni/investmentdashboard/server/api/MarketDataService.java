@@ -14,6 +14,7 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
  * This is the server-side implementation of the service for market data.
+ * 
  */
 @Path(ServicePaths.MARKET_DATA_SERVICE)
 public class MarketDataService {

@@ -11,17 +11,19 @@ import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 
 /**
  * This is the client-side interface for the customer data service.
+ * 
+ * JAVADOC DONE
  */
 @Path("/" + ServicePaths.CUSTOMER_DIRECTORY + "/" + ServicePaths.CUSTOMER_DATA_SERVICE)
 public interface IDummyCustomerDataService extends RestService {
 
 	/**
-	 * Asynchronous method returning sample data for a customer.
+	 * Asynchronous method to retrieve customer data from the mid-tier.
 	 * 
-	 * @param token
-	 *            dummy token
+	 * @param requestInfo
+	 *            the authentication token and the customer id.
 	 * @param customerData
-	 *            callback for a sample customer
+	 *            callback returning the retrieved data
 	 */
 	@POST
 	@Path(ServicePaths.CUSTOMER_RESOURCE)
