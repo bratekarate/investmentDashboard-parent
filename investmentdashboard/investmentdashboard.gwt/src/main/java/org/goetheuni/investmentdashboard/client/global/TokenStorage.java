@@ -3,11 +3,11 @@ package org.goetheuni.investmentdashboard.client.global;
 import java.util.Objects;
 
 /**
- * Provides a storage for the authentication token. The token is present after a
- * successful login.
- * 
- * @author UniSven
+ * Provides a storage for the authentication token. The token is set after a
+ * successful login. This global storage simplifies the code of
+ * microservice-access serialization tremendously.
  *
+ * JAVADOC DONE
  */
 public class TokenStorage {
 

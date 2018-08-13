@@ -17,13 +17,17 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 import com.google.gwt.core.client.GWT;
 
 /**
- * This class synchronizes the asynchronous calls to the microservices.
+ * This class synchronizes the asynchronous calls to the microservices. The
+ * calls are performed in parallel. Therefore they require serialization. A
+ * sequential procedure would be too slow and would render the microservice
+ * concept infeasible.
  * 
+ * JAVADOC DONE
  */
 public class DummyParentDataService {
 
 	/**
-	 * The number of children data rest calls. Must be updated, if new calls is
+	 * The number of children data rest calls. Must be updated, if new calls are
 	 * added.
 	 */
 	protected static int NUMBER_OF_CHILDREN = 3;
@@ -39,10 +43,15 @@ public class DummyParentDataService {
 	protected String token;
 
 	/**
-	 * Counts the number of children, which have finished.
+	 * Counts the number of child-calls, that have terminated successfully.
 	 */
 	protected AtomicInteger numberOfDones;
 
+	/**
+	 * This method will be called by the child requests. Either all children have
+	 * finished successfully or not. Only after all children have finished
+	 * successfully, the action after loading will be executed.
+	 */
 	protected void done() {
 		// register the child service call as done
 		this.numberOfDones.incrementAndGet();
@@ -58,21 +67,40 @@ public class DummyParentDataService {
 		}
 	}
 
+	/**
+	 * Stores the given data at the client.
+	 * 
+	 * @param data
+	 *            retrived customer data
+	 */
 	protected static void storeCustomerData(Customer data) {
 		CustomerDataStorage.put(data);
 	}
 
+	/**
+	 * Stores the given data at the client.
+	 * 
+	 * @param data
+	 *            retrieved security market data
+	 */
 	protected static void storeSecMarketData(SecurityMarketData data) {
 		SecurityMarketDataStorage.put(data);
 	}
 
+	/**
+	 * Stores the given data at the client.
+	 * 
+	 * @param data
+	 *            retrieved crypto market data
+	 */
 	protected static void storeCryptoMarketData(CryptoMarketData data) {
 		CryptoMarketDataStorage.put(data);
 	}
 
 	/**
 	 * This method starts the parent request. All child requests are executed. After
-	 * all children have finished, the given next action will be executed.
+	 * all children have finished successfully, the next action given to the
+	 * constructor will be executed.
 	 */
 	public void startRequest() {
 
@@ -128,6 +156,16 @@ public class DummyParentDataService {
 		});
 	}
 
+	/**
+	 * This method creates a new parent service request for the initial loading
+	 * process.
+	 * 
+	 * @param authToken
+	 *            The authentication token for the mid-tier.
+	 * @param actionAfterLoadingCompleted
+	 *            The action that will be executed after all child requests have
+	 *            finished successfully.
+	 */
 	public DummyParentDataService(String authToken, Runnable actionAfterLoadingCompleted) {
 		this.numberOfDones = new AtomicInteger(0);
 		this.token = Objects.requireNonNull(authToken, "The given authentification token must not be null");

@@ -13,21 +13,25 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * Entry point classes define <code>onModuleLoad()</code>.
+ * Entry point classes define <code>onModuleLoad()</code>. This class represents
+ * the entry point of the dash board. The contained method is similar to a
+ * main-method for the dashboard-frontend's initialization process.
+ * 
+ * JAVADOC DONE
  */
 public class gwt implements EntryPoint {
 
 	/**
 	 * This is the entry point method. It is the first method, that will be
-	 * executed, if the GWT project is run. It is similar to a main method.
+	 * executed, if the web site is accessed. It is similar to a main method.
 	 */
 	public void onModuleLoad() {
 
+		// set the defaults required by resty-gwt
 		Defaults.setServiceRoot(GWT.getHostPageBaseURL());
 		Defaults.setDateFormat(null);
 
 		RootPanel rootPanel = RootPanel.get();
-
 		Loader loader = new LoaderForDummyBackend();
 
 		// the demo login information "custjw2X".equals(customerID) &&

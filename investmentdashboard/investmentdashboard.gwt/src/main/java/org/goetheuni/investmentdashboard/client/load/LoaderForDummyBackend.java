@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.RootPanel;
  * Objects of this class are helper objects for the loading process. These
  * objects access the services of the dummy backend and store the retrieved
  * data.
+ * 
+ * JAVADOC DONE
  */
 public class LoaderForDummyBackend implements Loader {
 
@@ -56,8 +58,16 @@ public class LoaderForDummyBackend implements Loader {
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.load.Loader#loadAndStore(java.lang.
+	 * String, java.lang.Runnable)
+	 */
 	@Override
 	public void loadAndStore(String token, Runnable actionAfterLoadingCompleted) {
 		new DummyParentDataService(token, actionAfterLoadingCompleted).startRequest();
 	}
+
 }

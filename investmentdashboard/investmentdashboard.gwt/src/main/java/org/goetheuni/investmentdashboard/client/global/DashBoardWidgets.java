@@ -7,7 +7,10 @@ import org.goetheuni.investmentdashboard.client.ui.WidgetSecurityDepots;
 import com.google.gwt.user.client.ui.Label;
 
 /**
- * This class provides access to the dashboard's widgets
+ * This class provides access to the dashboard's widgets. They are placed very
+ * soon after their creation.
+ * 
+ * JAVADOC DONE
  */
 public class DashBoardWidgets {
 

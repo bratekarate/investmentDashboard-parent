@@ -6,6 +6,11 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
  * This class provides global methods for the storage of security market data.
+ * The storage must be filled with data from a rest call. Data is not
+ * automatically present. This global storage simplifies the code of
+ * microservice-access serialization tremendously.
+ * 
+ * JAVADOC DONE
  */
 public class SecurityMarketDataStorage {
 
