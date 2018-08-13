@@ -258,7 +258,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 				BigDecimal flopsValueDecline) {
 
 			// prepare header
-			this.setText(0, 0, "verglichen zum Vortag:");
+			this.setText(0, 0, "Entwicklung zum Vortag:");
 
 			// set the portfolio's gain in value or decline
 			BigDecimal gainOrDeclineOfPortfolioValue = sumOfValueGains.subtract(sumOfValueDeclines);
@@ -326,6 +326,10 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 			// set the header
 			this.setText(0, 0, "letzte Transaktionen:");
+			this.setText(0, 1, "Wertpapier");
+			this.setText(0, 2, "Typ");
+			this.setText(0, 3, "Anzahl");
+			this.setText(0, 4, "Preis");
 
 			List<SecurityTransaction> listOfTransaction = correspondingObject
 					.getRecentTransactionsSorted(NUMBER_OF_TRANSACTIONS);
@@ -395,7 +399,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			this.setWidth("100%");
 			this.setSpacing(4);
 			this.getElement().getStyle().setBackgroundColor(StyleConstants.TOP_WIDGET_COLOR);
-			Label newHeader = new ContentLabelDefault("Top-Investments");
+			Label newHeader = new ContentLabelDefault("Meine Top-Investments");
 			this.header = newHeader;
 			newHeader.getElement().getStyle().setColor(StyleConstants.POSITIVE_COLOR);
 			newHeader.setVisible(false);
@@ -430,7 +434,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 			this.setWidth("100%");
 			this.setSpacing(4);
 			this.getElement().getStyle().setBackgroundColor(StyleConstants.FLOP_WIDGET_COLOR);
-			Label newHeader = new ContentLabelDefault("Flop-Investments");
+			Label newHeader = new ContentLabelDefault("Meine Flop-Investments");
 			newHeader.getElement().getStyle().setPaddingBottom(4, Unit.PX);
 			this.header = newHeader;
 			newHeader.getElement().getStyle().setColor(StyleConstants.NEGATIVE_COLOR);
