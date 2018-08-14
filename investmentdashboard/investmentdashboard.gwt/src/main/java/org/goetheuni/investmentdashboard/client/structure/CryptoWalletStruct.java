@@ -209,17 +209,11 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.goetheuni.investmentdashboard.client.ui.SelectableCryptoWallet#isEmpty()
-	 */
-	@Override
-	public boolean isEmpty() {
-		return this.data.getAccountBalance().signum() == 0;
-	}
 
+	/**
+	 * Creates a sub-structure for the given crypto wallet.
+	 * @param data the given crypto wallet
+	 */
 	protected CryptoWalletStruct(CryptoWallet data) {
 		this.cachedBalance = BigDecimal.ZERO;
 		this.data = Objects.requireNonNull(data, "The given CryptoWallet data object must not be null.");

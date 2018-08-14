@@ -191,16 +191,6 @@ public class SecurityDepotStruct implements EURComputable, SelectableSecurityDep
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.goetheuni.investmentdashboard.client.ui.SelectableSecurityDepot#isEmpty()
-	 */
-	@Override
-	public boolean isEmpty() {
-		return this.data.getPortfolio().isEmpty();
-	}
 
 	/**
 	 * Creates a structure object for the given SecurityDepot. It also generates

@@ -127,7 +127,7 @@ public class DetailWidgetCryptoWallet extends Grid implements AbstractDetailWidg
 		this.getColumnFormatter().setWidth(0, "40%");
 		this.getColumnFormatter().setWidth(1, "40%");
 		this.getColumnFormatter().setWidth(2, "20%");
-		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		this.setWidth(SizeConstants.getCategoryWidgetWidth());
 	}
 
 }

@@ -122,14 +122,14 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 		this.isMarked = false;
 
 		// set width
-		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		this.setWidth(SizeConstants.getCategoryWidgetWidth());
 
 		// set cursor style to pointer
 		this.getElement().getStyle().setCursor(Style.Cursor.POINTER);
 
 		// create a panel for the content
 		this.content = new HorizontalPanel();
-		this.content.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		this.content.setWidth(SizeConstants.getCategoryWidgetWidth());
 		this.content.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		this.add(this.content);
 

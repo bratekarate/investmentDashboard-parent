@@ -31,7 +31,7 @@ public class TopUIPartBuilder {
 		ContentLabelDefault linkActions = new ContentLabelDefault("Kontoaktionen");
 		ContentLabelDefault linkContact = new ContentLabelDefault("Postfach");
 
-		panelLinks.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		panelLinks.setWidth(SizeConstants.getCategoryWidgetWidth());
 		panelTotalBalance.setWidth(SizeConstants.getTotalWidth());
 
 		// add links to their panel

@@ -28,12 +28,19 @@ public class VolatilityLabel extends Label {
 			String potentialPlus = isNegaitve ? "" : "+";
 
 			this.setText(formattedAmount + "  " + "(" + potentialPlus + inPercentage.toString() + "%)");
-		} else /* must be an empty depot or wallet */ {
+			
+		} else if(referenceValue.signum() == 0)/* must be an empty depot or wallet */ {
+			// set the style
+			this.getElement().getStyle().setFontSize(FontConstants.CATEGORYCONTENT, FontConstants.UNIT);
+			
+			this.setText(formattedAmount + "  " + "(+0%)");
+			
+		} else {
+			// must be an error
 			throw new RuntimeException(
-					"Cannot construct a volatility label for a reference value of 0 or smaller. Empty depots or wallets are not allowed for this method. Was: "
+					"Cannot construct a volatility label for a negative reference value. Was: "
 							+ referenceValue.toString());
 		}
-
 	}
 
 	public VolatilityLabel() {

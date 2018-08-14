@@ -132,7 +132,7 @@ public class DetailWidgetCashAccount extends Grid implements AbstractDetailWidge
 		this.getColumnFormatter().setWidth(0, "40%");
 		this.getColumnFormatter().setWidth(1, "40%");
 		this.getColumnFormatter().setWidth(2, "20%");
-		this.setWidth(SizeConstants.ForCatWidgets.getWidth());
+		this.setWidth(SizeConstants.getCategoryWidgetWidth());
 	}
 
 }
