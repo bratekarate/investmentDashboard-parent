@@ -32,8 +32,10 @@ public interface SelectableSecurityDepot extends Selectable {
 	List<SecurityInvestmentStruct> getInvestments();
 
 	/**
-	 * @param numberOfTransactions The maximum number of transaction in the result
-	 * @return the sorted list of the most recent transaction (the most recent at first position)
+	 * @param numberOfTransactions
+	 *            The maximum number of transaction in the result
+	 * @return the sorted list of the most recent transaction (the most recent at
+	 *         first position)
 	 */
 	List<SecurityTransaction> getRecentTransactionsSorted(int numberOfTransactions);
 

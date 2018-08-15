@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class represents an executed transaction of securities.
+ * 
+ * JAVADOC DONE
  */
 public class SecurityTransaction implements ISecurityTransaction {
 
@@ -154,9 +156,15 @@ public class SecurityTransaction implements ISecurityTransaction {
 	 * Creates a transaction of securities. All parameters must not be null.
 	 * 
 	 * @param quantity
+	 *            The quantity of secuity instances traded (always positive)
 	 * @param totalPrize
+	 *            the total prize (always positive)
 	 * @param security
+	 *            the security that has been traded
 	 * @param dateOfExecution
+	 *            the concerning point of time
+	 * @param isSellTransaction
+	 *            True -> Sell, False -> Buy
 	 */
 	@JsonCreator
 	public SecurityTransaction(final @JsonProperty("quantity") long quantity,
@@ -164,6 +172,7 @@ public class SecurityTransaction implements ISecurityTransaction {
 			final @JsonProperty("dateOfExecution") Date dateOfExecution,
 			final @JsonProperty("isSellTransaction") boolean isSellTransaction) {
 
+		// the quantity must be positive
 		if (quantity > 0) {
 			this.quantity = quantity;
 		} else {
@@ -171,12 +180,15 @@ public class SecurityTransaction implements ISecurityTransaction {
 					"The given quantity must be positive. Please consider the use of the isSellTransaction field.");
 		}
 
-		this.totalPrize = Objects.requireNonNull(totalPrize, "The object for the total prize must not be null");
+		Objects.requireNonNull(totalPrize, "The object for the total prize must not be null");
 
 		// the price is assumed to be non negative
-		if (totalPrize.signum() < 0) {
-			throw new IllegalArgumentException("The total prize of a security transaction must not be negative. It is: "
-					+ totalPrize.doubleValue());
+		if (totalPrize.signum() > 0) {
+			// this is fine
+			this.totalPrize = totalPrize;
+		} else {
+			throw new IllegalArgumentException(
+					"The total prize of a security transaction must be positive. It is: " + totalPrize.doubleValue());
 		}
 
 		this.security = Objects.requireNonNull(security, "The given security must not be null");
@@ -184,6 +196,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		this.isSellTransaction = isSellTransaction;
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected SecurityTransaction() {
 		// required by GWT
 	}

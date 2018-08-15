@@ -7,6 +7,8 @@ import java.util.Date;
  * An object with this interface represents an executed payment in crypto
  * currency. As GWT is based on source code mapping, these interface can only be
  * used in the server-side code.
+ * 
+ * JAVADOC DONE
  */
 public interface ICryptoPayment {
 

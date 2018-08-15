@@ -4,7 +4,10 @@ import org.goetheuni.investmentdashboard.shared.impl.AuthenticationToken;
 import org.goetheuni.investmentdashboard.shared.impl.CustomerID;
 
 /**
- * Objects with this interface represent information needed for a request at the mid-tier.
+ * Objects with this interface represent information needed for a request at the
+ * mid-tier.
+ * 
+ * JAVADOC DONE
  */
 public interface IRequestInfo {
 

@@ -1,6 +1,5 @@
 package org.goetheuni.investmentdashboard.shared.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class represents a security depot.
+ * 
+ * JAVADOC DONE
  */
 public class SecurityDepot implements ISecurityDepot {
 
 	/**
-	 * A map that describes the portfolio. A security will be mapped to its quantity
-	 * in the portfolio.
+	 * A list of security investments of the portfolio. There must be exactly one
+	 * investment for every contained security.
 	 */
 	protected List<SecurityInvestment> portfolio;
 
@@ -34,12 +35,6 @@ public class SecurityDepot implements ISecurityDepot {
 	 * Recent transactions, that affect this portfolio.
 	 */
 	protected List<SecurityTransaction> recentTransactions;
-
-	/**
-	 * The depot's base value provide by the bank. It is used for comparison with
-	 * the current value.
-	 */
-	protected BigDecimal referenceValue;
 
 	/**
 	 * @return the portfolio
@@ -73,97 +68,19 @@ public class SecurityDepot implements ISecurityDepot {
 		return recentTransactions;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((depotID == null) ? 0 : depotID.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((portfolio == null) ? 0 : portfolio.hashCode());
-		result = prime * result + ((recentTransactions == null) ? 0 : recentTransactions.hashCode());
-		result = prime * result + ((referenceValue == null) ? 0 : referenceValue.hashCode());
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		SecurityDepot other = (SecurityDepot) obj;
-		if (depotID == null) {
-			if (other.depotID != null) {
-				return false;
-			}
-		} else if (!depotID.equals(other.depotID)) {
-			return false;
-		}
-		if (name == null) {
-			if (other.name != null) {
-				return false;
-			}
-		} else if (!name.equals(other.name)) {
-			return false;
-		}
-		if (portfolio == null) {
-			if (other.portfolio != null) {
-				return false;
-			}
-		} else if (!portfolio.equals(other.portfolio)) {
-			return false;
-		}
-		if (recentTransactions == null) {
-			if (other.recentTransactions != null) {
-				return false;
-			}
-		} else if (!recentTransactions.equals(other.recentTransactions)) {
-			return false;
-		}
-		if (referenceValue == null) {
-			if (other.referenceValue != null) {
-				return false;
-			}
-		} else if (!referenceValue.equals(other.referenceValue)) {
-			return false;
-		}
-		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "SecurityDepot [portfolio=" + portfolio + ", depotID=" + depotID + ", name=" + name
-				+ ", recentTransactions=" + recentTransactions + ", referenceValue=" + referenceValue + "]";
-	}
-
 	/**
-	 * Creates a security depot. All parameters must not be null.
+	 * Creates a security depot. All parameters must be non-null.
 	 * 
 	 * @param portfolio
+	 *            A list of security investments of the portfolio. There must be
+	 *            exactly one investment for every contained security.
 	 * @param depotID
+	 *            The depot's ID
 	 * @param name
+	 *            The depot's name
 	 * @param recentTransactions
-	 * @param referenceValue
+	 *            Some recent transactions
+	 * 
 	 */
 	@JsonCreator
 	public SecurityDepot(final @JsonProperty("portfolio") List<SecurityInvestment> portfolio,
@@ -177,6 +94,9 @@ public class SecurityDepot implements ISecurityDepot {
 
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected SecurityDepot() {
 		// required by GWT
 	}

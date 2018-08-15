@@ -191,7 +191,6 @@ public class SecurityDepotStruct implements EURComputable, SelectableSecurityDep
 		return result;
 	}
 
-
 	/**
 	 * Creates a structure object for the given SecurityDepot. It also generates
 	 * substructures for the SecurityInvestments.

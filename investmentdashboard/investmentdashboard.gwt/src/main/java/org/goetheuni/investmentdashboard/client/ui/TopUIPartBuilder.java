@@ -14,9 +14,19 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
  * This class provides a method that builds the top part of the UI.
+ * 
+ * JAVADOC DONE
  */
 public class TopUIPartBuilder {
 
+	/**
+	 * This method build the top area part of the dash board UI.
+	 * 
+	 * @param totalBalance
+	 *            The total balance of the customer
+	 * @param topLayoutPanel
+	 *            The base panel for the top area
+	 */
 	protected static void buildUI(BigDecimal totalBalance, VerticalPanel topLayoutPanel) {
 
 		HorizontalPanel firstRowPanel = new HorizontalPanel();

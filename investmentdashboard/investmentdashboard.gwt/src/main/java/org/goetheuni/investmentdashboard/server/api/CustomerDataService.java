@@ -5,7 +5,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
 import org.goetheuni.investmentdashboard.server.data.DataDummy;
 import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
@@ -13,16 +12,19 @@ import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 
 /**
  * This is the server-side implementation of the service for customer data.
+ * 
+ * JAVADOC DONE
  */
 @Path(ServicePaths.CUSTOMER_DATA_SERVICE)
 public class CustomerDataService {
 
 	/**
-	 * Returns JSON representation of a sample customer.
+	 * Returns JSON representation of customer's data.
 	 * 
-	 * @param token
-	 *            a dummy token
-	 * @return a sample customer
+	 * @param requestInfo
+	 *            an authentication token and the customer ID
+	 * @return JSON representation of the data of the customer with the given
+	 *         customer ID
 	 */
 	@POST
 	@Path(ServicePaths.CUSTOMER_RESOURCE)

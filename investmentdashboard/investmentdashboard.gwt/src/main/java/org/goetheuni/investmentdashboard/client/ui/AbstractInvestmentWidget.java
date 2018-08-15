@@ -13,8 +13,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * Objects of this class represent widgets, that visualize  security investments.
- * They are either tops or flops. 
+ * Objects of this class represent widgets, that visualize security investments.
+ * They are either tops or flops.
  * 
  * JAVADOC DONE
  */
@@ -56,13 +56,16 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 	protected Label delta;
 
 	/**
-	 * The label for the number of instances of securities contained in this investment
+	 * The label for the number of instances of securities contained in this
+	 * investment
 	 */
 	protected Label quantity;
 
 	/**
 	 * Creates the label for the security's quotation.
-	 * @param correspondingObject The security investment
+	 * 
+	 * @param correspondingObject
+	 *            The security investment
 	 * @return label for the security's quotation (of a single instance)
 	 */
 	protected static Label createQuotationDeltaLabel(SecurityInvestmentStruct correspondingObject) {
@@ -100,9 +103,13 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 	}
 
 	/**
-	 * Creates a label for the number of instances of securities contained in this investment.
-	 * @param correspondingObject The security investment
-	 * @return a label for the number of instances of securities contained in this investment
+	 * Creates a label for the number of instances of securities contained in this
+	 * investment.
+	 * 
+	 * @param correspondingObject
+	 *            The security investment
+	 * @return a label for the number of instances of securities contained in this
+	 *         investment
 	 */
 	protected static Label createQuantityLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text and return the label
@@ -111,9 +118,14 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 	}
 
 	/**
-	 * Creates a label for the investments total market value and its reference value.
-	 * @param correspondingObject The security investment
-	 * @return a label for the investments total market value and its reference valuea label for the investments total market value and its reference value
+	 * Creates a label for the investments total market value and its reference
+	 * value.
+	 * 
+	 * @param correspondingObject
+	 *            The security investment
+	 * @return a label for the investments total market value and its reference
+	 *         valuea label for the investments total market value and its reference
+	 *         value
 	 */
 	protected static Label createDeltaLabel(SecurityInvestmentStruct correspondingObject) {
 		// generate the text
@@ -133,7 +145,9 @@ public class AbstractInvestmentWidget extends HorizontalPanel {
 
 	/**
 	 * Creates a new investment widget
-	 * @param correspondingObject The security investment to represent
+	 * 
+	 * @param correspondingObject
+	 *            The security investment to represent
 	 */
 	protected AbstractInvestmentWidget(SecurityInvestmentStruct correspondingObject) {
 		// validate input

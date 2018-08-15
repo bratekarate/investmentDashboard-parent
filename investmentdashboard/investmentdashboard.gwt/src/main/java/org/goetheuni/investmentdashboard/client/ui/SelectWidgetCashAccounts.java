@@ -11,7 +11,8 @@ import java.util.List;
 public class SelectWidgetCashAccounts extends AbstractSelectWidget<SelectableCashAccount> {
 
 	/**
-	 * @param accounts The cash account to represent
+	 * @param accounts
+	 *            The cash account to represent
 	 * @return The buttons of the select widget (without click-handlers)
 	 */
 	private static List<AbstractSelectButton<SelectableCashAccount>> createButtons(
@@ -28,8 +29,11 @@ public class SelectWidgetCashAccounts extends AbstractSelectWidget<SelectableCas
 
 	/**
 	 * Creates a select widget for cash accounts
-	 * @param accounts The cash account struct to represent
-	 * @param detailWidget The corresponding detail widget 
+	 * 
+	 * @param accounts
+	 *            The cash account struct to represent
+	 * @param detailWidget
+	 *            The corresponding detail widget
 	 */
 	public SelectWidgetCashAccounts(List<? extends SelectableCashAccount> accounts,
 			DetailWidgetCashAccount detailWidget) {
@@ -38,6 +42,7 @@ public class SelectWidgetCashAccounts extends AbstractSelectWidget<SelectableCas
 
 	/**
 	 * NOT A PART OF THE API
+	 * 
 	 * @param someSelectButtons
 	 * @param detailWidget
 	 */

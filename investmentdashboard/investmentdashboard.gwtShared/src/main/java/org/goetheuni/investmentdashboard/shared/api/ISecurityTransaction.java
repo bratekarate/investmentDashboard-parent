@@ -9,6 +9,8 @@ import org.goetheuni.investmentdashboard.shared.impl.Security;
  * An object with this interface represents an executed transaction of
  * securities. As GWT is based on source code mapping, these interface can only
  * be used in the server-side code.
+ * 
+ * JAVADOC DONE
  */
 public interface ISecurityTransaction {
 

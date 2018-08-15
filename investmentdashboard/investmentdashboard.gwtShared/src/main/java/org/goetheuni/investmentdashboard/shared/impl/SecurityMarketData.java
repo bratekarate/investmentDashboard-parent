@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Objects of this class represent security market data provided by the bank.
- * The concerning point of time must be specified. An object of this class may
- * not contain information about all securities in the market.
+ * Objects of this class represent security market data provided by the bank. It
+ * also contains reference data for comparison. The concerning point of time
+ * must be specified. An object of this class may not contain information about
+ * all securities in the market.
  * 
+ * JAVADOC DONE
  */
 public class SecurityMarketData implements ISecurityMarketData {
 
@@ -125,10 +127,15 @@ public class SecurityMarketData implements ISecurityMarketData {
 	}
 
 	/**
-	 * Creates an object for security market data. All parameters must not be null.
+	 * Creates an object for security market and reference data. All parameters must
+	 * not be null.
 	 * 
 	 * @param marketPrizes
+	 *            the market data
+	 * @param referenceValues
+	 *            the reference data
 	 * @param dateAndTime
+	 *            The concerning point of time
 	 */
 	@JsonCreator
 	public SecurityMarketData(final @JsonProperty("marketPrizes") Map<String, BigDecimal> marketPrizes,
@@ -140,6 +147,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		this.dateAndTime = Objects.requireNonNull(dateAndTime, "The date of execution must not be null");
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected SecurityMarketData() {
 		// required by GWT
 	}

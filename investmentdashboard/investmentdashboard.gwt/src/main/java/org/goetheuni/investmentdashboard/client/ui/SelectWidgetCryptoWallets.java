@@ -11,7 +11,8 @@ import java.util.List;
 public class SelectWidgetCryptoWallets extends AbstractSelectWidget<SelectableCryptoWallet> {
 
 	/**
-	 * @param wallets The wallets to represent
+	 * @param wallets
+	 *            The wallets to represent
 	 * @return Creates the buttons for the select widget (without click-handlers)
 	 */
 	private static List<AbstractSelectButton<SelectableCryptoWallet>> createButtons(
@@ -33,8 +34,11 @@ public class SelectWidgetCryptoWallets extends AbstractSelectWidget<SelectableCr
 
 	/**
 	 * NOT A PART OF THE API
-	 * @param someSelectButtons the widget's select buttons
-	 * @param detailWidget the corresponding detail widget
+	 * 
+	 * @param someSelectButtons
+	 *            the widget's select buttons
+	 * @param detailWidget
+	 *            the corresponding detail widget
 	 */
 	protected SelectWidgetCryptoWallets(List<AbstractSelectButton<SelectableCryptoWallet>> someSelectButtons,
 			AbstractDetailWidget<SelectableCryptoWallet> detailWidget) {

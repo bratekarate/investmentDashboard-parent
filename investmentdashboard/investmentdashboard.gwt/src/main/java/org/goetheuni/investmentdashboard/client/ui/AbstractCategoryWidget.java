@@ -7,13 +7,14 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * Objects of this class represent widgets for a whole category.
- * The three categories are cash, crypto assets and security depots.
- * It consists of a select widget and detail widget.
+ * Objects of this class represent widgets for a whole category. The three
+ * categories are cash, crypto assets and security depots. It consists of a
+ * select widget and detail widget.
  * 
- * @param <S> The category that the widget represents.
+ * @param <S>
+ *            The category that the widget represents.
  * 
- * JAVADOC DONE
+ *            JAVADOC DONE
  */
 public abstract class AbstractCategoryWidget<S extends Selectable> extends VerticalPanel {
 
@@ -29,9 +30,13 @@ public abstract class AbstractCategoryWidget<S extends Selectable> extends Verti
 
 	/**
 	 * Creates a category widget.
-	 * @param header The header of the category
-	 * @param selectWidget The select widget of the new widget
-	 * @param detailWidget the detail widget of the new widget
+	 * 
+	 * @param header
+	 *            The header of the category
+	 * @param selectWidget
+	 *            The select widget of the new widget
+	 * @param detailWidget
+	 *            the detail widget of the new widget
 	 */
 	protected AbstractCategoryWidget(String header, AbstractSelectWidget<S> selectWidget,
 			AbstractDetailWidget<S> detailWidget) {

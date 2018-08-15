@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * An object of this class represents a cash account.
  *
+ * JAVADOC DONE
  */
 public class CashAccount implements ICashAccount {
 
@@ -188,11 +189,18 @@ public class CashAccount implements ICashAccount {
 	 * Creates a cash account object. All parameters must not be null.
 	 * 
 	 * @param accountID
+	 *            The account's ID
 	 * @param iban
+	 *            The accounts's IBAN (displayed in the UI)
 	 * @param name
+	 *            THE account's name (displayed in the UI)
 	 * @param recentPayments
+	 *            a list of recent payments (partially displayed in the UI)
 	 * @param accountBalance
+	 *            the accounts balance in EUR
 	 * @param currency
+	 *            The currency code of the account's currency. Only EUR is allowed
+	 *            so far.
 	 */
 	@JsonCreator
 	public CashAccount(final @JsonProperty("accountID") String accountID, final @JsonProperty("iban") String iban,
@@ -206,6 +214,14 @@ public class CashAccount implements ICashAccount {
 		this.recentPayments = Objects.requireNonNull(recentPayments, "The list of recent payments must not be null");
 		this.accountBalance = Objects.requireNonNull(accountBalance, "The account balance must not be null");
 		this.currency = Objects.requireNonNull(currency, "The currency used must not be null");
+
+		// only EUR accounts fully supported at this point
+		if ("EUR".equals(currency)) {
+			// this is fine
+		} else {
+			throw new RuntimeException(
+					"Only EUR accounts are full supported at this point. Currency code was: " + currency);
+		}
 
 		// validate payments
 		for (CashPayment payment : this.recentPayments) {
@@ -221,6 +237,9 @@ public class CashAccount implements ICashAccount {
 		}
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected CashAccount() {
 		// required by GWT
 	}

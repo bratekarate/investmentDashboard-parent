@@ -6,10 +6,11 @@ import java.util.Map;
 
 /**
  * Objects with this interface represent crypto-market data provided by the
- * bank. The concerning point of time must be specified. It may not contain
- * information about all crypto currencies in the market. As GWT is based on
- * source code mapping, these interface can only be used in the server-side
- * code.
+ * bank. It also contains reference data for comparison. The concerning point of
+ * time must be specified. It may not contain information about all crypto
+ * currencies in the market, but only about those, that are relevant for the
+ * customer. As GWT is based on source code mapping, these interface can only be
+ * used in the server-side code.
  */
 public interface ICryptoMarketData {
 

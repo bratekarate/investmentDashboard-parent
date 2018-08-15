@@ -4,7 +4,8 @@
 package org.goetheuni.investmentdashboard.client.ui;
 
 /**
- * Objects with this interface can be used as objects of select buttons and detail widgets.
+ * Objects with this interface can be used as objects of select buttons and
+ * detail widgets.
  * 
  * JAVADOC DONE
  */
@@ -33,9 +34,9 @@ public interface Selectable extends Comparable<Selectable> {
 	void refreshComputations();
 
 	/**
-	 * Allows to compare selectables.
-	 * It assumes that (name, id) identifies a selectable
-	 * Should not be used to compare selectables of different sub-interfaces though.
+	 * Allows to compare selectables. It assumes that (name, id) identifies a
+	 * selectable Should not be used to compare selectables of different
+	 * sub-interfaces though.
 	 */
 	@Override
 	default int compareTo(Selectable o) {

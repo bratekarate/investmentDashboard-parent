@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Objects of this class represent crypto-market data provided by the bank. The
- * concerning point of time must be specified. An object of this class may not
- * contain information about all crypto currencies in the market.
+ * Objects of this class represent crypto-market data provided by the bank. It
+ * also contains reference data for comparison. The concerning point of time
+ * must be specified. It may not contain information about all crypto currencies
+ * in the market, but only about those, that are relevant for the customer.
  * 
+ * JAVADOC DONE
  */
 public class CryptoMarketData implements ICryptoMarketData {
 
@@ -125,10 +127,14 @@ public class CryptoMarketData implements ICryptoMarketData {
 	}
 
 	/**
-	 * Creates an object for crypto market data. All parameters must be initialized.
+	 * Creates a container for crypto market and reference data.
 	 * 
 	 * @param exchangeRates
+	 *            the crypto market data
+	 * @param referenceValues
+	 *            the reference data for comparison
 	 * @param dateAndTime
+	 *            the concerning point of time
 	 */
 	@JsonCreator
 	public CryptoMarketData(final @JsonProperty("exchangeRates") Map<String, BigDecimal> exchangeRates,
@@ -139,6 +145,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		this.dateAndTime = Objects.requireNonNull(dateAndTime, "The execution date must not be null");
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected CryptoMarketData() {
 		// required by GWT
 	}

@@ -13,7 +13,8 @@ import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 
 /**
- * This is the client-side interface for services for securities' and crypto asset' market and reference data.
+ * This is the client-side interface for services for securities' and crypto
+ * asset' market and reference data.
  * 
  * JAVADOC DONE
  */
@@ -34,7 +35,8 @@ public interface IDummyMarketDataService extends RestService {
 	public void requestSecurityData(RequestInfo requestInfo, MethodCallback<SecurityMarketData> securitiesData);
 
 	/**
-	 * Asynchronous method returning for retrieving market and reference data for crypto assets.
+	 * Asynchronous method returning for retrieving market and reference data for
+	 * crypto assets.
 	 * 
 	 * @param requestInfo
 	 *            The customer ID and the authentication token

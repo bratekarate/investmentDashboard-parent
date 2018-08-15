@@ -3,12 +3,14 @@ package org.goetheuni.investmentdashboard.client.ui;
 import com.google.gwt.user.client.ui.IsWidget;
 
 /**
- * An objec twith this interface is a widget that shows details for a Selectable object of the a category.
- * It will be updated, if a select button of the corresponding select widget is pressed.
+ * An objec twith this interface is a widget that shows details for a Selectable
+ * object of the a category. It will be updated, if a select button of the
+ * corresponding select widget is pressed.
  * 
- * @param <S> The category (cash, crypto or depots)
+ * @param <S>
+ *            The category (cash, crypto or depots)
  * 
- * JAVADOC DONE
+ *            JAVADOC DONE
  */
 public interface AbstractDetailWidget<S extends Selectable> extends IsWidget {
 

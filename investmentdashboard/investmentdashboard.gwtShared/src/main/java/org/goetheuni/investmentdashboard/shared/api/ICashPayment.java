@@ -8,6 +8,8 @@ import java.util.Date;
  * generated for a customer and therefore contains only the counter-party IBAN.
  * As GWT is based on source code mapping, these interface can only be used in
  * the server-side code.
+ * 
+ * JAVADOC DONE
  */
 public interface ICashPayment {
 
@@ -44,7 +46,7 @@ public interface ICashPayment {
 	public int hashCode();
 
 	/**
-	 * Returns true if the objects values are equal to the given object. Otherwise
+	 * Returns true if the object's values are equal to the given object. Otherwise
 	 * false.
 	 * 
 	 * @param obj

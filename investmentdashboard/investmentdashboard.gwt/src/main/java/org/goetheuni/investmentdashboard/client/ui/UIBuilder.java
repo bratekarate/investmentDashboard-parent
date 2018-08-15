@@ -9,14 +9,27 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+/**
+ * This class builds the dash board's UI.
+ * 
+ * JAVADOC DONE
+ */
 public class UIBuilder {
 
+	/**
+	 * This method builds the dashboard's UI
+	 * 
+	 * @param rootPanel
+	 *            GWT-module's rootpanel
+	 * @param rootStruct
+	 *            The root-structure built by the initial loading process
+	 */
 	public static void buildUI(RootPanel rootPanel, RootStructure rootStruct) {
 
 		// set default color (of the text)
 		rootPanel.getElement().getStyle().setColor(FontConstants.DEFAULTCOLOR);
 
-		// create a own rootpanel
+		// create a own root-panel for the dash board ui
 		VerticalPanel myRoot = new VerticalPanel();
 		myRoot.setWidth("100%");
 		myRoot.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);

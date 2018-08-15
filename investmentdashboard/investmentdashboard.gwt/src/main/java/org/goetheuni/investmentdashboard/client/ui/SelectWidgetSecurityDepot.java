@@ -9,7 +9,8 @@ import java.util.List;
 public class SelectWidgetSecurityDepot extends AbstractSelectWidget<SelectableSecurityDepot> {
 
 	/**
-	 * @param depots The depots represented by the widget
+	 * @param depots
+	 *            The depots represented by the widget
 	 * @return The buttons of the widget (without click-handlers)
 	 */
 	private static List<AbstractSelectButton<SelectableSecurityDepot>> createButtons(
@@ -26,8 +27,11 @@ public class SelectWidgetSecurityDepot extends AbstractSelectWidget<SelectableSe
 
 	/**
 	 * Creates a select widget for security depots.
-	 * @param depots The depots shown in the widget
-	 * @param detailWidget The corresponding detail widget
+	 * 
+	 * @param depots
+	 *            The depots shown in the widget
+	 * @param detailWidget
+	 *            The corresponding detail widget
 	 */
 	public SelectWidgetSecurityDepot(List<? extends SelectableSecurityDepot> depots,
 			DetailWidgetSecurityDepot detailWidget) {
@@ -36,8 +40,11 @@ public class SelectWidgetSecurityDepot extends AbstractSelectWidget<SelectableSe
 
 	/**
 	 * NOT A PART OF THE API
-	 * @param someSelectButtons The widget's select buttons
-	 * @param detailWidget The corresponding detail widget
+	 * 
+	 * @param someSelectButtons
+	 *            The widget's select buttons
+	 * @param detailWidget
+	 *            The corresponding detail widget
 	 */
 	protected SelectWidgetSecurityDepot(List<AbstractSelectButton<SelectableSecurityDepot>> someSelectButtons,
 			AbstractDetailWidget<SelectableSecurityDepot> detailWidget) {

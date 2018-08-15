@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class represents an executed payment in crypto currency.
+ * 
+ * JAVADOC DONE
  */
 public class CryptoPayment implements ICryptoPayment {
 
@@ -143,12 +145,16 @@ public class CryptoPayment implements ICryptoPayment {
 	}
 
 	/**
-	 * Creates a crypto currency payment. All parameters must be initialized.
+	 * Creates a crypto currency payment. All parameters must not be null.
 	 * 
 	 * @param amount
+	 *            The pament's amount
 	 * @param currencyCode
+	 *            The crypto currency code
 	 * @param counterPartyAddress
+	 *            The counter-party's address
 	 * @param dateOfExecution
+	 *            The date of execution
 	 */
 	@JsonCreator
 	public CryptoPayment(final @JsonProperty("amount") BigDecimal amount,
@@ -162,6 +168,9 @@ public class CryptoPayment implements ICryptoPayment {
 		this.dateOfExecution = Objects.requireNonNull(dateOfExecution, "The date of execution must not be null");
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected CryptoPayment() {
 		// required by GWT
 	}

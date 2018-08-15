@@ -19,8 +19,8 @@ import com.google.gwt.i18n.client.NumberFormat;
 
 /**
  * Objects of this class represent crypto wallets in the logical structure of
- * the dash board front-end.
- * Structure objects are a logical representation of the the dashboard's UI's content.
+ * the dash board front-end. Structure objects are a logical representation of
+ * the the dashboard's UI's content.
  * 
  * JAVADOC DONE
  */
@@ -209,10 +209,11 @@ public class CryptoWalletStruct implements EURComputable, SelectableCryptoWallet
 		return result;
 	}
 
-
 	/**
 	 * Creates a sub-structure for the given crypto wallet.
-	 * @param data the given crypto wallet
+	 * 
+	 * @param data
+	 *            the given crypto wallet
 	 */
 	protected CryptoWalletStruct(CryptoWallet data) {
 		this.cachedBalance = BigDecimal.ZERO;

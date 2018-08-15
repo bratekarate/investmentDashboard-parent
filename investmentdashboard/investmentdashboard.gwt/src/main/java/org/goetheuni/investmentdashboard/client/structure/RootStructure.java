@@ -75,7 +75,8 @@ public class RootStructure {
 
 	/**
 	 * Computes the total balance in EUR incorporating all cash accounts, wallets
-	 * and depots. It computes tha balances and updates the caches in all substructures.
+	 * and depots. It computes tha balances and updates the caches in all
+	 * substructures.
 	 * 
 	 * @param secMarket
 	 *            The list of security prizes used.
@@ -174,7 +175,8 @@ public class RootStructure {
 	}
 
 	/**
-	 * Creates a root struct. This method should only be called in once in the UI initialization process.
+	 * Creates a root struct. This method should only be called in once in the UI
+	 * initialization process.
 	 * 
 	 * @param cashAccounts
 	 *            sub-structure

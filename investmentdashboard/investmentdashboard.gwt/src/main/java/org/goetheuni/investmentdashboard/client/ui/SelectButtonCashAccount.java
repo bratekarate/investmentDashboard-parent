@@ -14,7 +14,9 @@ public class SelectButtonCashAccount extends AbstractSelectButton<SelectableCash
 
 	/**
 	 * Creates a select button for the given cash account.
-	 * @param correspondingStructure The cash account 
+	 * 
+	 * @param correspondingStructure
+	 *            The cash account
 	 */
 	public SelectButtonCashAccount(SelectableCashAccount correspondingStructure) {
 		// the icon is defined here
@@ -23,10 +25,15 @@ public class SelectButtonCashAccount extends AbstractSelectButton<SelectableCash
 
 	/**
 	 * NOT A PART OF THE API
-	 * @param icon please see the superclass constructor
-	 * @param correspondingStructure please see the superclass constructor
-	 * @param optionalVolatilityLabel please see the superclass constructor
-	 * @param optionalAmountLabel please see the superclass constructor
+	 * 
+	 * @param icon
+	 *            please see the superclass constructor
+	 * @param correspondingStructure
+	 *            please see the superclass constructor
+	 * @param optionalVolatilityLabel
+	 *            please see the superclass constructor
+	 * @param optionalAmountLabel
+	 *            please see the superclass constructor
 	 */
 	protected SelectButtonCashAccount(Image icon, SelectableCashAccount correspondingStructure,
 			VolatilityLabel optionalVolatilityLabel, Label optionalAmountLabel) {

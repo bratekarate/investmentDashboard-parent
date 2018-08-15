@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Represents an investment in one security.
+ * Represents an investment in a security. It can consist of of many instances
+ * of a security.
+ * 
+ * JAVADOC DONE
  */
 public class SecurityInvestment implements ISecurityInvestment {
 
@@ -97,7 +100,10 @@ public class SecurityInvestment implements ISecurityInvestment {
 	 * Creates an investment for the given security
 	 * 
 	 * @param security
+	 *            The security of this investment
 	 * @param quantity
+	 *            The number of instances of this security contained in this
+	 *            investment
 	 */
 	@JsonCreator
 	public SecurityInvestment(final @JsonProperty("security") Security security,
@@ -106,6 +112,9 @@ public class SecurityInvestment implements ISecurityInvestment {
 		this.quantity = quantity;
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected SecurityInvestment() {
 		// required by GWT
 	}

@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Objects of this class represent the bank's customers
- *
+ * Objects of this class represent the bank's customers.
+ * 
+ * JAVADOC DONE
+ * 
  */
 public class Customer implements ICustomer {
 
@@ -165,13 +167,19 @@ public class Customer implements ICustomer {
 	}
 
 	/**
-	 * Creates a customer object. All parameters must not be null.
+	 * Creates an object representing a customer.
 	 * 
 	 * @param nameForAdress
+	 *            A string that will be used to address the customer. It should be
+	 *            chosen appropriately.
 	 * @param customerID
+	 *            The customer ID
 	 * @param cashAccounts
+	 *            The customer's cash accounts
 	 * @param cryptoWallets
+	 *            The customer's crypto wallets
 	 * @param securityDepots
+	 *            The customer's security depots
 	 */
 	@JsonCreator
 	public Customer(final @JsonProperty("nameForAdress") String nameForAdress,
@@ -186,6 +194,9 @@ public class Customer implements ICustomer {
 		this.securityDepots = Objects.requireNonNull(securityDepots, "The list of wallets must not be null");
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected Customer() {
 		// required by GWT
 	}

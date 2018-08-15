@@ -9,7 +9,9 @@ public class FlopInvestmentWidget extends AbstractInvestmentWidget {
 
 	/**
 	 * Creates a flop investment widget from the given flop investment.
-	 * @param correspondingObject The flop investment to visualize
+	 * 
+	 * @param correspondingObject
+	 *            The flop investment to visualize
 	 */
 	protected FlopInvestmentWidget(SecurityInvestmentStruct correspondingObject) {
 		super(correspondingObject);

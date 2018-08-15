@@ -23,8 +23,9 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * Objects of this class are detail widgets for security depots.
- * They have four child widgets. A transaction widget, a flop investment widget, a top investment widget and a aggregation widget.
+ * Objects of this class are detail widgets for security depots. They have four
+ * child widgets. A transaction widget, a flop investment widget, a top
+ * investment widget and a aggregation widget.
  * 
  * 
  * JAVADOC DONE
@@ -36,7 +37,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	 */
 	protected static final int NUMBER_OF_TOPS = 3;
 
-	/** 
+	/**
 	 * The number of flop investments shown
 	 */
 	protected static final int NUMBER_OF_FLOPS = 3;
@@ -52,7 +53,8 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	protected SelectableSecurityDepot currentCorrespondingObject;
 
 	/**
-	 * The widget that shows aggregated information about the portofolio's developement
+	 * The widget that shows aggregated information about the portofolio's
+	 * developement
 	 */
 	protected AggregationsWidget aggregations;
 
@@ -77,10 +79,11 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	protected SecurityTransactionsWidget transactions;
 
 	/**
-	 * Adds all gains in value for all investments of the portfolio.
-	 * Only investments with a positive gain = quotation > reference value
+	 * Adds all gains in value for all investments of the portfolio. Only
+	 * investments with a positive gain = quotation > reference value
 	 * 
-	 * @param sortedInvestments All investments of the portfolio
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
 	 * @return Sum of all value gains
 	 */
 	private static BigDecimal getTotalValueGain(List<SecurityInvestmentStruct> sortedInvestments) {
@@ -102,8 +105,11 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 	/**
 	 * Adds the greatest (numberOfTops) gains in value for of the portfolio.
-	 * @param sortedInvestments All investments of the portfolio
-	 * @param numberOfTops The number of top-investments
+	 * 
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
+	 * @param numberOfTops
+	 *            The number of top-investments
 	 * @return Sum of gains in value of the top-investment
 	 */
 	private static BigDecimal getTopsValueGain(List<SecurityInvestmentStruct> sortedInvestments, int numberOfTops) {
@@ -126,10 +132,11 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	}
 
 	/**
-	 * Adds all declines in value for all investments of the portfolio.
-	 * Only investments with a positive decline = quotation < reference value
+	 * Adds all declines in value for all investments of the portfolio. Only
+	 * investments with a positive decline = quotation < reference value
 	 * 
-	 * @param sortedInvestments All investments of the portfolio
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
 	 * @return Sum of all value declines
 	 */
 	private static BigDecimal getTotalValueDecline(List<SecurityInvestmentStruct> sortedInvestments) {
@@ -150,11 +157,14 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	}
 
 	/**
-	 * Adds the (numberOfFlops) declines in value with the greatest absolute value for all investments of the portfolio.
-	 * Only investments with a positive decline = quotation < reference value
+	 * Adds the (numberOfFlops) declines in value with the greatest absolute value
+	 * for all investments of the portfolio. Only investments with a positive
+	 * decline = quotation < reference value
 	 * 
-	 * @param sortedInvestments All investments of the portfolio
-	 * @param numberOfFlops the number of flop-investments
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
+	 * @param numberOfFlops
+	 *            the number of flop-investments
 	 * @return Sum of declines in value for the flop-investment
 	 */
 	private static BigDecimal getFlopsValueDecline(List<SecurityInvestmentStruct> sortedInvestments,
@@ -180,9 +190,12 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	/**
 	 * Returns the investments with the greatest total gain in value.
 	 * 
-	 * @param sortedInvestments All investments of the portfolio
-	 * @param numberOfTops The maximum number of top-investements
-	 * @return the investments with the greatest total gain in value, at most the given number
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
+	 * @param numberOfTops
+	 *            The maximum number of top-investements
+	 * @return the investments with the greatest total gain in value, at most the
+	 *         given number
 	 */
 	private static List<SecurityInvestmentStruct> getTops(List<SecurityInvestmentStruct> sortedInvestments,
 			int numberOfTops) {
@@ -208,8 +221,10 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	/**
 	 * Returns the investments with the most severe decline in total value.
 	 * 
-	 * @param sortedInvestments All investments of the portfolio
-	 * @param numberOfFlops maximum number of flop-investments
+	 * @param sortedInvestments
+	 *            All investments of the portfolio
+	 * @param numberOfFlops
+	 *            maximum number of flop-investments
 	 * @return the flop investments, at most the given number
 	 */
 	private static List<SecurityInvestmentStruct> getFlops(List<SecurityInvestmentStruct> sortedInvestments,
@@ -240,10 +255,12 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		return currentCorrespondingObject;
 	}
 
-
-
-	/* (non-Javadoc)
-	 * @see org.goetheuni.investmentdashboard.client.ui.AbstractDetailWidget#update(org.goetheuni.investmentdashboard.client.ui.Selectable)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.goetheuni.investmentdashboard.client.ui.AbstractDetailWidget#update(org.
+	 * goetheuni.investmentdashboard.client.ui.Selectable)
 	 */
 	@Override
 	public void update(SelectableSecurityDepot correspondingObject) {
@@ -286,7 +303,6 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -350,19 +366,20 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	}
 
 	/**
-	 * Objects of this class show aggregated information about the portfolio's development.
+	 * Objects of this class show aggregated information about the portfolio's
+	 * development.
 	 */
 	protected class AggregationsWidget extends Grid {
 
 		/**
-		 * The number of columns of the table
-		 * The column in the middle serves is intended to be blank.
+		 * The number of columns of the table The column in the middle serves is
+		 * intended to be blank.
 		 */
 		private static final int NUMBER_OF_COLUMNS = 5;
 
 		/**
-		 * The number of rows of the table.
-		 * The first row must be reserved for the header.
+		 * The number of rows of the table. The first row must be reserved for the
+		 * header.
 		 */
 		private static final int NUMBER_OF_ROWS = 4;
 
@@ -477,9 +494,11 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		}
 
 		/**
-		 * Updates this transactions widget such that it shows transactions of the given depot.
+		 * Updates this transactions widget such that it shows transactions of the given
+		 * depot.
 		 * 
-		 * @param correspondingObject The depot, whose most recent transactions will be shown
+		 * @param correspondingObject
+		 *            The depot, whose most recent transactions will be shown
 		 */
 		protected void update(SelectableSecurityDepot correspondingObject) {
 
@@ -552,7 +571,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	 * Objects of this class visualize a portfolio's top investments.
 	 */
 	protected class TopsWidget extends VerticalPanel {
-		
+
 		/**
 		 * Contains the visualizations of the top investments
 		 */
@@ -564,12 +583,13 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		protected Label header;
 
 		/**
-		 * Updates the tops widget. 
-		 * All investments in the given list are shown.
-		 * It is assumed to be sorted.
-		 * The investment with the greatest gain in total value must be at first position. 
+		 * Updates the tops widget. All investments in the given list are shown. It is
+		 * assumed to be sorted. The investment with the greatest gain in total value
+		 * must be at first position.
 		 * 
-		 * @param sortedTops A sorted list of top investments (greatest gain in total value must be at first position)
+		 * @param sortedTops
+		 *            A sorted list of top investments (greatest gain in total value
+		 *            must be at first position)
 		 */
 		protected void update(List<SecurityInvestmentStruct> sortedTops) {
 			this.content.clear();
@@ -608,7 +628,7 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 	 * Objects of this class visualize the portfolio's flop-investments.
 	 */
 	protected class FlopsWidget extends VerticalPanel {
-		
+
 		/**
 		 * Contains the investment's visualizations
 		 */
@@ -620,12 +640,13 @@ public class DetailWidgetSecurityDepot extends VerticalPanel implements Abstract
 		protected Label header;
 
 		/**
-		 * Updates the flops widget. 
-		 * All investments in the given list are shown.
-		 * It is assumed to be sorted.
-		 * The investment with the most severe decline in total value must be at first position. 
+		 * Updates the flops widget. All investments in the given list are shown. It is
+		 * assumed to be sorted. The investment with the most severe decline in total
+		 * value must be at first position.
 		 * 
-		 * @param sortedFlops The sorted list of flop-investments to show (most severe decline in total value must be at first position).
+		 * @param sortedFlops
+		 *            The sorted list of flop-investments to show (most severe decline
+		 *            in total value must be at first position).
 		 */
 		protected void update(List<SecurityInvestmentStruct> sortedFlops) {
 			this.content.clear();

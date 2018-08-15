@@ -11,8 +11,9 @@ public class HeaderLabelBlack extends Label {
 
 	/**
 	 * Creates a header label with black font color.
-	 *  
-	 * @param text The label's content
+	 * 
+	 * @param text
+	 *            The label's content
 	 */
 	public HeaderLabelBlack(String text) {
 		super(text);

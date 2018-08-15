@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class represents an account for a crypto currency.
+ * 
+ * JAVADOC DONE
  */
 public class CryptoWallet implements ICryptoWallet {
 
@@ -167,10 +169,15 @@ public class CryptoWallet implements ICryptoWallet {
 	 * Creates a crypto wallet object. All parameters must not be null.
 	 * 
 	 * @param accountID
-	 * @param currencyCode
+	 *            The wallet's ID
+	 * @param currencyCodeThe
+	 *            crypto currency's code
 	 * @param name
+	 *            The wallet's name
 	 * @param accountBalance
+	 *            the account balance
 	 * @param recentPayments
+	 *            some recent payments
 	 */
 	@JsonCreator
 	public CryptoWallet(final @JsonProperty("accountID") String accountID,
@@ -197,6 +204,9 @@ public class CryptoWallet implements ICryptoWallet {
 		}
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected CryptoWallet() {
 		// required by GWT
 	}

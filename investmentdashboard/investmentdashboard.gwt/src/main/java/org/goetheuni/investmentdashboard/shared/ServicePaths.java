@@ -3,11 +3,13 @@ package org.goetheuni.investmentdashboard.shared;
 /**
  * This enumeration contains Strings that are parts of the Rest-Paths. They
  * should be used in the JAX-RS @Path annotation.
+ * 
+ * JAVA-DOC DONE
  */
 public class ServicePaths {
 
-	/**
-	 * Identifies the service' directory from the root of the application.
+	/*
+	 * Identifies the service' directories from the root of the application.
 	 */
 	public static final String LOGIN_DIRECTORY = "login";
 
@@ -15,7 +17,7 @@ public class ServicePaths {
 
 	public static final String CUSTOMER_DIRECTORY = "customer";
 
-	// services
+	// identify services in directories services
 
 	public static final String LOGIN_SERVICE = "login";
 
@@ -23,7 +25,7 @@ public class ServicePaths {
 
 	public static final String CUSTOMER_DATA_SERVICE = "customer";
 
-	// Strings to identify resources in services
+	// identify resources in services
 
 	public static final String LOGIN_RESOURCE = "login";
 

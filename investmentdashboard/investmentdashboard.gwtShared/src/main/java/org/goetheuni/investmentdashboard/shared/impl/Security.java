@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Objects of this class represent a security. It can be contained in a security
  * depot.
+ * 
+ * JAVADOC DONE
  */
 public class Security implements ISecurity {
 
@@ -119,11 +121,15 @@ public class Security implements ISecurity {
 	}
 
 	/**
-	 * Creates a Security. All parameters must not be null.
+	 * Creates an object representing a security. All parameters must not be null.
 	 * 
 	 * @param isin
+	 *            The security's ISIN
 	 * @param name
+	 *            The security's name
 	 * @param shortName
+	 *            A short name for the security (A longer given string will be
+	 *            reduced to the maximum of 12 letters)
 	 */
 	@JsonCreator
 	public Security(final @JsonProperty("isin") String isin, final @JsonProperty("name") String name,
@@ -142,6 +148,9 @@ public class Security implements ISecurity {
 		}
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected Security() {
 		// required by GWT
 	}

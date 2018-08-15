@@ -9,9 +9,22 @@ import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.AuthenticationToken;
 import org.goetheuni.investmentdashboard.shared.impl.LoginInfo;
 
+/**
+ * This is the server-side implementation of the authentication service.
+ * 
+ * JAVADOC DONE
+ */
 @Path(ServicePaths.LOGIN_SERVICE)
 public class LoginService {
 
+	/**
+	 * This method performs a login attempt.
+	 * 
+	 * @param loginInfo
+	 *            The customerID and password information
+	 * @return An authentication token object, that contains a token if successful.
+	 *         Otherwise, it contains null.
+	 */
 	@POST
 	@Path(ServicePaths.LOGIN_RESOURCE)
 	@Produces(MediaType.APPLICATION_JSON)

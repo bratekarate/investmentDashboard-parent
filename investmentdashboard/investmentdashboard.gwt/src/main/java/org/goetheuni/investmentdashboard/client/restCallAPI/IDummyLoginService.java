@@ -21,8 +21,11 @@ public interface IDummyLoginService extends RestService {
 
 	/**
 	 * This method performs a login attempt.
-	 * @param loginInfo The customerID and the passwordInfo
-	 * @param token The retrieved authentication token
+	 * 
+	 * @param loginInfo
+	 *            The customerID and the passwordInfo
+	 * @param token
+	 *            The retrieved authentication token
 	 */
 	@POST
 	@Path(ServicePaths.LOGIN_RESOURCE)

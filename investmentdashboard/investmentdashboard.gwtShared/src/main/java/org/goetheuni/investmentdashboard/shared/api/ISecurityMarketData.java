@@ -6,10 +6,13 @@ import java.util.Map;
 
 /**
  * Objects with this interface represent security market data provided by the
- * bank. The concerning point of time must be specified. It may not contain
- * information about all securities in the market. As GWT is based on source
- * code mapping, these interface can only be used in the server-side code.
+ * bank. It also contains reference data for comparison. The concerning point of
+ * time must be specified. It may not contain information about all securities
+ * in the market, but only about those, that are relevant. As GWT is based on
+ * source code mapping, these interface can only be used in the server-side
+ * code.
  * 
+ * JAVADOC DONE
  */
 public interface ISecurityMarketData {
 

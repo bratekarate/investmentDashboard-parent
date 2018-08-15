@@ -11,7 +11,7 @@ public class SizeConstants {
 	 * The total width of the UI in the CSS unit vw
 	 */
 	private static int totalWidth = 90;
-	
+
 	/**
 	 * The width of a category widget in the CSS unit vw
 	 */

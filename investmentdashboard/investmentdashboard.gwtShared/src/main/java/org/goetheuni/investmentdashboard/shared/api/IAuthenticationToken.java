@@ -2,7 +2,9 @@ package org.goetheuni.investmentdashboard.shared.api;
 
 /**
  * An object with this interface encapsulates an authentication token for
- * resty-gwt.
+ * resty-gwt. If it contains null, the login failed.
+ * 
+ * JAVADOC DONE
  */
 public interface IAuthenticationToken {
 

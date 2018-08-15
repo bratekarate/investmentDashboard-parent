@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * An object of this class encapsulates login information.
+ * 
+ * JAVADOC DONE
  */
 public class LoginInfo implements ILoginInfo {
 
@@ -50,5 +52,12 @@ public class LoginInfo implements ILoginInfo {
 			final @JsonProperty("passwordInfo") String passwordInfo) {
 		this.customerID = Objects.requireNonNull(customerID, "The given customer ID must not be null");
 		this.passwordInfo = Objects.requireNonNull(passwordInfo, "The given password info must not be null");
+	}
+
+	/**
+	 * NOT A PART OF THE API
+	 */
+	protected LoginInfo() {
+		// required by GWT
 	}
 }

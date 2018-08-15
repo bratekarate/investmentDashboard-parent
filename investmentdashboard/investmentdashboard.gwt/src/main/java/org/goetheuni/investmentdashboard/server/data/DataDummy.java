@@ -23,12 +23,20 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
 
 /**
- * This class provides dummy customers.
+ * This class provides data for demonstration purposes.
+ * 
+ * JAVADOC DONE
  */
 public class DataDummy {
 
+	/**
+	 * for the randomization of dates
+	 */
 	public static Random R = new Random();
 
+	/*
+	 * demo DAX securities with high market capitalization
+	 */
 	private static final Security SECA01 = new Security("0001", "Baier", "Baier");
 	private static final Security SECA02 = new Security("0002", "Allians", "Alliants");
 	private static final Security SECA03 = new Security("0003", "BAZF", "BAZF");
@@ -42,6 +50,9 @@ public class DataDummy {
 	private static final Security SECA11 = new Security("0011", "Frisinius MC", "Frisinius MC");
 	private static final Security SECA12 = new Security("0012", "Baiersdorff", "Baiersdorf");
 
+	/*
+	 * demo international technology securities with high market capitalization
+	 */
 	private static final Security SECT01 = new Security("0013", "SAMSANG ADRs", "SAUMSANG ADRs");
 	private static final Security SECT02 = new Security("0014", "Intal Corp.", "Intal Corp.");
 	private static final Security SECT03 = new Security("0015", "Cesco Inc.", "Cesco Inc.");
@@ -55,6 +66,12 @@ public class DataDummy {
 	private static final Security SECT11 = new Security("0023", "Novartes AG", "Novartes AG");
 	private static final Security SECT12 = new Security("0024", "Johnsen & J.", "Johnsen & J.");
 
+	/**
+	 * Returns demo security market and reference data. The market data was taken
+	 * from the real market.
+	 * 
+	 * @return demo security market and reference data
+	 */
 	public static SecurityMarketData getDummySecurities() {
 		HashMap<String, BigDecimal> marketPrizes = new HashMap<>();
 		Date dateAndTime = new Date();
@@ -116,6 +133,11 @@ public class DataDummy {
 		return result;
 	}
 
+	/**
+	 * Returns demo crypto market and reference data.
+	 * 
+	 * @return
+	 */
 	public static CryptoMarketData getDummyCrypto() {
 		Date dateAndTime = new Date();
 		HashMap<String, BigDecimal> exchangeRates = new HashMap<>();
@@ -137,6 +159,9 @@ public class DataDummy {
 		return result;
 	}
 
+	/**
+	 * @return demo customer data
+	 */
 	public static Customer getDummyCustomer() {
 
 		// create sample dates
@@ -306,6 +331,13 @@ public class DataDummy {
 
 	}
 
+	/**
+	 * Creates a random data in the past with the day of the given data.
+	 * 
+	 * @param day
+	 *            The day of the resulting date
+	 * @return a random date in the past with the day of the given data.
+	 */
 	private static Date rndmDate(LocalDateTime day) {
 		LocalDateTime result = day.minusHours(R.nextInt(day.getHour() + 1));
 		result = result.minusMinutes(R.nextInt(result.getMinute() + 1));

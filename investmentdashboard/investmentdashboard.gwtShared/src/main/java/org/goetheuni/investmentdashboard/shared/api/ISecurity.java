@@ -1,9 +1,10 @@
 package org.goetheuni.investmentdashboard.shared.api;
 
 /**
- * Objects with this interface represent a security. It can be contained in a
- * security depot. As GWT is based on source code mapping, these interface can
- * only be used in the server-side code.
+ * Objects with this interface represent a security. As GWT is based on source
+ * code mapping, these interface can only be used in the server-side code.
+ * 
+ * JAVADOC DONE
  */
 public interface ISecurity {
 

@@ -95,8 +95,10 @@ public class SecurityInvestmentStruct implements EURComputable {
 	}
 
 	/**
-	 * @return gathers and returns the quotation of a single instance of the security from the storage.
-	 * @throws a RuntimeException if the storage returned null.
+	 * @return gathers and returns the quotation of a single instance of the
+	 *         security from the storage.
+	 * @throws a
+	 *             RuntimeException if the storage returned null.
 	 */
 	public BigDecimal getSingleSecurityQuotation() {
 		String key = this.getISIN();
@@ -111,15 +113,18 @@ public class SecurityInvestmentStruct implements EURComputable {
 
 	/**
 	 * @return product of the quotation of a single security and the quantity.
-	 * @throws a RuntimeException if the storage returned null.
+	 * @throws a
+	 *             RuntimeException if the storage returned null.
 	 */
 	public BigDecimal getTotalInvestmentEuroVolume() {
 		return this.getSingleSecurityQuotation().multiply(BigDecimal.valueOf(this.getQuantity()));
 	}
 
 	/**
-	 * @return gathers and returns the reference value of a single instance of the security from the storage.
-	 * @throws a RuntimeException if the storage returned null.
+	 * @return gathers and returns the reference value of a single instance of the
+	 *         security from the storage.
+	 * @throws a
+	 *             RuntimeException if the storage returned null.
 	 */
 	public BigDecimal getSingleSecurityReferenceValue() {
 		String key = this.getISIN();
@@ -134,7 +139,8 @@ public class SecurityInvestmentStruct implements EURComputable {
 
 	/**
 	 * @return product of the reference value of a single security and the quantity.
-	 * @throws a RuntimeException if the storage returned null.
+	 * @throws a
+	 *             RuntimeException if the storage returned null.
 	 */
 	public BigDecimal getTotalInvestmentReferenceValue() {
 		return this.getSingleSecurityReferenceValue().multiply(BigDecimal.valueOf(this.getQuantity()));

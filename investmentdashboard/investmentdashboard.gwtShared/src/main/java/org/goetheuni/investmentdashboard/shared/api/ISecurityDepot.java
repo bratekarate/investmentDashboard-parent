@@ -9,6 +9,8 @@ import org.goetheuni.investmentdashboard.shared.impl.SecurityTransaction;
  * An object with this interface represents a security depot. As GWT is based on
  * source code mapping, these interface can only be used in the server-side
  * code.
+ * 
+ * JAVADOC DONE
  */
 public interface ISecurityDepot {
 

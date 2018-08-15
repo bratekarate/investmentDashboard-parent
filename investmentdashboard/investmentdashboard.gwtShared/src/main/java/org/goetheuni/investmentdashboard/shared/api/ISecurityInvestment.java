@@ -5,6 +5,8 @@ import org.goetheuni.investmentdashboard.shared.impl.Security;
 /**
  * An object with this interface represents an investment in one security. It
  * knows its number of instances of that security.
+ * 
+ * JAVADOC DONE
  */
 public interface ISecurityInvestment {
 

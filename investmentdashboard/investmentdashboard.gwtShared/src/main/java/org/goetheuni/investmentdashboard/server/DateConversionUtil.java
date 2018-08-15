@@ -9,6 +9,8 @@ import java.util.Date;
  * This class provides methods to convert between the old GWT-compatible java
  * Date API and the java 8 time API, which is more appropriate.
  * 
+ * JAVDOC DONE
+ * 
  */
 public class DateConversionUtil {
 

@@ -21,7 +21,8 @@ public interface SelectableCryptoWallet extends Selectable {
 	String getFormattedAmountInX();
 
 	/**
-	 * @return A formatted string for the euro-value of one unit of the crypot currency.
+	 * @return A formatted string for the euro-value of one unit of the crypot
+	 *         currency.
 	 */
 	String getFormattedExchangeRate();
 
@@ -37,11 +38,12 @@ public interface SelectableCryptoWallet extends Selectable {
 
 	/**
 	 * Returns a sorted list of the most recent payments of this crypto wallet.
-	 * @param numberOfPayments The maximum number of payments in the result
-	 * @return sorted list of the most recent payments (The most recent payment at first position)
+	 * 
+	 * @param numberOfPayments
+	 *            The maximum number of payments in the result
+	 * @return sorted list of the most recent payments (The most recent payment at
+	 *         first position)
 	 */
 	List<CryptoPayment> getRecentPaymentsSorted(int numberOfPayments);
-
-
 
 }

@@ -14,14 +14,14 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
- * Objects of this class are select buttons for the category S.
- * They are used in select widgets.
- * When clicked, the select widget updates the detail widget.
+ * Objects of this class are select buttons for the category S. They are used in
+ * select widgets. When clicked, the select widget updates the detail widget.
  * The class FocusPanel is used because it allows to register a click-handler.
  * 
- * @param <S> The category (cash, crypto and depots)
+ * @param <S>
+ *            The category (cash, crypto and depots)
  * 
- * JAVADOC DONE
+ *            JAVADOC DONE
  */
 public abstract class AbstractSelectButton<S extends Selectable> extends FocusPanel
 		implements Comparable<AbstractSelectButton<S>> {
@@ -47,8 +47,7 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	protected VolatilityLabel volatility;
 
 	/**
-	 * true, if the button is marked by clicking.
-	 * Otherwise false.
+	 * true, if the button is marked by clicking. Otherwise false.
 	 */
 	protected boolean isMarked;
 
@@ -80,7 +79,8 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	}
 
 	/**
-	 * Sets the marked state to false and changes to background color to its default value
+	 * Sets the marked state to false and changes to background color to its default
+	 * value
 	 */
 	protected void setUnmarked() {
 		this.isMarked = false;
@@ -100,10 +100,14 @@ public abstract class AbstractSelectButton<S extends Selectable> extends FocusPa
 	/**
 	 * Creates a new select button for the given sub-structure.
 	 * 
-	 * @param icon CAPGEMINI BANK AG's icon
-	 * @param correspondingStructure The sub-structure represented by the button
-	 * @param optionalVolatilityLabel An optional label to express the volatility of the balance
-	 * @param optionalAmountLabel The label for the balance of the sub-structure
+	 * @param icon
+	 *            CAPGEMINI BANK AG's icon
+	 * @param correspondingStructure
+	 *            The sub-structure represented by the button
+	 * @param optionalVolatilityLabel
+	 *            An optional label to express the volatility of the balance
+	 * @param optionalAmountLabel
+	 *            The label for the balance of the sub-structure
 	 */
 	protected AbstractSelectButton(Image icon, S correspondingStructure, VolatilityLabel optionalVolatilityLabel,
 			Label optionalAmountLabel) {

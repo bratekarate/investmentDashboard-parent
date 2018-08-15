@@ -9,6 +9,8 @@ import org.goetheuni.investmentdashboard.shared.impl.CryptoPayment;
  * An object with this interface represents an account for a crypto currency. As
  * GWT is based on source code mapping, these interface can only be used in the
  * server-side code.
+ * 
+ * JAVADOC DONE
  */
 public interface ICryptoWallet {
 

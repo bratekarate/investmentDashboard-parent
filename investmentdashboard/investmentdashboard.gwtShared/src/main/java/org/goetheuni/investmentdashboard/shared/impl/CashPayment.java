@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * An object of this class represents an executed payment in cash. It is
  * generated for a customer and therefore contains only the counter-party IBAN.
+ * 
+ * JAVADOC DONE
  */
 public class CashPayment implements ICashPayment {
 
@@ -169,9 +171,18 @@ public class CashPayment implements ICashPayment {
 	 * Creates a cash payment object. All parameters must not be null.
 	 * 
 	 * @param amount
+	 *            The payment's amount. It is negative if the customer sent cash. It
+	 *            is positive if the customer received cash.
+	 * 
 	 * @param currency
+	 *            The code of the currency used for this payment.
 	 * @param counterPartyIBAN
+	 *            the counter-party's IBAN
+	 * @param counterPartyName
+	 *            the name of the counter-party A longer given string will be
+	 *            reduced to the maximum of 15 letters
 	 * @param dateOfExecution
+	 *            the date of execution
 	 */
 	@JsonCreator
 	public CashPayment(final @JsonProperty("amount") BigDecimal amount,
@@ -191,10 +202,21 @@ public class CashPayment implements ICashPayment {
 
 		this.currencyCode = Objects.requireNonNull(currencyCode, "Currency must not be null");
 		this.counterPartyIBAN = Objects.requireNonNull(counterPartyIBAN, "The counterparty's IBAN must not be null");
-		this.counterPartyName = Objects.requireNonNull(counterPartyName, "The counterparty's name must not be null");
+		Objects.requireNonNull(counterPartyName, "The counterparty's name must not be null");
 		this.dateOfExecution = Objects.requireNonNull(dateOfExecution, "The date of execution must not be null");
+
+		if (counterPartyName.length() <= 15) {
+			// this is fine
+			this.counterPartyName = counterPartyName;
+		} else {
+			// length must be reduced
+			this.counterPartyName = counterPartyName.substring(0, 14);
+		}
 	}
 
+	/**
+	 * NOT A PART OF THE API
+	 */
 	protected CashPayment() {
 		// required by GWT
 	}
