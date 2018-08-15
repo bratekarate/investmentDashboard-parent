@@ -35,7 +35,9 @@ public class PersonalCustomerData implements IPersonalCustomerData {
 		this.nameForAddress = nameForAddress;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -46,7 +48,9 @@ public class PersonalCustomerData implements IPersonalCustomerData {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -71,7 +75,9 @@ public class PersonalCustomerData implements IPersonalCustomerData {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

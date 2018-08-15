@@ -7,32 +7,18 @@ import javax.ws.rs.core.MediaType;
 
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
-import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
-import org.goetheuni.investmentdashboard.shared.impl.SecurityMarketData;
+import org.goetheuni.investmentdashboard.shared.metadata.ServicePaths;
 
 /**
- * This is the client-side interface for services for securities' and crypto
- * asset' market and reference data.
+ * This is the client-side interface for services for crypto assets' market and
+ * reference data.
  * 
  * JAVADOC DONE
  */
-@Path("/" + ServicePaths.MARKET_DIRECTORY + "/" + ServicePaths.MARKET_DATA_SERVICE)
-public interface IDummyMarketDataService extends RestService {
-
-	/**
-	 * Asynchronous method for retrieving market and reference data for securities.
-	 * 
-	 * @param requestInfo
-	 *            The customer ID and the authentication token
-	 * @param securitiesData
-	 *            callback that returns the requested data
-	 */
-	@POST
-	@Path(ServicePaths.SECURITIES_RESOURCE)
-	@Produces(MediaType.APPLICATION_JSON)
-	public void requestSecurityData(RequestInfo requestInfo, MethodCallback<SecurityMarketData> securitiesData);
+@Path("/" + ServicePaths.CRYPTOMARKET_DIRECTORY + "/" + ServicePaths.CRYPTOMARKET_DATA_SERVICE)
+public interface IDummyCryptoMarketDataService extends RestService {
 
 	/**
 	 * Asynchronous method returning for retrieving market and reference data for

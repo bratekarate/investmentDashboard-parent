@@ -59,9 +59,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return dateAndTime;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -74,7 +74,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -113,7 +115,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

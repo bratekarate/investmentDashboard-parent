@@ -81,9 +81,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return isSellTransaction;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -98,7 +98,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -143,7 +145,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

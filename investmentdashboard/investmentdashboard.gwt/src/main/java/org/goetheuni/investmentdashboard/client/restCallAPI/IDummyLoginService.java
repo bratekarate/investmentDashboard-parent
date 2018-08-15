@@ -7,9 +7,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
-import org.goetheuni.investmentdashboard.shared.ServicePaths;
 import org.goetheuni.investmentdashboard.shared.impl.AuthenticationToken;
 import org.goetheuni.investmentdashboard.shared.impl.LoginInfo;
+import org.goetheuni.investmentdashboard.shared.metadata.ServicePaths;
 
 /**
  * This is the client-side interface for the login service.

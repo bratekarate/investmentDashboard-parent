@@ -59,9 +59,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return dateAndTime;
 	}
 
-	
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -74,7 +74,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -113,7 +115,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

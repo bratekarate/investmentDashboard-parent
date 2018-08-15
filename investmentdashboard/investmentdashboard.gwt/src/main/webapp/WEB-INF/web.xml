@@ -36,7 +36,7 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>MarketDataService</servlet-name>
+		<servlet-name>SecurityMarketDataService</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
@@ -46,8 +46,23 @@
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MarketDataService</servlet-name>
-		<url-pattern>/market/*</url-pattern>
+		<servlet-name>SecurityMarketDataService</servlet-name>
+		<url-pattern>/securitiesmarket/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CryptoMarketDataService</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>
+                org.goetheuni.investmentdashboard.server.api
+            </param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CryptoMarketDataService</servlet-name>
+		<url-pattern>/cryptomarket/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

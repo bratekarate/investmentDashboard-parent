@@ -8,8 +8,9 @@ import org.fusesource.restygwt.client.MethodCallback;
 import org.goetheuni.investmentdashboard.client.global.CryptoMarketDataStorage;
 import org.goetheuni.investmentdashboard.client.global.CustomerDataStorage;
 import org.goetheuni.investmentdashboard.client.global.SecurityMarketDataStorage;
+import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyCryptoMarketDataService;
 import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyCustomerDataService;
-import org.goetheuni.investmentdashboard.client.restCallAPI.IDummyMarketDataService;
+import org.goetheuni.investmentdashboard.client.restCallAPI.IDummySecurityMarketDataService;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoMarketData;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
 import org.goetheuni.investmentdashboard.shared.impl.RequestInfo;
@@ -111,7 +112,8 @@ public class DummyParentDataService {
 
 		// create interfaces to the micro-services
 		IDummyCustomerDataService customerService = GWT.create(IDummyCustomerDataService.class);
-		IDummyMarketDataService marketService = GWT.create(IDummyMarketDataService.class);
+		IDummySecurityMarketDataService marketService = GWT.create(IDummySecurityMarketDataService.class);
+		IDummyCryptoMarketDataService cryptoMarketService = GWT.create(IDummyCryptoMarketDataService.class);
 
 		// load and store customer data
 		customerService.requestCustomerData(this.requestInfo, new MethodCallback<Customer>() {
@@ -144,7 +146,7 @@ public class DummyParentDataService {
 		});
 
 		// get and store crypto market data
-		marketService.requestCryptoData(this.requestInfo, new MethodCallback<CryptoMarketData>() {
+		cryptoMarketService.requestCryptoData(this.requestInfo, new MethodCallback<CryptoMarketData>() {
 
 			@Override
 			public void onSuccess(Method method, CryptoMarketData response) {
