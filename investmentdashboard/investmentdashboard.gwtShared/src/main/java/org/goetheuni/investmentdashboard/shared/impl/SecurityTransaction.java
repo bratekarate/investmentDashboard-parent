@@ -81,9 +81,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return isSellTransaction;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -91,15 +91,14 @@ public class SecurityTransaction implements ISecurityTransaction {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dateOfExecution == null) ? 0 : dateOfExecution.hashCode());
+		result = prime * result + (isSellTransaction ? 1231 : 1237);
 		result = prime * result + (int) (quantity ^ (quantity >>> 32));
 		result = prime * result + ((security == null) ? 0 : security.hashCode());
 		result = prime * result + ((totalPrize == null) ? 0 : totalPrize.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -119,6 +118,9 @@ public class SecurityTransaction implements ISecurityTransaction {
 				return false;
 			}
 		} else if (!dateOfExecution.equals(other.dateOfExecution)) {
+			return false;
+		}
+		if (isSellTransaction != other.isSellTransaction) {
 			return false;
 		}
 		if (quantity != other.quantity) {
@@ -141,15 +143,13 @@ public class SecurityTransaction implements ISecurityTransaction {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "SecurityTransaction [quantity=" + quantity + ", totalPrize=" + totalPrize + ", security=" + security
-				+ ", dateOfExecution=" + dateOfExecution + "]";
+				+ ", dateOfExecution=" + dateOfExecution + ", isSellTransaction=" + isSellTransaction + "]";
 	}
 
 	/**

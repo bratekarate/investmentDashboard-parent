@@ -138,16 +138,6 @@ public class TestSecurityDepot {
 		new SecurityDepot(investmentList1, "depotID_sun", "sun", null);
 	}
 	
-	@Test(expected = NullPointerException.class)
-	public void testReferenceValueNoneNull() {
-		Security sun = new Security("11111","SUN MicroSystems INC.","SUN Ms");
-		List<SecurityInvestment> investmentList1 = Arrays.asList(new SecurityInvestment(sun,1110), new SecurityInvestment(sun,0513));
-		LocalDateTime date1 = LocalDateTime.of(2018, 6, 26, 14, 33, 30);
-		SecurityTransaction transaction1 = new SecurityTransaction(5713, BigDecimal.valueOf(567890), sun, DateConversionUtil.toDate(date1), false);
-		List<SecurityTransaction> transactionList1 = Arrays.asList(transaction1);
-		
-		new SecurityDepot(investmentList1, "depotID_sun", "sun", transactionList1);
-	}
 	
 	
 	@Test

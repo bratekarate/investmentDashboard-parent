@@ -39,6 +39,58 @@ public class LoginInfo implements ILoginInfo {
 		return passwordInfo;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customerID == null) ? 0 : customerID.hashCode());
+		result = prime * result + ((passwordInfo == null) ? 0 : passwordInfo.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		LoginInfo other = (LoginInfo) obj;
+		if (customerID == null) {
+			if (other.customerID != null) {
+				return false;
+			}
+		} else if (!customerID.equals(other.customerID)) {
+			return false;
+		}
+		if (passwordInfo == null) {
+			if (other.passwordInfo != null) {
+				return false;
+			}
+		} else if (!passwordInfo.equals(other.passwordInfo)) {
+			return false;
+		}
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LoginInfo [customerID=" + customerID + ", passwordInfo=" + passwordInfo + "]";
+	}
+
 	/**
 	 * Creates a shared object for the login process.
 	 * 

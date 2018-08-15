@@ -59,20 +59,9 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return dateAndTime;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "CryptoMarketData [exchangeRates=" + exchangeRates + ", referenceValues=" + referenceValues
-				+ ", dateAndTime=" + dateAndTime + "]";
-	}
+	
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -85,9 +74,7 @@ public class CryptoMarketData implements ICryptoMarketData {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -124,6 +111,15 @@ public class CryptoMarketData implements ICryptoMarketData {
 			return false;
 		}
 		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "CryptoMarketData [exchangeRates=" + exchangeRates + ", referenceValues=" + referenceValues
+				+ ", dateAndTime=" + dateAndTime + "]";
 	}
 
 	/**

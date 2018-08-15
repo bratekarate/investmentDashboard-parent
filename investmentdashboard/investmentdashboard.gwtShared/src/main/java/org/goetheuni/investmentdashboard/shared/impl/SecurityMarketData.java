@@ -59,20 +59,9 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return dateAndTime;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "SecurityMarketData [marketPrizes=" + marketPrizes + ", referenceValues=" + referenceValues
-				+ ", dateAndTime=" + dateAndTime + "]";
-	}
+	
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -85,9 +74,7 @@ public class SecurityMarketData implements ISecurityMarketData {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -124,6 +111,15 @@ public class SecurityMarketData implements ISecurityMarketData {
 			return false;
 		}
 		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SecurityMarketData [marketPrizes=" + marketPrizes + ", referenceValues=" + referenceValues
+				+ ", dateAndTime=" + dateAndTime + "]";
 	}
 
 	/**
