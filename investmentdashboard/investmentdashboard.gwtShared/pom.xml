@@ -8,7 +8,7 @@
   <artifactId>investmentdashboard.gwtShared</artifactId>
   <packaging>jar</packaging>
 
-  <name>org.goetheuni.investmentdashboard.gwtShared</name>
+  <name>investmentdashboard.gwtShared</name>
 
   <properties>
 
