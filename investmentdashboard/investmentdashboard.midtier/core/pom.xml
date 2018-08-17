@@ -20,6 +20,11 @@
 			<version>${project.version}</version>
 		</dependency>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>    
+
 		<dependency>
 			<groupId>io.oasp.java.modules</groupId>
 			<artifactId>oasp4j-beanmapping</artifactId>
