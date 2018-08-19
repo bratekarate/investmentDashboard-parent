@@ -3,6 +3,7 @@ package org.goetheuni.investmentdashboard.service.crypto.general.service.impl.co
 import javax.inject.Inject;
 import javax.servlet.Filter;
 
+import org.goetheuni.investmentdashboard.service.crypto.general.common.impl.security.CsrfRequestMatcher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,7 +20,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import org.goetheuni.investmentdashboard.service.crypto.general.common.impl.security.CsrfRequestMatcher;
 import io.oasp.module.security.common.impl.rest.AuthenticationSuccessHandlerSendingOkHttpStatusCode;
 import io.oasp.module.security.common.impl.rest.JsonUsernamePasswordAuthenticationFilter;
 import io.oasp.module.security.common.impl.rest.LogoutSuccessHandlerReturningOkHttpStatusCode;
@@ -62,8 +62,8 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @Override
   public void configure(HttpSecurity http) throws Exception {
 
-    String[] unsecuredResources =
-        new String[] { "/login", "/security/**", "/services/rest/login", "/services/rest/logout" };
+    String[] unsecuredResources = new String[] { "/**" };// "/login", "/security/**", "/services/rest/login",
+                                                         // "/services/rest/logout" };
 
     http
         //
