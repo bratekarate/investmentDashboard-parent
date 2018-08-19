@@ -172,7 +172,5 @@
 		<module>investmentdashboard.midtier</module>
 		<module>investmentdashboard.demoBankServer</module>
     <module>investmentdashboard.service.customers</module>
-    <module>investmentdashboard.service.crypto</module>
-    <module>investmentdashboard.service.securities</module>
   </modules>
 </project>
