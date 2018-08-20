@@ -7,23 +7,38 @@ import org.goetheuni.investmentdashboard.shared.impl.CashAccount;
 import org.goetheuni.investmentdashboard.shared.impl.CryptoWallet;
 import org.goetheuni.investmentdashboard.shared.impl.Customer;
 import org.goetheuni.investmentdashboard.shared.impl.SecurityDepot;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Controller for Login-Page.
  */
 @Controller
-public class KundenController {
+public class CustomerController {
 
   /**
    * Default URL to redirect to after successfully login.
    */
   public final static String defaultTargetUrl = "/";
+
+  private final RestTemplate restTemplate;
+
+  /**
+   * The constructor.
+   *
+   * @param restTemplate
+   */
+  public CustomerController(RestTemplate restTemplate) {
+
+    this.restTemplate = restTemplate;
+  }
 
   /**
    * Builds the model for the login page---mainly focusing on the error message handling.
@@ -34,8 +49,8 @@ public class KundenController {
    * @param logout flag for successful logout
    * @return the view model
    */
-  @RequestMapping(value = "/kunden/{id}", method = RequestMethod.GET)
-  public ResponseEntity<Customer> login(@PathVariable(value = "id") Long kundenId) {
+  @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
+  public ResponseEntity<Customer> getKunde(@PathVariable(value = "id") Long kundenId) {
 
     // final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     // if (!authentication.getPrincipal().equals("anonymousUser")) {
@@ -56,7 +71,17 @@ public class KundenController {
     // model.addObject("msg", "Logout successful!");
     // }
     //
-    List<CashAccount> cashAccounts = Collections.emptyList();
+
+    // get cash accounts from other service
+    List<CashAccount> cashAccounts = this.restTemplate.exchange("http://localhost:8082/cashaccounts/" + kundenId,
+        HttpMethod.GET, null, new ParameterizedTypeReference<List<CashAccount>>() {
+        }).getBody();
+
+    if (cashAccounts == null || cashAccounts.isEmpty()) {
+      throw new RuntimeException("No Data received");
+    }
+
+    // TODO: get rest of customer data from external services as well
     List<CryptoWallet> cryptoWallets = Collections.emptyList();
     List<SecurityDepot> securityDepots = Collections.emptyList();
 

@@ -77,4 +77,5 @@ public class WebConfig {
     registration.addUrlPatterns("/*");
     return registration;
   }
+
 }
